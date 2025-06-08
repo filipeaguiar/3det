@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escudo do Mestre - 3D&T Victory</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      background: linear-gradient(to bottom right, #1c1c3c, #2c2c54);
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      background: #ff5e5e;
+      padding: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .panel {
+      background: #323267;
+      border: 2px solid #ff5e5e;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 0 15px rgba(255, 94, 94, 0.3);
+      overflow-y: auto;
+    }
+
+    .panel h2 {
+      color: #ffb347;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #ff5e5e;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      padding-left: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    table, th, td {
+      border: 1px solid #ff5e5e;
+    }
+
+    th, td {
+      padding: 4px;
+      text-align: left;
+    }
+
+    th {
+      background: #ff5e5e;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>Escudo do Mestre - 3D&T Victory</header>
+  <div class="container">
+
+    <div class="panel">
+      <h2>Painel 1: O Essencial</h2>
+      <ul>
+        <li><strong>Teste:</strong> Dados + Atributo ≥ Meta</li>
+        <li><strong>Dados:</strong> 1D base, +1D por Perícia ou Ganho, -1D por Perda</li>
+        <li><strong>Dificuldades:</strong> Fácil 6, Médio 9, Difícil 12, Muito Difícil 15</li>
+        <li><strong>Crítico:</strong> 6 em um dado → soma atributo de novo</li>
+        <li><strong>Falha:</strong> Todos os dados são 1 → próximo teste tem Perda</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Painel 2: Combate</h2>
+      <ul>
+        <li><strong>Iniciativa:</strong> Habilidade (+Luta)</li>
+        <li><strong>Ataque:</strong> Poder (+Luta) vs Defesa do alvo</li>
+        <li><strong>Dano:</strong> Ataque - Defesa (mínimo 1)</li>
+        <li><strong>Defesa Perfeita:</strong> Defesa ≥ Ataque x2</li>
+        <li><strong>Turno:</strong> 1 Ação + 1 Movimento, ou 2 Movimentos</li>
+        <li><strong>Distâncias:</strong> Perto (≤1m), Longe (1–10m), Muito Longe (10–100m), Fora (+100m)</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Painel 3: Condições</h2>
+      <ul>
+        <li><strong>Perto da Derrota:</strong> PV ≤ Resistência</li>
+        <li><strong>Derrotado:</strong> 0 PV, sempre tem Perda, sem críticos</li>
+        <li><strong>Teste de Morte:</strong>
+          <ul>
+            <li>12+: Caído (consciente, sem agir)</li>
+            <li>8–11: Inconsciente</li>
+            <li>6–7: Quase morto (morre em 1D rodadas)</li>
+            <li>5–: Morto</li>
+          </ul>
+        </li>
+        <li><strong>Condições:</strong> Desprevenido, Indefeso, Caído</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Painel 4: Referências Rápidas</h2>
+      <ul>
+        <li><strong>PA:</strong> 1PA = Ganho ou anular Perda, dica, ou curar 10PV/PM</li>
+        <li><strong>Recuperação:</strong> 8h sono = tudo; 2h descanso = PV = R, PM = H</li>
+        <li><strong>Nomes NPCs:</strong><br>
+          <em>Masculinos:</em> Kenji, Téo, Luan...<br>
+          <em>Femininos:</em> Yumi, Maya, Hana...<br>
+          <em>Sobrenomes:</em> Asakura, Storm, Chen...</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h2>Painel Extra: Perícias</h2>
+      <table>
+        <thead>
+          <tr><th>Perícia</th><th>Atributo</th><th>Usos</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Animais</td><td>Habilidade</td><td>Lidar com criaturas, montar, domar</td></tr>
+          <tr><td>Arte</td><td>Habilidade</td><td>Atuar, cantar, disfarçar</td></tr>
+          <tr><td>Esporte</td><td>Habilidade</td><td>Corrida, salto, acrobacia</td></tr>
+          <tr><td>Influência</td><td>Poder</td><td>Convencer, seduzir, intimidar</td></tr>
+          <tr><td>Luta</td><td>Poder</td><td>Combate, táticas</td></tr>
+          <tr><td>Manha</td><td>Habilidade</td><td>Furtividade, enganação</td></tr>
+          <tr><td>Máquinas</td><td>Habilidade</td><td>Consertar, pilotar, hackear</td></tr>
+          <tr><td>Medicina</td><td>Habilidade</td><td>Tratar ferimentos, diagnosticar</td></tr>
+          <tr><td>Mística</td><td>Habilidade / Poder</td><td>Magia, rituais, identificar</td></tr>
+          <tr><td>Percepção</td><td>Habilidade</td><td>Notar detalhes, rastrear</td></tr>
+          <tr><td>Saber</td><td>Habilidade</td><td>Conhecimento teórico</td></tr>
+          <tr><td>Sobrevivência</td><td>Habilidade</td><td>Caçar, orientar-se, abrigo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
