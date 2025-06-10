@@ -532,31 +532,38 @@
          * @param {string} enemyName - The name of the enemy to display.
          */
         function displayEnemy(enemyName) {
-            const enemy = bestiaryData.find(e => e.name === enemyName);
-            if (!enemy) return;
+    const enemy = bestiaryData.find(e => e.name === enemyName);
+    if (!enemy) return;
 
-            let detailsHtml = `<h3 class="text-2xl font-bold text-accent mb-1">${enemy.name}</h3>`;
-            detailsHtml += `<p class="text-sm text-secondary mb-4">${enemy.pontos}</p>`;
-            detailsHtml += `<p class="mb-4"><strong>Atributos:</strong> ${enemy.stats}</p>`;
-            
-            if (enemy.pericias) detailsHtml += `<p class="mb-2"><strong>Perícias:</strong> ${enemy.pericias}</p>`;
-            if (enemy.vantagens) detailsHtml += `<p class="mb-2"><strong>Vantagens:</strong> ${enemy.vantagens}</p>`;
-            if (enemy.desvantagens) detailsHtml += `<p class="mb-4"><strong>Desvantagens:</strong> ${enemy.desvantagens}</p>`;
+    // Usar .map() para extrair o 'name' de cada objeto e criar o HTML com o tooltip
+    const createListHtml = (items) => {
+        if (!items || items.length === 0) return "Nenhuma";
+        return items.map(item => createAbilitySpan(item)).join(', ');
+    };
 
-            if (enemy.poderes && enemy.poderes.length > 0) {
-                detailsHtml += `<h4 class="font-bold mt-4 mb-2">Poderes Especiais</h4>`;
-                detailsHtml += `<dl class="space-y-3">`;
-                enemy.poderes.forEach(poder => {
-                    detailsHtml += `<div><dt class="font-semibold">${poder.name}</dt><dd class="text-sm text-secondary pl-2 border-l-2">${poder.desc}</dd></div>`;
-                });
-                detailsHtml += `</dl>`;
-            }
-            
-            bestiaryDetails.innerHTML = detailsHtml;
+    let detailsHtml = `<h3 class="text-2xl font-bold text-accent mb-1">${enemy.name}</h3>`;
+    detailsHtml += `<p class="text-sm text-secondary mb-4">${enemy.pontos}</p>`;
+    detailsHtml += `<p class="mb-4"><strong>Atributos:</strong> ${enemy.stats}</p>`;
+    
+    // Aplicar a função para cada lista
+    detailsHtml += `<p class="mb-2"><strong>Perícias:</strong> ${createListHtml(enemy.pericias)}</p>`;
+    detailsHtml += `<p class="mb-2"><strong>Vantagens:</strong> ${createListHtml(enemy.vantagens)}</p>`;
+    detailsHtml += `<p class="mb-4"><strong>Desvantagens:</strong> ${createListHtml(enemy.desvantagens)}</p>`;
 
-            document.querySelectorAll('#bestiary-list .list-item').forEach(item => item.classList.remove('active'));
-            document.querySelector(`#bestiary-list .list-item[data-id="${enemyName}"]`).classList.add('active');
-        }
+    if (enemy.poderes && enemy.poderes.length > 0) {
+        detailsHtml += `<h4 class="font-bold mt-4 mb-2">Poderes Especiais</h4>`;
+        detailsHtml += `<dl class="space-y-3">`;
+        enemy.poderes.forEach(poder => {
+            detailsHtml += `<div><dt class="font-semibold">${poder.name}</dt><dd class="text-sm text-secondary pl-2 border-l-2">${poder.desc}</dd></div>`;
+        });
+        detailsHtml += `</dl>`;
+    }
+    
+    bestiaryDetails.innerHTML = detailsHtml;
+
+    document.querySelectorAll('#bestiary-list .list-item').forEach(item => item.classList.remove('active'));
+    document.querySelector(`#bestiary-list .list-item[data-id="${enemyName}"]`).classList.add('active');
+}
 
         // --- Event Listeners Setup ---
         
