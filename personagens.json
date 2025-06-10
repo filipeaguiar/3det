@@ -1,0 +1,26 @@
+[
+    {
+        "name": "João",
+        "archetype": "Humano",
+        "concept": "O Guerreiro da Sombra",
+        "stats": "P3, H3, R2 (3PA, 15PM, 10PV)",
+        "pontos": "10pt",
+        "pericias": [{"name": "Mística", "desc": "Sabe sobre forças sobrenaturais. Use com a Vantagem Magia. Concede +1d nestes testes."}],
+        "vantagens": [{"name": "Mais Além", "desc": "Uma vez por cena, gaste 2PM para ter Ganho em um teste."}, {"name": "Magia", "desc": "Gaste X PM para ganhar +X em qualquer teste (bônus máx. igual à sua Habilidade)."}, {"name": "Brutal (Mana)", "desc": "Para cada 3 pontos de dano que você causa, recupera 1 PM."}],
+        "tecnicas": [],
+        "desvantagens": [{"name": "Código (Heróis)", "desc": "Sempre cumprir sua palavra, proteger os fracos e jamais recusar um pedido de ajuda."}, {"name": "Código (Honestidade)", "desc": "Nunca mentir, roubar, trapacear ou desobedecer as leis locais."}],
+        "image": "joao.jpg" 
+    },
+    {
+        "name": "Arco-Íris",
+        "archetype": "Humano",
+        "concept": "O fogo da Alegria",
+        "stats": "P3, H3, R2 (3PA, 15PM, 10PV)",
+        "pontos": "10pt",
+        "pericias": [{"name": "Luta", "desc": "Sabe atacar e se defender em combate. Concede +1d em testes de combate."}],
+        "vantagens": [{"name": "Mais Além", "desc": "Uma vez por cena, gaste 2PM para ter Ganho em um teste."}, {"name": "Alcance (1pt)", "desc": "Pode atingir inimigos Longe sem penalidades, e Muito Longe com uma Perda."}],
+        "tecnicas": [],
+        "desvantagens": [],
+        "image": "arco-iris.jpg"
+    }
+]
