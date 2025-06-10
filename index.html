@@ -22,6 +22,7 @@
         color: #1e293b;
     }
     .nav-btn {
+	background-color: white;
         transition: all 0.3s ease;
     }
     .nav-btn.active {
@@ -86,7 +87,33 @@
           background-color: #1e293b;  /* slate-800 */
           color: #f1f5f9;            /* slate-100 */
         }
+/* 1. Corrige o fundo dos painéis de Rolagem de Dados e Gerador de NPC */
+    #dice-result,
+    #npc-result {
+        background-color: #334155; /* slate-700 */
+    }
 
+    /* 2. Corrige os textos que estavam ficando escuros no fundo escuro */
+    .text-slate-500,
+    .text-slate-600 {
+        color: #cbd5e1; /* slate-300 */
+    }
+
+    .text-slate-700,
+    .text-slate-800 {
+        color: #f1f5f9; /* slate-100 */
+    }
+
+    /* 3. Corrige o fundo dos dados individuais na rolagem, que eram brancos */
+    #dice-result span.bg-white {
+        background-color: #4b5563; /* slate-600 */
+        color: #f1f5f9;
+    }
+
+    /* 4. Corrige o fundo do placeholder da imagem do personagem */
+    img.bg-slate-200 {
+        background-color: #4b5563; /* slate-600 */
+    }
         .info-card {
           background-color: #374151; /* slate-700 */
           box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4),
@@ -143,12 +170,12 @@
         </header>
 
         <nav id="navigation" class="flex flex-wrap justify-center gap-2 mb-8">
-            <button data-target="basico" class="nav-btn px-4 py-2 rounded-lg bg-white shadow-sm hover:bg-amber-400 hover:text-white">Básico & Testes</button>
-            <button data-target="combate" class="nav-btn px-4 py-2 rounded-lg bg-white shadow-sm hover:bg-amber-400 hover:text-white">Combate & Ações</button>
-            <button data-target="manobras" class="nav-btn px-4 py-2 rounded-lg bg-white shadow-sm hover:bg-amber-400 hover:text-white">Manobras & Condições</button>
-            <button data-target="personagens" class="nav-btn px-4 py-2 rounded-lg bg-white shadow-sm hover:bg-amber-400 hover:text-white">Personagens</button>
-            <button data-target="bestiario" class="nav-btn px-4 py-2 rounded-lg bg-white shadow-sm hover:bg-amber-400 hover:text-white">Bestiário</button>
-            <button data-target="mestrando" class="nav-btn px-4 py-2 rounded-lg bg-white shadow-sm hover:bg-amber-400 hover:text-white">Mestrando</button>
+            <button data-target="basico" class="nav-btn px-4 py-2 rounded-lg shadow-sm hover:bg-amber-400 hover:text-white">Básico & Testes</button>
+            <button data-target="combate" class="nav-btn px-4 py-2 rounded-lg shadow-sm hover:bg-amber-400 hover:text-white">Combate & Ações</button>
+            <button data-target="manobras" class="nav-btn px-4 py-2 rounded-lg shadow-sm hover:bg-amber-400 hover:text-white">Manobras & Condições</button>
+            <button data-target="personagens" class="nav-btn px-4 py-2 rounded-lg shadow-sm hover:bg-amber-400 hover:text-white">Personagens</button>
+            <button data-target="bestiario" class="nav-btn px-4 py-2 rounded-lg shadow-sm hover:bg-amber-400 hover:text-white">Bestiário</button>
+            <button data-target="mestrando" class="nav-btn px-4 py-2 rounded-lg shadow-sm hover:bg-amber-400 hover:text-white">Mestrando</button>
         </nav>
 
         <main id="content">
