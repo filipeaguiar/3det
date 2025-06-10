@@ -2,7 +2,7 @@
   "name": "Escudo do Mestre 3DeT Victory",
   "short_name": "3DeT Escudo",
   "description": "Uma ferramenta de Escudo do Mestre digital para o sistema de RPG 3DeT Victory.",
-  "start_url": "filipeaguiar.github.io/3det/",
+  "start_url": "/3det/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#f59e0b",
