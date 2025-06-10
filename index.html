@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escudo do Mestre Digital - 3DeT Victory</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
- <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#f59e0b">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">   
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f59e0b">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">   
+    
     <style>
         /* ==========================================================================
            ESTILOS PADRÃO (MODO CLARO)
@@ -197,13 +202,34 @@
         </header>
 
         <nav id="navigation" class="flex flex-wrap justify-center gap-2 mb-8">
-            <button data-target="basico" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Básico & Testes</button>
-            <button data-target="combate" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Combate & Ações</button>
-            <button data-target="manobras" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Manobras & Condições</button>
-            <button data-target="personagens" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Personagens</button>
-            <button data-target="bestiario" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Bestiário</button>
-            <button data-target="mestrando" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Mestrando</button>
-            <button data-target="campanha" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Campanha</button>
+            <button data-target="basico" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+                <i class="fa-solid fa-dice-d6 fa-fw"></i>
+                <span class="hidden sm:inline">Básico & Testes</span>
+            </button>
+            <button data-target="combate" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+                <i class="fa-solid fa-hand-fist fa-fw"></i>
+                <span class="hidden sm:inline">Combate</span>
+            </button>
+            <button data-target="manobras" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+                <i class="fa-solid fa-person-running fa-fw"></i>
+                <span class="hidden sm:inline">Manobras</span>
+            </button>
+            <button data-target="personagens" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+                <i class="fa-solid fa-users fa-fw"></i>
+                <span class="hidden sm:inline">Personagens</span>
+            </button>
+            <button data-target="bestiario" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+                <i class="fa-solid fa-dragon fa-fw"></i>
+                <span class="hidden sm:inline">Bestiário</span>
+            </button>
+            <button data-target="mestrando" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+                <i class="fa-solid fa-hat-wizard fa-fw"></i>
+                <span class="hidden sm:inline">Mestrando</span>
+            </button>
+            <button data-target="campanha" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+                <i class="fa-solid fa-book-open fa-fw"></i>
+                <span class="hidden sm:inline">Campanha</span>
+            </button>
         </nav>
 
         <main id="content">
@@ -439,13 +465,18 @@
     </div>
 
     <script>
-        // Data stores
+        // --- Armazenamento de Dados ---
+        // Variáveis para guardar os dados de todos os arquivos JSON
         let playerData = [];
         let bestiaryData = [];
+        let periciasData = {};
+        let vantagensData = {};
+        let desvantagensData = {};
+        let tecnicasData = {};
         let campaignPages = [];
         let currentPageIndex = 0;
 
-        // DOM element references
+        // --- Referências a Elementos do DOM ---
         const navigation = document.getElementById('navigation');
         const contentSections = document.querySelectorAll('.content-section');
         const navButtons = document.querySelectorAll('.nav-btn');
@@ -455,25 +486,16 @@
         const bestiaryList = document.getElementById('bestiary-list');
         const bestiaryDetails = document.getElementById('bestiary-details');
         
-        /**
-         * Hides all content sections and shows the one with the target ID.
-         * @param {string} targetId - The ID of the section to show.
-         */
+        // --- Funções Utilitárias e de Navegação ---
         function showSection(targetId) {
             contentSections.forEach(section => section.classList.remove('active'));
             navButtons.forEach(button => button.classList.remove('active'));
-
             const sectionToShow = document.getElementById(targetId);
             if (sectionToShow) sectionToShow.classList.add('active');
-            
             const buttonToActivate = document.querySelector(`[data-target="${targetId}"]`);
             if (buttonToActivate) buttonToActivate.classList.add('active');
         }
 
-        /**
-         * Rolls a specified number of dice and displays the result.
-         * @param {number} numDice - The number of dice to roll (1, 2, or 3).
-         */
         function rollDice(numDice) {
             const resultDiv = document.getElementById('dice-result');
             let rolls = [];
@@ -489,9 +511,6 @@
                 <p class="text-3xl font-bold">${total}</p>`;
         }
         
-        /**
-         * Generates a random NPC and displays its details.
-         */
         function generateNPC() {
             const npcData = {
                 nomes: ["Sandro", "Niele", "Lisandra", "Tork", "Asimel", "Nidae", "Holly", "Pike", "Lucerne", "Sovnya", "Falkar", "Rin", "Shin", "Karator", "Avelle", "Ibelin", "Ketua", "Gadget", "Arturo", "Finesa", "Adran", "Akira", "Yuri", "Kenzo", "Raul", "Breno", "Kaio", "Elara", "Mila", "Zane", "Kael", "Lyra", "Orion", "Selene", "Jorah"],
@@ -514,32 +533,43 @@
                 </div>`;
         }
         
-        /**
-         * Creates a span element for an ability with a tooltip.
-         * @param {{name: string, desc: string}} ability - The ability object.
-         * @returns {string} - The HTML string for the span.
-         */
         function createAbilitySpan(ability) {
              return `<span class="ability-tag" data-tooltip="${ability.desc}">${ability.name}</span>`;
         }
 
-        /**
-         * Displays the details of a selected player character.
-         * @param {string} playerName - The name of the player to display.
-         */
+        // --- Funções de Exibição (CORRIGIDAS) ---
+
         function displayPlayer(playerName) {
             const player = playerData.find(p => p.name === playerName);
             if (!player) return;
 
-            const createListHtml = (items) => {
-                if (!items || items.length === 0) return "Nenhuma";
-                return items.map(item => createAbilitySpan(item)).join(', ');
+            // Função auxiliar CORRIGIDA para buscar dados nos objetos mestre
+            const createListHtml = (itemNames, masterData) => {
+                if (!itemNames || itemNames.length === 0) return "Nenhuma";
+                
+                return itemNames.map(itemName => {
+                    const fullItem = masterData[itemName];
+                    if (fullItem) {
+                        return createAbilitySpan(fullItem);
+                    } else {
+                        // Trata casos onde o nome pode ter um detalhe extra, como "Código (Heróis)"
+                        const baseName = itemName.split(' (')[0];
+                        const baseItem = masterData[baseName];
+                        if(baseItem) {
+                            // Cria um item "virtual" com a descrição base mas o nome completo
+                            const virtualItem = { name: itemName, desc: baseItem.desc };
+                            return createAbilitySpan(virtualItem);
+                        }
+                        return `<span class="ability-tag" data-tooltip="Descrição não encontrada.">${itemName}</span>`;
+                    }
+                }).join(', ');
             };
 
-            let periciasHtml = createListHtml(player.pericias);
-            let vantagensHtml = createListHtml(player.vantagens);
-            let tecnicasHtml = createListHtml(player.tecnicas);
-            let desvantagensHtml = createListHtml(player.desvantagens);
+            // Chamadas CORRIGIDAS para passar a base de dados correta
+            let periciasHtml = createListHtml(player.pericias, periciasData);
+            let vantagensHtml = createListHtml(player.vantagens, vantagensData);
+            let tecnicasHtml = createListHtml(player.tecnicas, tecnicasData);
+            let desvantagensHtml = createListHtml(player.desvantagens, desvantagensData);
             
             playerDetails.innerHTML = `
                 <div class="flex flex-col sm:flex-row gap-6 items-start">
@@ -563,17 +593,13 @@
             document.querySelector(`#player-list .list-item[data-id="${playerName}"]`).classList.add('active');
         }
 
-        /**
-         * Displays the details of a selected enemy.
-         * @param {string} enemyName - The name of the enemy to display.
-         */
         function displayEnemy(enemyName) {
             const enemy = bestiaryData.find(e => e.name === enemyName);
             if (!enemy) return;
 
             const createListHtml = (items) => {
                 if (!items || items.length === 0) return "Nenhuma";
-                 if (typeof items === 'string') return items; // Fallback for old format
+                 if (typeof items === 'string') return items;
                 return items.map(item => createAbilitySpan(item)).join(', ');
             };
 
@@ -600,18 +626,13 @@
             document.querySelector(`#bestiary-list .list-item[data-id="${enemyName}"]`).classList.add('active');
         }
         
-        /**
-         * Loads markdown files for the campaign book.
-         */
         async function loadCampaign() {
-            // Define a lista de aventuras a serem carregadas
             const adventuresToLoad = ['aventura01.md', 'aventura02.md']; 
             for (const adventureFile of adventuresToLoad) {
                 try {
                     const response = await fetch(`Campanha/${adventureFile}`);
                     if (response.ok) {
                         const markdown = await response.text();
-                        // Usa a biblioteca marked para converter markdown em HTML
                         campaignPages.push(marked.parse(markdown));
                     } else {
                          console.warn(`Arquivo ${adventureFile} não encontrado.`);
@@ -629,10 +650,6 @@
             }
         }
         
-        /**
-         * Displays a specific page of the campaign book.
-         * @param {number} index - The index of the page to display.
-         */
         function displayCampaignPage(index) {
             const bookContent = document.getElementById('book-content');
             const pageIndicator = document.getElementById('page-indicator');
@@ -649,8 +666,9 @@
         // --- Event Listeners Setup ---
         
         navigation.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON' && e.target.dataset.target) {
-                showSection(e.target.dataset.target);
+            const button = e.target.closest('button');
+            if (button && button.dataset.target) {
+                showSection(button.dataset.target);
             }
         });
 
@@ -686,76 +704,97 @@
             }
         });
 
-
-        // --- Initial Data Fetching and App Initialization ---
+        // --- Carregamento Inicial de Dados e Inicialização (CORRIGIDO) ---
         document.addEventListener('DOMContentLoaded', () => {
             
-             const populateUI = (pData, bData) => {
-                try {
-                    playerData = pData;
-                    bestiaryData = bData;
-                    
-                    playerList.innerHTML = '';
-                    bestiaryList.innerHTML = '';
-
-                    playerData.forEach(player => {
-                        const li = document.createElement('li');
-                        li.textContent = player.name;
-                        li.dataset.id = player.name;
-                        li.className = 'list-item p-2 rounded-md cursor-pointer';
-                        li.onclick = () => displayPlayer(player.name);
-                        playerList.appendChild(li);
-                    });
-
-                    bestiaryData.sort((a, b) => a.name.localeCompare(b.name));
-                    bestiaryData.forEach(enemy => {
-                        const li = document.createElement('li');
-                        li.textContent = enemy.name;
-                        li.dataset.id = enemy.name;
-                        li.className = 'list-item p-2 rounded-md cursor-pointer';
-                        li.onclick = () => displayEnemy(enemy.name);
-                        bestiaryList.appendChild(li);
-                    });
-                } catch (error) {
-                    console.error("Erro ao processar dados JSON:", error);
-                    playerDetails.innerHTML = `<p class="text-error text-center mt-8">Erro ao processar os dados dos personagens.</p>`;
-                    bestiaryDetails.innerHTML = `<p class="text-error text-center mt-8">Erro ao processar os dados do bestiário.</p>`;
-                }
+            const fetchAllData = () => {
+                const files = [
+                    'personagens.json', 
+                    'bestiario.json', 
+                    'pericias.json', 
+                    'vantagens.json', 
+                    'desvantagens.json',
+                    'tecnicas.json'
+                ];
+                
+                const promises = files.map(file => 
+                    fetch(file).then(res => {
+                        if (!res.ok) throw new Error(`Falha ao carregar ${file}`);
+                        return res.json();
+                    }).catch(err => {
+                        console.warn(err);
+                        return []; // Retorna um array vazio em caso de erro para não quebrar o Promise.all
+                    })
+                );
+                return Promise.all(promises);
             };
 
-            const playersPromise = fetch('personagens.json').then(res => {
-                if (!res.ok) throw new Error('A resposta da rede não foi bem-sucedida para personagens.json');
-                return res.json();
-            });
-            const bestiaryPromise = fetch('bestiario.json').then(res => {
-                if (!res.ok) throw new Error('A resposta da rede não foi bem-sucedida para bestiario.json');
-                return res.json();
-            });
+            fetchAllData().then(([personagens, bestiario, pericias, vantagens, desvantagens, tecnicas]) => {
+                playerData = personagens;
+                bestiaryData = bestiario;
 
-            Promise.all([playersPromise, bestiaryPromise])
-                .then(([playerJsonData, bestiaryJsonData]) => {
-                    populateUI(playerJsonData, bestiaryJsonData);
-                })
-                .catch(error => {
-                    console.warn("Não foi possível carregar arquivos externos. Usando dados locais como fallback.", error);
-                    populateUI([], []);
+                const arrayToObject = (arr) => arr.reduce((acc, item) => {
+                    acc[item.name] = item;
+                    return acc;
+                }, {});
+
+                periciasData = arrayToObject(pericias);
+                vantagensData = arrayToObject(vantagens);
+                desvantagensData = arrayToObject(desvantagens);
+                tecnicasData = arrayToObject(tecnicas);
+                
+                // Popula a UI com os dados carregados
+                playerList.innerHTML = '';
+                bestiaryList.innerHTML = '';
+
+                playerData.forEach(player => {
+                    const li = document.createElement('li');
+                    li.textContent = player.name;
+                    li.dataset.id = player.name;
+                    li.className = 'list-item p-2 rounded-md cursor-pointer';
+                    li.onclick = () => displayPlayer(player.name);
+                    playerList.appendChild(li);
                 });
+
+                bestiaryData.sort((a, b) => a.name.localeCompare(b.name));
+                bestiaryData.forEach(enemy => {
+                    const li = document.createElement('li');
+                    li.textContent = enemy.name;
+                    li.dataset.id = enemy.name;
+                    li.className = 'list-item p-2 rounded-md cursor-pointer';
+                    li.onclick = () => displayEnemy(enemy.name);
+                    bestiaryList.appendChild(li);
+                });
+                
+                // Tenta exibir o primeiro personagem se nenhum for selecionado via URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const playerName = urlParams.get('player');
+                if (playerName && playerData.some(p => p.name === playerName)) {
+                    displayPlayer(playerName);
+                } else if (playerData.length > 0) {
+                    displayPlayer(playerData[0].name);
+                }
+
+            }).catch(error => {
+                console.error("Erro fatal ao carregar dados essenciais:", error);
+                playerDetails.innerHTML = `<p class="text-error text-center mt-8">Erro ao carregar os dados dos personagens.</p>`;
+            });
             
             loadCampaign();
             showSection('basico');
         });
 
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(registration => {
-          console.log('Service Worker registado com sucesso:', registration.scope);
-        })
-        .catch(err => {
-          console.log('Falha ao registar o Service Worker:', err);
-        });
-    });
-  }
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+              navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                  console.log('Service Worker registado com sucesso:', registration.scope);
+                })
+                .catch(err => {
+                  console.log('Falha ao registar o Service Worker:', err);
+                });
+            });
+          }
     </script>
-</body></html>
-
+</body>
+</html>
