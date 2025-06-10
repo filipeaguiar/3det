@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -28,7 +29,10 @@
             color: #1e293b; /* slate-800 */
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
+        header h1 {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 0.05em; /* Opcional: um pequeno espaçamento para estilizar */
+        }
         /* --- Tipografia --- */
         .text-primary { color: #1e293b; }
         .text-secondary { color: #475569; }
@@ -196,9 +200,9 @@
 
     <div class="container mx-auto p-4 sm:p-6 md:p-8">
         
-        <header class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold">Escudo do Mestre Digital</h1>
-            <p class="text-lg text-secondary">3DeT Victory</p>
+        <header class="text-center mb-8 border-b-4 border-amber-500 pb-4">
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-wider text-primary">Escudo do Mestre Digital</h1>
+            <p class="text-lg text-secondary uppercase tracking-widest mt-1">3DeT Victory</p>
         </header>
 
         <nav id="navigation" class="flex flex-wrap justify-center gap-2 mb-8">
@@ -540,58 +544,91 @@
         // --- Funções de Exibição (CORRIGIDAS) ---
 
         function displayPlayer(playerName) {
-            const player = playerData.find(p => p.name === playerName);
-            if (!player) return;
+    const player = playerData.find(p => p.name === playerName);
+    if (!player) return;
 
-            // Função auxiliar CORRIGIDA para buscar dados nos objetos mestre
-            const createListHtml = (itemNames, masterData) => {
-                if (!itemNames || itemNames.length === 0) return "Nenhuma";
-                
-                return itemNames.map(itemName => {
-                    const fullItem = masterData[itemName];
-                    if (fullItem) {
-                        return createAbilitySpan(fullItem);
-                    } else {
-                        // Trata casos onde o nome pode ter um detalhe extra, como "Código (Heróis)"
-                        const baseName = itemName.split(' (')[0];
-                        const baseItem = masterData[baseName];
-                        if(baseItem) {
-                            // Cria um item "virtual" com a descrição base mas o nome completo
-                            const virtualItem = { name: itemName, desc: baseItem.desc };
-                            return createAbilitySpan(virtualItem);
-                        }
-                        return `<span class="ability-tag" data-tooltip="Descrição não encontrada.">${itemName}</span>`;
-                    }
-                }).join(', ');
-            };
+    // Função auxiliar para buscar dados nos objetos mestre (mantida como está)
+    const createListHtml = (itemNames, masterData) => {
+        if (!itemNames || itemNames.length === 0) return "Nenhuma";
+        return itemNames.map(itemName => {
+            const fullItem = masterData[itemName];
+            if (fullItem) {
+                return createAbilitySpan(fullItem);
+            } else {
+                const baseName = itemName.split(' (')[0];
+                const baseItem = masterData[baseName];
+                if(baseItem) {
+                    const virtualItem = { name: itemName, desc: baseItem.desc };
+                    return createAbilitySpan(virtualItem);
+                }
+                return `<span class="ability-tag" data-tooltip="Descrição não encontrada.">${itemName}</span>`;
+            }
+        }).join(', ');
+    };
 
-            // Chamadas CORRIGIDAS para passar a base de dados correta
-            let periciasHtml = createListHtml(player.pericias, periciasData);
-            let vantagensHtml = createListHtml(player.vantagens, vantagensData);
-            let tecnicasHtml = createListHtml(player.tecnicas, tecnicasData);
-            let desvantagensHtml = createListHtml(player.desvantagens, desvantagensData);
-            
-            playerDetails.innerHTML = `
-                <div class="flex flex-col sm:flex-row gap-6 items-start">
-                    <div class="flex-shrink-0 w-full sm:w-48">
-                        <img src="./img/${player.image}" alt="Retrato de ${player.name}" class="placeholder-img w-full h-auto object-cover rounded-lg shadow-lg" 
-                             onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=${player.name.charAt(0)}';">
+    // Gera o HTML para as listas de habilidades (mantido como está)
+    let periciasHtml = createListHtml(player.pericias, periciasData);
+    let vantagensHtml = createListHtml(player.vantagens, vantagensData);
+    let tecnicasHtml = createListHtml(player.tecnicas, tecnicasData);
+    let desvantagensHtml = createListHtml(player.desvantagens, desvantagensData);
+
+    // --- NOVA LÓGICA PARA OS CARDS DE ATRIBUTOS ---
+
+    // 1. Mapeia os nomes dos atributos para ícones do Font Awesome
+    const iconMap = {
+        "Poder": "fa-hand-fist",
+        "Habilidade": "fa-brain",
+        "Resistência": "fa-shield-halved",
+        "Pontos de Vida": "fa-heart-pulse",
+        "Pontos de Mana": "fa-wand-magic-sparkles",
+        "Pontos de Ação": "fa-bolt"
+    };
+
+    // 2. Gera o HTML para cada card de atributo
+    const statsCardsHtml = Object.entries(player.stats).map(([statName, statValue]) => {
+        const iconClass = iconMap[statName] || 'fa-question-circle'; // Ícone padrão caso não encontre
+        return `
+            <div class="info-card p-3 rounded-lg flex items-center gap-x-3 shadow-sm">
+                <i class="fa-solid ${iconClass} fa-fw fa-2x text-accent"></i>
+                <div>
+                    <span class="block text-sm text-secondary">${statName}</span>
+                    <span class="block text-xl font-bold text-primary">${statValue}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+
+    // 3. Atualiza o template principal para usar a nova estrutura de grid
+    playerDetails.innerHTML = `
+        <div class="flex flex-col sm:flex-row gap-6 items-start">
+            <div class="flex-shrink-0 w-full sm:w-48">
+                <img src="./img/${player.image}" alt="Retrato de ${player.name}" class="placeholder-img w-full h-auto object-cover rounded-lg shadow-lg"
+                     onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=${player.name.charAt(0)}';">
+            </div>
+            <div class="flex-grow">
+                <h3 class="text-2xl font-bold text-accent">${player.name}</h3>
+                <p class="text-md text-secondary italic mb-2">${player.concept}</p>
+                <p class="text-sm text-secondary mb-4">${player.archetype} • ${player.pontos}</p>
+
+                <div class="mb-4">
+                    <h4 class="font-bold mb-1">Atributos</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mt-2">
+                        ${statsCardsHtml}
                     </div>
-                    <div class="flex-grow">
-                        <h3 class="text-2xl font-bold text-accent">${player.name}</h3>
-                        <p class="text-md text-secondary italic mb-2">${player.concept}</p>
-                        <p class="text-sm text-secondary mb-4">${player.archetype} • ${player.pontos}</p>
-                        <div class="mb-4"><h4 class="font-bold mb-1">Atributos</h4><p>${player.stats}</p></div>
-                        <div class="mb-4"><h4 class="font-bold mb-1">Perícias</h4><p>${periciasHtml}</p></div>
-                        <div class="mb-4"><h4 class="font-bold mb-1">Vantagens</h4><p>${vantagensHtml}</p></div>
-                        ${tecnicasHtml !== "Nenhuma" ? `<div class="mb-4"><h4 class="font-bold mb-1">Técnicas</h4><p>${tecnicasHtml}</p></div>` : ''}
-                        <div><h4 class="font-bold mb-1">Desvantagens</h4><p>${desvantagensHtml}</p></div>
-                    </div>
-                </div>`;
+                </div>
 
-            document.querySelectorAll('#player-list .list-item').forEach(item => item.classList.remove('active'));
-            document.querySelector(`#player-list .list-item[data-id="${playerName}"]`).classList.add('active');
-        }
+                <div class="mb-4"><h4 class="font-bold mb-1">Perícias</h4><p>${periciasHtml}</p></div>
+                <div class="mb-4"><h4 class="font-bold mb-1">Vantagens</h4><p>${vantagensHtml}</p></div>
+                ${tecnicasHtml !== "Nenhuma" ? `<div class="mb-4"><h4 class="font-bold mb-1">Técnicas</h4><p>${tecnicasHtml}</p></div>` : ''}
+                <div><h4 class="font-bold mb-1">Desvantagens</h4><p>${desvantagensHtml}</p></div>
+            </div>
+        </div>`;
+
+    // Ativa o item selecionado na lista (mantido como está)
+    document.querySelectorAll('#player-list .list-item').forEach(item => item.classList.remove('active'));
+    document.querySelector(`#player-list .list-item[data-id="${playerName}"]`).classList.add('active');
+}
 
         function displayEnemy(enemyName) {
             const enemy = bestiaryData.find(e => e.name === enemyName);

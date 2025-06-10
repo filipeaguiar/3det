@@ -3,25 +3,52 @@
         "name": "João",
         "archetype": "Humano",
         "concept": "O Guerreiro da Sombra",
-        "stats": "P3, H3, R2 (3PA, 15PM, 10PV)",
+        "stats": {
+            "Poder": 3,
+            "Habilidade": 3,
+            "Resistência": 2,
+            "Pontos de Vida": 10,
+            "Pontos de Mana": 15,
+            "Pontos de Ação": 3
+        },
         "pontos": "10pt",
-        "pericias": ["Mística"],
-        "vantagens": ["Mais Além", "Magia", "Brutal (Mana)"],
+        "pericias": [
+            "Mística"
+        ],
+        "vantagens": [
+            "Mais Além",
+            "Magia",
+            "Brutal (Mana)"
+        ],
         "tecnicas": [],
-        "desvantagens": ["Código (Heróis)", "Código (Honestidade)"],
-        "image": "joao.jpg" 
+        "desvantagens": [
+            "Código (Heróis)",
+            "Código (Honestidade)"
+        ],
+        "image": "joao.jpg"
     },
     {
         "name": "Arco-Íris",
         "archetype": "Humano",
         "concept": "O fogo da Alegria",
-        "stats": "P3, H3, R2 (3PA, 15PM, 10PV)",
+        "stats": {
+            "Poder": 3,
+            "Habilidade": 3,
+            "Resistência": 2,
+            "Pontos de Vida": 10,
+            "Pontos de Mana": 15,
+            "Pontos de Ação": 3
+        },
         "pontos": "10pt",
-        "pericias": ["Luta"],
-        "vantagens": ["Mais Além", "Alcance (1pt)"],
+        "pericias": [
+            "Luta"
+        ],
+        "vantagens": [
+            "Mais Além",
+            "Alcance (1pt)"
+        ],
         "tecnicas": [],
         "desvantagens": [],
         "image": "arco-iris.jpg"
     }
 ]
-
