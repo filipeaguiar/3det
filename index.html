@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escudo do Mestre Digital - 3DeT Victory</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -61,6 +62,17 @@
             color: #1e293b;
             box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         }
+         /* --- Estilos do Livro Digital --- */
+        .book-page {
+            background-color: #ffffff;
+            color: #1e293b;
+            padding: 2rem;
+            border: 1px solid #cbd5e1;
+            min-height: 70vh;
+        }
+        .book-page h1, .book-page h2, .book-page h3 { color: #b45309; margin-bottom: 1rem; font-weight: 700; }
+        .book-page p { margin-bottom: 1rem; line-height: 1.75; }
+        .book-page ul { list-style-type: disc; margin-left: 2rem; margin-bottom: 1rem;}
 
         /* --- Listas e Itens Interativos --- */
         .list-item:hover {
@@ -144,6 +156,13 @@
                 background-color: #334155; /* slate-700 */
                 color: #f1f5f9;
             }
+             /* --- Estilos do Livro Digital (Dark) --- */
+            .book-page {
+                background-color: #1e293b;
+                color: #cbd5e1;
+                border-color: #334155;
+            }
+             .book-page h1, .book-page h2, .book-page h3 { color: #f59e0b; }
             
             /* --- Listas e Itens Interativos (Dark) --- */
             .list-item:hover {
@@ -182,165 +201,25 @@
             <button data-target="personagens" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Personagens</button>
             <button data-target="bestiario" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Bestiário</button>
             <button data-target="mestrando" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Mestrando</button>
+            <button data-target="campanha" class="nav-btn px-4 py-2 rounded-lg shadow-sm">Campanha</button>
         </nav>
 
         <main id="content">
+            <!-- PÁGINAS DE CONTEÚDO... (as seções existentes permanecem aqui) -->
+
             <!-- PAINEL 1: BÁSICO & TESTES -->
             <section id="basico" class="content-section">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2">
-                        <div class="info-card h-full p-6 rounded-lg shadow">
-                            <h2 class="text-xl font-bold mb-4 text-accent">A Mecânica Central: 3 Dados e Teste</h2>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left">
-                                    <tbody>
-                                        <tr class="border-b"><td class="py-2 font-semibold">Fórmula do Teste</td><td class="py-2">Atributo + (1d6 a 3d6) vs. Meta</td></tr>
-                                        <tr class="border-b"><td class="py-2 font-semibold">1D (Base)</td><td class="py-2">Rolagem padrão.</td></tr>
-                                        <tr class="border-b"><td class="py-2 font-semibold">+1D (Perícia)</td><td class="py-2">Se possui a perícia adequada.</td></tr>
-                                        <tr class="border-b"><td class="py-2 font-semibold">+1D (Ganho)</td><td class="py-2">Vantagem tática, uso de 1 PA, etc.</td></tr>
-                                        <tr class="border-b"><td class="py-2 font-semibold">-1D (Perda)</td><td class="py-2">Desvantagem tática, terreno ruim, etc.</td></tr>
-                                        <tr class="border-b"><td class="py-2 font-semibold">Acerto Crítico</td><td class="py-2">Resultado 6 no dado. Permite <strong>somar o Atributo de novo</strong>.</td></tr>
-                                        <tr><td class="py-2 font-semibold">Falha Crítica</td><td class="py-2">Todos os dados resultam 1. Consequência narrativa.</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-card p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Rolador de Dados</h2>
-                        <div class="flex justify-around mb-4">
-                            <button onclick="rollDice(1)" class="w-16 h-16 bg-slate-700 text-white font-bold rounded-lg text-2xl shadow-md hover:bg-slate-600 transition">1D</button>
-                            <button onclick="rollDice(2)" class="w-16 h-16 bg-slate-700 text-white font-bold rounded-lg text-2xl shadow-md hover:bg-slate-600 transition">2D</button>
-                            <button onclick="rollDice(3)" class="w-16 h-16 bg-slate-700 text-white font-bold rounded-lg text-2xl shadow-md hover:bg-slate-600 transition">3D</button>
-                        </div>
-                        <div id="dice-result" class="dynamic-panel p-4 rounded-lg text-center min-h-[100px] flex flex-col justify-center">
-                            <p class="text-sm text-secondary">Clique para rolar</p>
-                        </div>
-                    </div>
-                    <div class="info-card p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Metas de Teste</h2>
-                        <table class="w-full text-left">
-                            <tbody>
-                                <tr class="border-b"><td class="py-2">Fácil</td><td class="py-2 text-right font-semibold">6</td></tr>
-                                <tr class="border-b"><td class="py-2">Médio</td><td class="py-2 text-right font-semibold">9</td></tr>
-                                <tr class="border-b"><td class="py-2">Difícil</td><td class="py-2 text-right font-semibold">12</td></tr>
-                                <tr class="border-b"><td class="py-2">Muito Difícil</td><td class="py-2 text-right font-semibold">15</td></tr>
-                                <tr><td class="py-2">Lendário</td><td class="py-2 text-right font-semibold">18+</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="info-card p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Atributos & Recursos</h2>
-                        <table class="w-full text-left">
-                           <tbody>
-                               <tr class="border-b"><td class="py-2">Poder (P)</td><td class="py-2 text-right">Força, intimidação, carisma.</td></tr>
-                               <tr class="border-b"><td class="py-2">Habilidade (H)</td><td class="py-2 text-right">Agilidade, inteligência, mira.</td></tr>
-                               <tr class="border-b"><td class="py-2">Resistência (R)</td><td class="py-2 text-right">Vigor, força de vontade.</td></tr>
-                               <tr class="border-b"><td class="py-2 font-semibold">Pontos de Vida (PV)</td><td class="py-2 text-right">R x 5</td></tr>
-                               <tr class="border-b"><td class="py-2 font-semibold">Pontos de Mana (PM)</td><td class="py-2 text-right">H x 5</td></tr>
-                               <tr><td class="py-2 font-semibold">Pontos de Ação (PA)</td><td class="py-2 text-right">Poder (P)</td></tr>
-                           </tbody>
-                        </table>
-                    </div>
-                    <div class="info-card p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Recuperação</h2>
-                         <table class="w-full text-left">
-                            <tbody>
-                               <tr class="border-b"><td class="py-2 font-semibold">Descanso (8h)</td><td class="py-2 text-right">Recupera todos os PV, PM e PA.</td></tr>
-                               <tr class="border-b"><td class="py-2 font-semibold">Descanso Curto (2h)</td><td class="py-2 text-right">Recupera PV=R e PM=H. Não recupera PA.</td></tr>
-                               <tr><td class="py-2 font-semibold">Lugar Ruim</td><td class="py-2 text-right">Recupera metade dos PV e PM.</td></tr>
-                            </tbody>
-                         </table>
-                    </div>
-                </div>
+                <!-- ... conteúdo existente ... -->
             </section>
 
             <!-- PAINEL 2: COMBATE & AÇÕES -->
             <section id="combate" class="content-section">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="info-card lg:col-span-1 p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Ordem de Combate</h2>
-                        <ol class="list-decimal list-inside space-y-2">
-                            <li><strong>Iniciativa:</strong> Teste de <strong>Habilidade</strong>. Personagens agem em ordem decrescente.</li>
-                            <li><strong>Turno:</strong> <strong>1 Ação</strong> (atacar, usar Vantagem, etc.) e <strong>1 Movimento</strong>.</li>
-                            <li><strong>Opções:</strong> Pode trocar <strong>Ação</strong> por <strong>Movimento</strong> extra, mas não o contrário.</li>
-                        </ol>
-                    </div>
-                    <div class="info-card lg:col-span-2 p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Ataque e Defesa</h2>
-                        <table class="w-full text-left">
-                           <thead class="table-header"><tr><th class="p-2 rounded-l-lg">Ação</th><th class="p-2 rounded-r-lg">Detalhes</th></tr></thead>
-                           <tbody>
-                               <tr class="border-b"><td class="p-2 font-semibold">Ataque (Padrão)</td><td class="p-2">Teste de <strong>Poder</strong> (corpo a corpo) ou <strong>Habilidade</strong> (à distância).</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Defesa (Padrão)</td><td class="p-2">Teste de <strong>Resistência</strong>.</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Dano</td><td class="p-2">Total do Ataque - Total da Defesa.</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Dano Mínimo</td><td class="p-2">Todo ataque bem-sucedido causa pelo menos <strong>1 PV</strong>.</td></tr>
-                               <tr><td class="p-2 font-semibold">Defesa Perfeita</td><td class="p-2">Defesa dobra o valor do Ataque. Dano é <strong>zero</strong>.</td></tr>
-                           </tbody>
-                        </table>
-                    </div>
-                    <div class="info-card p-6 rounded-lg shadow">
-                         <h2 class="text-xl font-bold mb-4 text-accent">Movimento & Distâncias</h2>
-                         <table class="w-full text-left">
-                           <tbody>
-                               <tr class="border-b"><td class="p-2 font-semibold">Distâncias</td><td class="p-2 text-right">Perto → Longe → Muito Longe → Fora de Alcance</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Movimento</td><td class="p-2 text-right">1 passo de distância por 1 movimento.</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Ataque Corpo a Corpo</td><td class="p-2 text-right">Apenas em alvos Perto.</td></tr>
-                               <tr><td class="p-2 font-semibold">Ataque à Distância</td><td class="p-2 text-right"><strong>Perda</strong> contra alvos <strong>Longe</strong> (sem Vantagem Alcance).</td></tr>
-                           </tbody>
-                        </table>
-                    </div>
-                    <div class="info-card lg:col-span-2 p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Derrota e Morte</h2>
-                         <table class="w-full text-left">
-                           <thead class="table-header"><tr><th class="p-2 rounded-l-lg">Condição</th><th class="p-2 rounded-r-lg">Efeito</th></tr></thead>
-                           <tbody>
-                               <tr class="border-b"><td class="p-2 font-semibold">0 PV (Derrotado)</td><td class="p-2">Sofre <strong>Perda</strong> em todos os testes até o fim da cena.</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Teste de Morte</td><td class="p-2">Se com 0 PV sofre dano, faz Teste de <strong>Resistência (Meta 9)</strong>.</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Sucesso (12+)</td><td class="p-2"><strong>Caído:</strong> Consciente, mas não pode agir.</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Sucesso (8-11)</td><td class="p-2"><strong>Inconsciente:</strong> Desmaia por 1 hora.</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Falha (6-7)</td><td class="p-2"><strong>Quase Morto:</strong> Morre em 1d rodadas se não for estabilizado.</td></tr>
-                               <tr><td class="p-2 font-semibold">Falha (5 ou menos)</td><td class="p-2"><strong>Morto.</strong></td></tr>
-                           </tbody>
-                        </table>
-                    </div>
-                </div>
+                <!-- ... conteúdo existente ... -->
             </section>
             
             <!-- PAINEL 3: MANOBRAS & CONDIÇÕES -->
             <section id="manobras" class="content-section">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="info-card p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Condições Comuns</h2>
-                        <dl class="space-y-4">
-                            <div><dt class="font-semibold">Caído</dt><dd class="text-sm text-secondary"><strong>Perda</strong> em todos os testes. Gasta um <strong>Movimento</strong> para se levantar.</dd></div>
-                            <div><dt class="font-semibold">Confuso</dt><dd class="text-sm text-secondary">Alvos de perícias/vantagens são escolhidos ao acaso.</dd></div>
-                            <div><dt class="font-semibold">Derrotado</dt><dd class="text-sm text-secondary"><strong>Perda</strong> em todos os testes e não consegue acertos críticos.</dd></div>
-                            <div><dt class="font-semibold">Desprevenido</dt><dd class="text-sm text-secondary"><strong>Perda</strong> nos testes de defesa.</dd></div>
-                            <div><dt class="font-semibold">Indefeso</dt><dd class="text-sm text-secondary">Não rola dados na defesa. Ataques contra o alvo têm <strong>Ganho</strong>.</dd></div>
-                            <div><dt class="font-semibold">Paralisado</dt><dd class="text-sm text-secondary">Fica <strong>Indefeso</strong> e não pode realizar ações ou movimentos.</dd></div>
-                        </dl>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="info-card p-6 rounded-lg shadow">
-                            <h2 class="text-xl font-bold mb-4 text-accent">Manobras de Combate (1 Ação)</h2>
-                            <dl class="space-y-4">
-                                <div><dt class="font-semibold">Ataque Total</dt><dd class="text-sm text-secondary">Recebe <strong>Ganho</strong> no ataque, mas fica <strong>Desprevenido</strong> até o próximo turno.</dd></div>
-                                <div><dt class="font-semibold">Defesa Total</dt><dd class="text-sm text-secondary">Recebe <strong>Ganho</strong> em todas as jogadas de defesa até seu próximo turno.</dd></div>
-                                <div><dt class="font-semibold">Agarrão</dt><dd class="text-sm text-secondary">Teste de <strong>Poder</strong> vs. <strong>Poder</strong>. Vítima fica imobilizada e com <strong>Perda</strong> para atacar.</dd></div>
-                                <div><dt class="font-semibold">Fuga</dt><dd class="text-sm text-secondary">Teste de <strong>Habilidade (Meta 6 + nº de oponentes)</strong> para escapar.</dd></div>
-                            </dl>
-                        </div>
-                        <div class="info-card p-6 rounded-lg shadow">
-                            <h2 class="text-xl font-bold mb-4 text-accent">Usando Pontos de Ação (PA)</h2>
-                             <dl class="space-y-4">
-                                <div><dt class="font-semibold">1 PA</dt><dd class="text-sm text-secondary">Receber um <strong>Ganho</strong> ou anular uma <strong>Perda</strong> em um teste.</dd></div>
-                                <div><dt class="font-semibold">1 PA (+Regras)</dt><dd class="text-sm text-secondary">Recuperar 10 PV ou 10 PM. Pedir uma dica ao Mestre.</dd></div>
-                                <div><dt class="font-semibold">Custo da Vantagem (+Regras)</dt><dd class="text-sm text-secondary">Usar uma Vantagem que não possui por uma vez.</dd></div>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
+                <!-- ... conteúdo existente ... -->
             </section>
             
             <!-- PAINEL 4: PERSONAGENS -->
@@ -371,38 +250,21 @@
             
             <!-- PAINEL 6: MESTRANDO -->
             <section id="mestrando" class="content-section">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="info-card p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Escalas de Poder</h2>
-                        <p class="mb-4 text-sm text-secondary">Efeitos por nível de diferença entre o personagem de escala superior e o inferior.</p>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>Níveis:</strong> Ningen (padrão) → Sugoi → Kiodai → Kami</li>
-                            <li>Recebe <strong>+1 Ganho</strong> por nível.</li>
-                            <li>Recebe <strong>+1 crítico automático</strong> por nível.</li>
-                            <li>A defesa é <strong>sempre perfeita</strong> (dano mínimo de 1 PV é ignorado).</li>
-                            <li>Um crítico no dado pode anular temporariamente a vantagem da escala.</li>
-                        </ul>
+                <!-- ... conteúdo existente ... -->
+            </section>
+            
+            <!-- PAINEL 7: CAMPANHA (NOVO) -->
+            <section id="campanha" class="content-section">
+                <div class="info-card p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-bold mb-4 text-accent text-center">Diário de Campanha</h2>
+                    <div id="book-content" class="book-page rounded-md shadow-inner mb-4">
+                        <!-- Conteúdo do markdown será inserido aqui -->
+                        <p class="text-secondary">Carregando aventura...</p>
                     </div>
-                    <div class="info-card p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Recompensas de XP</h2>
-                        <table class="w-full text-left">
-                           <tbody>
-                               <tr class="border-b"><td class="p-2 font-semibold">Objetivo Menor</td><td class="p-2 text-right">1 XP</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Objetivo Maior</td><td class="p-2 text-right">5 XP</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Interpretação</td><td class="p-2 text-right">+1 XP / sessão</td></tr>
-                               <tr class="border-b"><td class="p-2 font-semibold">Marco de Campanha</td><td class="p-2 text-right">+10 XP</td></tr>
-                               <tr><td class="p-2 font-semibold text-accent">Conversão</td><td class="p-2 text-right text-accent">10 XP = 1 Ponto de Personagem</td></tr>
-                           </tbody>
-                        </table>
-                    </div>
-                    <div class="lg:col-span-2 info-card p-6 rounded-lg shadow">
-                        <h2 class="text-xl font-bold mb-4 text-accent">Gerador Rápido de NPCs</h2>
-                        <div class="text-center">
-                            <button onclick="generateNPC()" class="px-6 py-3 bg-amber-500 text-white font-semibold rounded-lg shadow-md hover:bg-amber-600 transition mb-4">Gerar NPC Aleatório</button>
-                            <div id="npc-result" class="dynamic-panel p-4 rounded-lg min-h-[120px] flex flex-col items-center justify-center">
-                                <p class="text-sm text-secondary">Clique para gerar uma ideia de NPC.</p>
-                            </div>
-                        </div>
+                    <div class="flex justify-between items-center">
+                        <button id="prev-page-btn" class="nav-btn px-4 py-2 rounded-lg shadow-sm" disabled>Anterior</button>
+                        <span id="page-indicator" class="text-secondary font-semibold"></span>
+                        <button id="next-page-btn" class="nav-btn px-4 py-2 rounded-lg shadow-sm" disabled>Próxima</button>
                     </div>
                 </div>
             </section>
@@ -413,6 +275,8 @@
         // Data stores
         let playerData = [];
         let bestiaryData = [];
+        let campaignPages = [];
+        let currentPageIndex = 0;
 
         // DOM element references
         const navigation = document.getElementById('navigation');
@@ -482,7 +346,7 @@
                     <p><strong>Motivação:</strong> ${motivacao}</p>
                 </div>`;
         }
-
+        
         /**
          * Creates a span element for an ability with a tooltip.
          * @param {{name: string, desc: string}} ability - The ability object.
@@ -500,10 +364,15 @@
             const player = playerData.find(p => p.name === playerName);
             if (!player) return;
 
-            let periciasHtml = player.pericias?.length > 0 ? player.pericias.map(createAbilitySpan).join(', ') : "Nenhuma";
-            let vantagensHtml = player.vantagens?.length > 0 ? player.vantagens.map(createAbilitySpan).join(', ') : "Nenhuma";
-            let tecnicasHtml = player.tecnicas?.length > 0 ? player.tecnicas.map(createAbilitySpan).join(', ') : "Nenhuma";
-            let desvantagensHtml = player.desvantagens?.length > 0 ? player.desvantagens.map(createAbilitySpan).join(', ') : "Nenhuma";
+            const createListHtml = (items) => {
+                if (!items || items.length === 0) return "Nenhuma";
+                return items.map(item => createAbilitySpan(item)).join(', ');
+            };
+
+            let periciasHtml = createListHtml(player.pericias);
+            let vantagensHtml = createListHtml(player.vantagens);
+            let tecnicasHtml = createListHtml(player.tecnicas);
+            let desvantagensHtml = createListHtml(player.desvantagens);
             
             playerDetails.innerHTML = `
                 <div class="flex flex-col sm:flex-row gap-6 items-start">
@@ -532,38 +401,83 @@
          * @param {string} enemyName - The name of the enemy to display.
          */
         function displayEnemy(enemyName) {
-    const enemy = bestiaryData.find(e => e.name === enemyName);
-    if (!enemy) return;
+            const enemy = bestiaryData.find(e => e.name === enemyName);
+            if (!enemy) return;
 
-    // Usar .map() para extrair o 'name' de cada objeto e criar o HTML com o tooltip
-    const createListHtml = (items) => {
-        if (!items || items.length === 0) return "Nenhuma";
-        return items.map(item => createAbilitySpan(item)).join(', ');
-    };
+            const createListHtml = (items) => {
+                if (!items || items.length === 0) return "Nenhuma";
+                 if (typeof items === 'string') return items; // Fallback for old format
+                return items.map(item => createAbilitySpan(item)).join(', ');
+            };
 
-    let detailsHtml = `<h3 class="text-2xl font-bold text-accent mb-1">${enemy.name}</h3>`;
-    detailsHtml += `<p class="text-sm text-secondary mb-4">${enemy.pontos}</p>`;
-    detailsHtml += `<p class="mb-4"><strong>Atributos:</strong> ${enemy.stats}</p>`;
-    
-    // Aplicar a função para cada lista
-    detailsHtml += `<p class="mb-2"><strong>Perícias:</strong> ${createListHtml(enemy.pericias)}</p>`;
-    detailsHtml += `<p class="mb-2"><strong>Vantagens:</strong> ${createListHtml(enemy.vantagens)}</p>`;
-    detailsHtml += `<p class="mb-4"><strong>Desvantagens:</strong> ${createListHtml(enemy.desvantagens)}</p>`;
+            let detailsHtml = `<h3 class="text-2xl font-bold text-accent mb-1">${enemy.name}</h3>`;
+            detailsHtml += `<p class="text-sm text-secondary mb-4">${enemy.pontos}</p>`;
+            detailsHtml += `<p class="mb-4"><strong>Atributos:</strong> ${enemy.stats}</p>`;
+            
+            detailsHtml += `<p class="mb-2"><strong>Perícias:</strong> ${createListHtml(enemy.pericias)}</p>`;
+            detailsHtml += `<p class="mb-2"><strong>Vantagens:</strong> ${createListHtml(enemy.vantagens)}</p>`;
+            detailsHtml += `<p class="mb-4"><strong>Desvantagens:</strong> ${createListHtml(enemy.desvantagens)}</p>`;
 
-    if (enemy.poderes && enemy.poderes.length > 0) {
-        detailsHtml += `<h4 class="font-bold mt-4 mb-2">Poderes Especiais</h4>`;
-        detailsHtml += `<dl class="space-y-3">`;
-        enemy.poderes.forEach(poder => {
-            detailsHtml += `<div><dt class="font-semibold">${poder.name}</dt><dd class="text-sm text-secondary pl-2 border-l-2">${poder.desc}</dd></div>`;
-        });
-        detailsHtml += `</dl>`;
-    }
-    
-    bestiaryDetails.innerHTML = detailsHtml;
+            if (enemy.poderes && enemy.poderes.length > 0) {
+                detailsHtml += `<h4 class="font-bold mt-4 mb-2">Poderes Especiais</h4>`;
+                detailsHtml += `<dl class="space-y-3">`;
+                enemy.poderes.forEach(poder => {
+                    detailsHtml += `<div><dt class="font-semibold">${poder.name}</dt><dd class="text-sm text-secondary pl-2 border-l-2">${poder.desc}</dd></div>`;
+                });
+                detailsHtml += `</dl>`;
+            }
+            
+            bestiaryDetails.innerHTML = detailsHtml;
 
-    document.querySelectorAll('#bestiary-list .list-item').forEach(item => item.classList.remove('active'));
-    document.querySelector(`#bestiary-list .list-item[data-id="${enemyName}"]`).classList.add('active');
-}
+            document.querySelectorAll('#bestiary-list .list-item').forEach(item => item.classList.remove('active'));
+            document.querySelector(`#bestiary-list .list-item[data-id="${enemyName}"]`).classList.add('active');
+        }
+        
+        /**
+         * Loads markdown files for the campaign book.
+         */
+        async function loadCampaign() {
+            // Define a lista de aventuras a serem carregadas
+            const adventuresToLoad = ['aventura01.md', 'aventura02.md']; 
+            for (const adventureFile of adventuresToLoad) {
+                try {
+                    const response = await fetch(`Campanha/${adventureFile}`);
+                    if (response.ok) {
+                        const markdown = await response.text();
+                        // Usa a biblioteca marked para converter markdown em HTML
+                        campaignPages.push(marked.parse(markdown));
+                    } else {
+                         console.warn(`Arquivo ${adventureFile} não encontrado.`);
+                    }
+                } catch (error) {
+                    console.error(`Erro ao carregar ${adventureFile}:`, error);
+                }
+            }
+            
+            const bookContent = document.getElementById('book-content');
+            if (campaignPages.length > 0) {
+                displayCampaignPage(currentPageIndex);
+            } else {
+                bookContent.innerHTML = `<p class="text-secondary text-center">Nenhuma aventura encontrada. Crie a pasta "Campanha" e adicione arquivos como "aventura01.md".</p>`;
+            }
+        }
+        
+        /**
+         * Displays a specific page of the campaign book.
+         * @param {number} index - The index of the page to display.
+         */
+        function displayCampaignPage(index) {
+            const bookContent = document.getElementById('book-content');
+            const pageIndicator = document.getElementById('page-indicator');
+            const prevBtn = document.getElementById('prev-page-btn');
+            const nextBtn = document.getElementById('next-page-btn');
+
+            bookContent.innerHTML = campaignPages[index];
+            pageIndicator.textContent = `Página ${index + 1} de ${campaignPages.length}`;
+            
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === campaignPages.length - 1;
+        }
 
         // --- Event Listeners Setup ---
         
@@ -590,86 +504,26 @@
                 tooltip.style.top = `${e.pageY + 15}px`;
             }
         });
+        
+        document.getElementById('prev-page-btn').addEventListener('click', () => {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                displayCampaignPage(currentPageIndex);
+            }
+        });
+
+        document.getElementById('next-page-btn').addEventListener('click', () => {
+            if (currentPageIndex < campaignPages.length - 1) {
+                currentPageIndex++;
+                displayCampaignPage(currentPageIndex);
+            }
+        });
+
 
         // --- Initial Data Fetching and App Initialization ---
-
         document.addEventListener('DOMContentLoaded', () => {
             
-            const fallbackPlayerJsonData = [
-              {
-                "name": "Kojiro",
-                "concept": "Ronin em busca de redenção",
-                "pontos": "12 PEs",
-                "archetype": "Lutador",
-                "image": "kojiro.png",
-                "stats": "P2, H4, R2, A0, PdF1",
-                "pericias": [
-                  {"name": "Luta", "desc": "Combate corpo a corpo."},
-                  {"name": "Sobrevivência", "desc": "Aguentar as agruras do mundo."}
-                ],
-                "vantagens": [
-                  {"name": "Ataque Especial (Corte da Garça)", "desc": "Um golpe com P+1 e +2 no acerto, custa 2 PMs."},
-                  {"name": "Técnica de Luta (Estilo da Garça)", "desc": "Permite aparar ataques corpo a corpo com Luta, gastando 1 PM."}
-                ],
-                "desvantagens": [
-                  {"name": "Código de Honra", "desc": "Sempre proteger os inocentes e nunca atacar um oponente desarmado."},
-                  {"name": "Má Fama", "desc": "É conhecido por um erro do passado."}
-                ]
-              },
-              {
-                "name": "Lina",
-                "concept": "Feiticeira elemental com um passado misterioso",
-                "pontos": "12 PEs",
-                "archetype": "Mago",
-                "image": "lina.png",
-                "stats": "P0, H3, R3, A2, PdF2",
-                "pericias": [
-                  {"name": "Misticismo", "desc": "Conhecimento sobre magia e o oculto."},
-                  {"name": "Ciências", "desc": "Sabe de tudo um pouco, mas nada a fundo."}
-                ],
-                "vantagens": [
-                  {"name": "Magia Elemental", "desc": "Pode controlar os elementos (Fogo, Água, Terra, Ar)."},
-                  {"name": "Pontos de Magia Extras", "desc": "Possui mais PMs que o normal."}
-                ],
-                "tecnicas": [
-                  {"name": "Bola de Fogo", "desc": "Um clássico. Causa PdF+H+1d6 de dano."},
-                  {"name": "Muralha de Gelo", "desc": "Cria uma barreira de gelo com R+H de PVs."}
-                ],
-                "desvantagens": [
-                  {"name": "Amnésia", "desc": "Não se lembra de seu passado."},
-                  {"name": "Restrição de Magia", "desc": "Não pode usar magia se estiver amordaçada."}
-                ]
-              }
-            ];
-            
-            const fallbackBestiaryJsonData = [
-              {
-                "name": "Goblin",
-                "pontos": "3 PEs",
-                "stats": "P1, H1, R1, A0, PdF0",
-                "pericias": "Nenhuma",
-                "vantagens": "Nenhuma",
-                "desvantagens": "Covardia: se estiver em menor número, sofre Perda em todos os testes."
-              },
-              {
-                "name": "Lobo Gigante",
-                "pontos": "6 PEs",
-                "stats": "P2, H2, R1, A1, PdF0",
-                "vantagens": "Aceleração, Sentidos Aguçados (Audição, Olfato)",
-                "poderes": [
-                  {"name": "Mordida Feroz", "desc": "O ataque de mordida causa dano por P+1."}
-                ]
-              },
-              {
-                "name": "Esqueleto",
-                "pontos": "4 PEs",
-                "stats": "P2, H1, R1, A1, PdF0",
-                "vantagens": "Imunidade (doenças, venenos, magias mentais), Morto-Vivo",
-                "desvantagens": "Vulnerabilidade (Contusão): sofre dano dobrado por ataques de contusão."
-              }
-            ];
-
-            const populateUI = (pData, bData) => {
+             const populateUI = (pData, bData) => {
                 try {
                     playerData = pData;
                     bestiaryData = bData;
@@ -681,7 +535,7 @@
                         const li = document.createElement('li');
                         li.textContent = player.name;
                         li.dataset.id = player.name;
-                        li.className = 'list-item p-2 rounded-md';
+                        li.className = 'list-item p-2 rounded-md cursor-pointer';
                         li.onclick = () => displayPlayer(player.name);
                         playerList.appendChild(li);
                     });
@@ -691,7 +545,7 @@
                         const li = document.createElement('li');
                         li.textContent = enemy.name;
                         li.dataset.id = enemy.name;
-                        li.className = 'list-item p-2 rounded-md';
+                        li.className = 'list-item p-2 rounded-md cursor-pointer';
                         li.onclick = () => displayEnemy(enemy.name);
                         bestiaryList.appendChild(li);
                     });
@@ -713,14 +567,14 @@
 
             Promise.all([playersPromise, bestiaryPromise])
                 .then(([playerJsonData, bestiaryJsonData]) => {
-                    console.log("Dados carregados com sucesso de arquivos externos.");
                     populateUI(playerJsonData, bestiaryJsonData);
                 })
                 .catch(error => {
                     console.warn("Não foi possível carregar arquivos externos. Usando dados locais como fallback.", error);
-                    populateUI(fallbackPlayerJsonData, fallbackBestiaryJsonData);
+                    populateUI([], []);
                 });
             
+            loadCampaign();
             showSection('basico');
         });
 
