@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Absorver Mana",
+        "desc": "Requisito: Mística. Custo: 0. Duração: Instantânea. Use um movimento para absorver 1D PM do ambiente, ou uma ação para 1D+H PM. PM absorvidos podem superar seu limite, mas são perdidos no final do seu próximo turno se não forem usados."
+    },
+    {
+        "name": "Área de Batalha",
+        "desc": "Requisitos: P ou H 2, Mística. Custo: 2 PM para ativar, 1 PM por rodada. Duração: Sustentada. Com uma ação, transporte a si mesmo e até P ou H aliados para uma dimensão de bolso onde você ganha duas vantagens de 1 ponto (ou uma de 2 pontos) temporariamente."
+    },
+    {
+        "name": "Bola de Fogo",
+        "desc": "Requisitos: H2, Magia. Custo: 3PM + Magia. Duração: Instantânea. Ataque em área que causa dano de fogo. Oponentes na área têm Perda em seus testes de defesa."
+    },
+    {
+        "name": "Combo",
+        "desc": "Requisitos: H1, Golpes. Custo: 0. Duração: Instantânea. Ao acertar um golpe, você pode usar um movimento para realizar um novo golpe diferente contra o mesmo alvo. Pode continuar adicionando golpes gastando mais movimentos, até um máximo igual à sua Habilidade."
+    },
+    {
+        "name": "Disparo de Energia",
+        "desc": "Requisito: Luta ou Magia. Custo: 3PM. Duração: Instantânea. Faça um ataque com P+2 a um alvo Longe. Pode concentrar por mais turnos para aumentar o bônus de Poder (+2 por movimento gasto)."
+    },
+    {
+        "name": "Golpe Púrpura",
+        "desc": "Requisitos: P3, Luta. Custo: 3PM. Duração: Instantânea. Ataque com um crítico automático. Se conseguir outro crítico, o alvo é arremessado para longe."
+    },
+    {
+        "name": "Queimar o Cosmo",
+        "desc": "Requisitos: R2, Luta. Custo: 5-25PM. Duração: Duradoura. Use uma ação para aumentar todos os seus atributos em +1 para cada 5PM gastos, até o fim da cena. Bônus máximo igual à sua Resistência."
+    },
+    {
+        "name": "Mata-Kaiju",
+        "desc": "Requisitos: H5, Magia. Custo: 10PM + Magia. Duração: Instantânea. Requer 3 rodadas de conjuração. O ataque tem dois críticos automáticos (escala +2) e atinge uma vasta área (todos Longe do alvo principal), com os alvos sofrendo duas Perdas na defesa."
+    },
+    {
+        "name": "Visão do Futuro",
+        "desc": "Requisito: H5. Custo: 3PM. Duração: Instantânea. Como reação a um teste contra você, pode forçar o oponente a rolar duas vezes e você escolhe o resultado."
+    }
+]

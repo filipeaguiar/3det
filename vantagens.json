@@ -1,0 +1,102 @@
+[
+    {
+        "name": "Aceleração",
+        "desc": "Você se move muito rápido. Pode gastar 1PM para realizar um movimento extra em seu turno. Você também pode gastar 1PM antes de rolar os dados para receber um Ganho na iniciativa, ou em testes de Habilidade para correr, fugir ou perseguir um oponente."
+    },
+    {
+        "name": "+Ação",
+        "desc": "Você tem mais Pontos de Ação, além daqueles oferecidos por seu Poder. Cada vez que compra esta vantagem você recebe +2PA. Você pode comprar esta vantagem várias vezes."
+    },
+    {
+        "name": "Acumulador",
+        "desc": "Sempre que você acerta um ataque, pode gastar 2PM para ganhar Poder +1 no ataque seguinte. Se acertar de novo, pode gastar 2PM de novo para P+2. E assim por diante, até um máximo de P+5. Se você erra um ataque, os bônus acabam."
+    },
+    {
+        "name": "Ágil",
+        "desc": "Você tem grande agilidade e coordenação motora. Recebe H+2 em testes envolvendo agilidade, coordenação ou equilíbrio. Pode gastar 2PM para conseguir acerto crítico com 5 ou 6 nesses testes."
+    },
+    {
+        "name": "Ajudante",
+        "desc": "Você tem algo ou alguém para ajudar. Uma vez por rodada, pode gastar PM para invocar o ajudante. Curandeiro (2PM): Cura 2D PV ou permite repetir teste de R. Especialista (2PM): Ganho em um teste de perícia (exceto ataque/defesa). Familiar (1PM): Reduz pela metade o custo em PM de outra vantagem. Lutador (2PM): Ganho em um teste de ataque ou defesa. Montaria (1PM): Movimento extra ou Ganho em iniciativa/corrida."
+    },
+    {
+        "name": "Alcance",
+        "desc": "Seus ataques acertam mais longe. 1pt: atinge Longe sem penalidades, e Muito Longe com Perda. 2pt: atinge Muito Longe sem penalidades."
+    },
+    {
+        "name": "Anulação",
+        "desc": "Após um alvo usar uma vantagem, você pode usar uma ação e 3PM para anulá-la. O alvo faz um teste de R (9 + seu Poder). Se falhar, não pode usar a vantagem até o fim da cena. Pode ser usada preventivamente com um teste de perícia (12)."
+    },
+    {
+        "name": "Arena",
+        "desc": "Você se dá melhor em um certo tipo de terreno (água, céu, cidades, ermos, etc.). Quando está nesse lugar, pode gastar 2PM para ter Ganho em um teste."
+    },
+    {
+        "name": "Artefato",
+        "desc": "Você possui um item especial. Cada ponto gasto nesta vantagem vale 10XP para comprar qualidades para seu item."
+    },
+    {
+        "name": "Ataque Especial",
+        "desc": "Ao atacar, gaste PM para ativar efeitos: Área (3PM), Choque (R em vez de P, 1PM), Distante (1PM), Espiritual (dano em PM, 1PM), Investida (1PM), Múltiplo (1PM/alvo extra), Penetrante (Perda na defesa do alvo, 2PM), Perigoso (crítico com 5-6, 1PM), Poderoso (soma P mais uma vez no crítico, 2PM), Potente (P+2, 1PM), Preciso (H em vez de P, 1PM), Titânico (crítico automático, 3PM)."
+    },
+    {
+        "name": "Base",
+        "desc": "Você tem um porto seguro. Pode se teleportar para sua base fora de combate, levando aliados. Testes na base têm Ganho."
+    },
+    {
+        "name": "Brutal",
+        "desc": "Ao causar dano, você recupera recursos. Vida: para cada 3 de dano, recupera 1 PV. Mana: para cada 3 de dano, recupera 1 PM. Derrota: ao derrotar um oponente, recupera 3 PV e 1 PM."
+    },
+    {
+        "name": "Carismático",
+        "desc": "Você tem facilidade para agradar. Recebe P+2 em testes sociais. Pode gastar 2PM para conseguir acerto crítico com 5 ou 6 nesses testes."
+    },
+    {
+        "name": "Cura",
+        "desc": "Você pode curar. Gaste 2PM para curar 1D PV (até um limite de dados igual à Habilidade). Pode gastar 2PM para permitir que um alvo repita um teste de R contra um efeito negativo."
+    },
+    {
+        "name": "Defesa Especial",
+        "desc": "Ao defender, gaste PM para ativar efeitos: Blindada (crítico com 5-6, 1PM), Bloqueio (P em vez de R, 1PM), Esquiva (H em vez de R, 1PM), Proteção (defende um aliado, 1PM/aliado), Provocação (recebe o ataque no lugar do aliado, 1PM), Reflexão (devolve dano, 1PM), Robusta (soma R mais uma vez no crítico, 2PM), Tenaz (R+2, 1PM), Titânica (crítico automático, 3PM)."
+    },
+    {
+        "name": "Improviso",
+        "desc": "Você pode gastar 3PM para aprender e usar uma perícia que não tenha até o fim da cena. Apenas uma por vez."
+    },
+    {
+        "name": "Magia",
+        "desc": "Você faz mágica. Gaste PM para somar o mesmo valor em qualquer teste (limite igual à Habilidade). Pode usar a perícia Mística em vez de Luta."
+    },
+    {
+        "name": "Patrono",
+        "desc": "Você serve a uma pessoa ou organização poderosa. Ganho em testes de compra para missões do patrono (1PM) e um item consumível extra de cada raridade."
+    },
+    {
+        "name": "Regeneração",
+        "desc": "Você recupera PV automaticamente. 1pt: 1PV por turno. 2pt: 3PV por turno. Nunca tem um resultado pior que Inconsciente em testes de morte."
+    },
+    {
+        "name": "Riqueza",
+        "desc": "Você tem muitos recursos. Pode gastar PM para elevar sua escala em testes de compra. 2pt: Sugoi (1 nível, 2PM). 4pt: Kiodai (2 níveis, 4PM). 6pt: Kami (3 níveis, 6PM)."
+    },
+    {
+        "name": "Sentidos Especiais",
+        "desc": "Você tem um sentido melhor ou diferente: Aguçado, Infravisão, Intuição, Radar, Raio X. Permite testes de Percepção em situações impossíveis para outros."
+    },
+    {
+        "name": "Teleporte",
+        "desc": "Use um movimento e PM para se deslocar para qualquer lugar que possa ver (1PM por passo de distância). Pode gastar 3PM para Ganho na defesa."
+    },
+    {
+        "name": "Torcida",
+        "desc": "Você luta melhor com uma torcida. Se houver uma (1 em 1d6), você tem um Ganho por rodada em qualquer teste."
+    },
+    {
+        "name": "Transformação",
+        "desc": "Você pode mudar de forma e poderes. Crie outro personagem com a mesma pontuação. 1pt: desvantagens se acumulam. 2pt: cada forma tem suas próprias desvantagens. Mudar de forma usa uma ação, restaura PM e PV e só pode ser feito uma vez por sessão (ou gastando 1 PA)."
+    },
+    {
+        "name": "Voo",
+        "desc": "Você pode voar. Usa um movimento e 2PM para levantar voo. Ignora terreno difícil e só pode ser alcançado por outros voadores."
+    }
+]

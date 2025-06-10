@@ -1,0 +1,114 @@
+[
+    {
+        "name": "Ambiente",
+        "desc": "Você depende de um ambiente específico (água, calor, etc.). Fora dele (1 em 1d6), tem Perda em todos os testes."
+    },
+    {
+        "name": "Amnésia",
+        "desc": "Você não sabe quem é. O mestre cria sua ficha em segredo e só revela os resultados dos seus testes, sem explicar suas capacidades."
+    },
+    {
+        "name": "Antipático",
+        "desc": "Você tem dificuldade em interações sociais. Em testes de Poder social, tem Perda e nunca consegue acertos críticos."
+    },
+    {
+        "name": "Assombrado",
+        "desc": "Algo perturba sua concentração. -1pt: Em situações de risco, 1 em 1d6 para ter Perda em todos os testes na cena. -2pt: O mesmo, mas com resultado ímpar."
+    },
+    {
+        "name": "Atrapalhado",
+        "desc": "Você é desajeitado. Em testes de Habilidade envolvendo agilidade, tem Perda e nunca consegue acertos críticos."
+    },
+    {
+        "name": "Aura",
+        "desc": "Você emana uma energia negativa. -1pt: Todos (aliados e inimigos) Perto de você têm Perda em seus testes. -2pt: O mesmo, mas Longe ou menos."
+    },
+    {
+        "name": "Bateria",
+        "desc": "Você precisa de energia para se manter ativo. Com 0 PM, fica inconsciente. Com PM abaixo da sua Habilidade, tem Perda em todos os testes."
+    },
+    {
+        "name": "Código",
+        "desc": "Você segue um código de conduta (Heróis, Honestidade, etc.). Violar o código resulta em Perda em todos os testes até se redimir."
+    },
+    {
+        "name": "Dependência",
+        "desc": "Você depende de algo raro ou proibido para viver (sangue, cérebros...). Sem satisfazer a dependência diariamente, tem Perda em todos os testes. (Não recomendado para PJs)."
+    },
+    {
+        "name": "Diferente",
+        "desc": "Seu corpo não é humanoide padrão. Você tem Perda ao usar equipamentos feitos para outros e vice-versa. Pode receber Ganho em situações específicas."
+    },
+    {
+        "name": "Fracote",
+        "desc": "Você é fraco. Em testes de Poder envolvendo esforço físico, tem Perda e nunca consegue acertos críticos."
+    },
+    {
+        "name": "Frágil",
+        "desc": "Você tem pouco vigor físico. Em testes de Resistência física (doenças, veneno, morte), tem Perda e nunca consegue acertos críticos."
+    },
+    {
+        "name": "Fraqueza",
+        "desc": "Você é vulnerável a algo. Perto dessa coisa, tem Perda em todos os testes. -1pt para algo incomum, -2pt para algo comum."
+    },
+    {
+        "name": "Fúria",
+        "desc": "Sempre que sofre dano, deve passar em um teste de R (9 ou dano) ou entra em frenesi, atacando o alvo mais próximo. Durante a fúria, tem Perda em testes de defesa e vantagens custam o dobro."
+    },
+    {
+        "name": "Inapto",
+        "desc": "Escolha uma perícia que não possui. Em testes com essa perícia, você tem Perda e qualquer falha é crítica."
+    },
+    {
+        "name": "Inculto",
+        "desc": "Você não conhece a cultura local. Tem dificuldade para ler e se comunicar, e Perda em testes sociais com quem não o entende."
+    },
+    {
+        "name": "Indeciso",
+        "desc": "Você tem pouca força de vontade. Em testes de Resistência mental, tem Perda e nunca consegue acertos críticos."
+    },
+    {
+        "name": "Infame",
+        "desc": "Você é famoso por um mau motivo. Em testes sociais com NPCs que o reconhecem, tem Perda."
+    },
+    {
+        "name": "Lento",
+        "desc": "Você se move devagar. Tem Perda em iniciativa e gasta um movimento extra para cruzar cada distância."
+    },
+    {
+        "name": "Maldição",
+        "desc": "Você é vítima de uma maldição. -1pt: algo irritante que pode causar Perda. -2pt: algo grave, com efeitos mecânicos severos."
+    },
+    {
+        "name": "Monstruoso",
+        "desc": "Sua aparência causa repulsa. Tem Perda em iniciativa (exceto surpresa) e em testes sociais que envolvem aparência."
+    },
+    {
+        "name": "Munição",
+        "desc": "Sua arma precisa ser recarregada. Após um ataque, deve usar um movimento para recarregar. Atacar sem recarregar não soma seu Poder ao teste."
+    },
+    {
+        "name": "Ponto Fraco",
+        "desc": "Você tem uma fraqueza que pode ser explorada. Um adversário que a conheça pode gastar 1 PM para ter Ganho contra você."
+    },
+    {
+        "name": "Protegido",
+        "desc": "Você precisa proteger alguém. Se essa pessoa estiver em perigo, você tem Perda em todos os testes."
+    },
+    {
+        "name": "Restrição",
+        "desc": "Uma condição dificulta o uso de seus poderes, dobrando o custo em PM de suas vantagens. -1pt para algo incomum, -2pt para algo comum."
+    },
+    {
+        "name": "Sem Vida",
+        "desc": "Você não é um ser vivo (construto, morto-vivo). Não recupera PV de formas normais, apenas com conserto (teste de Máquinas ou Mística)."
+    },
+    {
+        "name": "Tapado",
+        "desc": "Você não é muito inteligente. Em testes de Habilidade envolvendo raciocínio, tem Perda e nunca consegue acertos críticos."
+    },
+    {
+        "name": "Utensílio",
+        "desc": "Você precisa de um item para usar uma perícia ou vantagem. -1pt: sem ele, não consegue críticos na perícia. -2pt: sem ele, não pode usar vantagens que gastam PM."
+    }
+]
