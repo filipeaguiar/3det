@@ -9,7 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
+ <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#f59e0b">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">   
     <style>
         /* ==========================================================================
            ESTILOS PADRÃO (MODO CLARO)
@@ -578,6 +580,17 @@
             showSection('basico');
         });
 
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('Service Worker registado com sucesso:', registration.scope);
+        })
+        .catch(err => {
+          console.log('Falha ao registar o Service Worker:', err);
+        });
+    });
+  }
     </script>
 </body>
 </html>
