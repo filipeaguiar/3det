@@ -13,129 +13,123 @@
     <!-- Visualization & Content Choices: 
         - Informação: Fichas de Personagens e Inimigos -> Meta: Consulta Rápida -> Método: Os dados agora são carregados de arquivos JSON externos para melhor organização e escalabilidade. A interface continua a mesma, com listas interativas e painéis de detalhes dinâmicos. -> Interação: Clique no nome para ver a ficha completa; Passe o mouse sobre as habilidades para ver descrições. -> Justificação: A refatoração para JSON torna o código mais limpo e preparado para futuras expansões sem alterar a experiência do usuário.
         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-<style>
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: #1e293b;  /* slate-800 */
-      color: #f1f5f9;            /* slate-100 */
-    }
 
-    .info-card {
-      background-color: #374151; /* slate-700 */
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4),
-                  0 2px 4px -2px rgb(0 0 0 / 0.4);
-    }
-
-    .table-header {
-      background-color: #4b5563; /* slate-600 */
-      color: #f1f5f9;            /* texto claro */
-    }
-
-    .nav-btn {
-      background-color: #1f2937; /* slate-800 */
-      color: #d1d5db;            /* slate-300 */
-    }
-
-    .nav-btn:hover {
-      background-color: #f59e0b; /* amber-500 */
-      color: #1e293b;            /* slate-800 */
-    }
-
-    .nav-btn.active {
-      background-color: #f59e0b; /* amber-500 */
-      color: #1e293b;            /* slate-800 */
-    }
-
-    .list-item.active {
-      background-color: #92400e; /* amber-800 */
-      color: #fef3c7;            /* amber-100 */
-    }
-
-    #tooltip {
-      background-color: #f1f5f9; /* slate-100 */
-      color: #1e293b;            /* slate-800 */
-      border-color: #e5e7eb;     /* slate-200 */
-    }
-
-    /* Adaptações adicionais que você pode querer */
-    .border {
-      border-color: #334155; /* slate-700 */
-    }
-
-    .text-muted {
-      color: #cbd5e1; /* slate-300 */
-    }
-
-    .bg-muted {
-      background-color: #1e293b; /* slate-800 */
-    }
-  }
-</style>
     <style>
+    /* ESTILOS PADRÃO (MODO CLARO) */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f1f5f9;
+        color: #1e293b;
+    }
+    .nav-btn {
+        transition: all 0.3s ease;
+    }
+    .nav-btn.active {
+        background-color: #f59e0b;
+        color: #ffffff;
+        font-weight: 600;
+    }
+    .content-section {
+        display: none;
+    }
+    .content-section.active {
+        display: block;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .table-header {
+        background-color: #e2e8f0;
+        font-weight: 600;
+    }
+    .info-card {
+        background-color: white;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+    .info-card:hover {
+         box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+    .list-item {
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+     .list-item.active {
+        background-color: #fef3c7;
+        color: #92400e;
+        font-weight: 600;
+    }
+    .ability-tag {
+        cursor: help;
+        border-bottom: 2px dotted #f59e0b;
+    }
+    #tooltip {
+        position: absolute;
+        display: none;
+        background-color: #1e293b;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem;
+        max-width: 300px;
+        z-index: 100;
+        pointer-events: none;
+    }
+
+    /* REGRAS DE MODO ESCURO (SOBRESREVEM AS REGRAS ACIMA) */
+    @media (prefers-color-scheme: dark) {
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f1f5f9;
-            color: #1e293b;
+          background-color: #1e293b;  /* slate-800 */
+          color: #f1f5f9;            /* slate-100 */
         }
-        .nav-btn {
-            transition: all 0.3s ease;
-        }
-        .nav-btn.active {
-            background-color: #f59e0b;
-            color: #ffffff;
-            font-weight: 600;
-        }
-        .content-section {
-            display: none;
-        }
-        .content-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .table-header {
-            background-color: #e2e8f0;
-            font-weight: 600;
-        }
+
         .info-card {
-            background-color: white;
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transition: box-shadow 0.3s ease;
+          background-color: #374151; /* slate-700 */
+          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4),
+                      0 2px 4px -2px rgb(0 0 0 / 0.4);
         }
-        .info-card:hover {
-             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        
+        /* Adicionando a correção da aba inativa que discutimos antes */
+        .nav-btn {
+          background-color: #374151; /* slate-700 */
+          color: #d1d5db;            /* slate-300 */
         }
-        .list-item {
-            cursor: pointer;
-            transition: background-color 0.2s ease;
+    
+        .nav-btn:hover {
+          background-color: #f59e0b; /* amber-500 */
+          color: #1e293b;            /* slate-800 */
         }
-         .list-item.active {
-            background-color: #fef3c7;
-            color: #92400e;
-            font-weight: 600;
+    
+        .nav-btn.active {
+          background-color: #f59e0b; /* amber-500 */
+          color: #1e293b;            /* slate-800 */
         }
-        .ability-tag {
-            cursor: help;
-            border-bottom: 2px dotted #f59e0b;
+        
+        .table-header {
+          background-color: #4b5563; /* slate-600 */
+          color: #f1f5f9;            /* texto claro */
         }
+
+        .list-item.active {
+          background-color: #92400e; /* amber-800 */
+          color: #fef3c7;            /* amber-100 */
+        }
+
         #tooltip {
-            position: absolute;
-            display: none;
-            background-color: #1e293b;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            max-width: 300px;
-            z-index: 100;
-            pointer-events: none;
+          background-color: #f1f5f9; /* slate-100 */
+          color: #1e293b;            /* slate-800 */
+          border-color: #e5e7eb;     /* slate-200 */
         }
-    </style>
+
+        .border {
+          border-color: #334155; /* slate-700 */
+        }
+    }
+</style>
 </head>
 <body class="antialiased">
 
