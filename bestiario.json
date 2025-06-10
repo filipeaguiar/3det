@@ -1,0 +1,63 @@
+[
+    {
+        "name": "Abelha-Gigante",
+        "stats": "P1, H3, R0 (1PA, 15PM, 1PV)",
+        "pontos": "2pt",
+        "vantagens": "Voo",
+        "desvantagens": "Monstruoso",
+        "poderes": [{"name": "Ferroada Suicida", "desc": "Ao acertar um ataque, a abelha morre, mas o ferrão causa 1 de dano por rodada até ser removido (gasta uma ação)." }]
+    },
+    {
+        "name": "Aparição",
+        "stats": "P3, H2, R3 (3PA, 10PM, 15PV)",
+        "pontos": "11pt",
+        "vantagens": "Incorpóreo, Imortal, Invisibilidade",
+        "desvantagens": "Maldição (vulnerável à luz do dia)",
+        "poderes": [
+            {"name": "Toque Mortífero", "desc": "Vítimas atingidas devem passar em um teste de Resistência ou perdem 1 ponto de Resistência permanentemente."},
+            {"name": "Cria", "desc": "Humanoides mortos pela Aparição se tornam uma nova Aparição na rodada seguinte."}
+        ]
+    },
+    {
+        "name": "Golem de Matéria Vermelha",
+        "stats": "P4, H1, R5 (4PA, 5PM, 25PV)",
+        "pontos": "12pt",
+        "vantagens": "Construto",
+        "desvantagens": "Monstruoso",
+        "poderes": [
+            {"name": "Toque Corrosivo", "desc": "Ataques corpo-a-corpo contra o golem causam 1d de dano de ácido no atacante."},
+            {"name": "Aparência Insana", "desc": "Personagens que veem o golem devem passar em um teste de Resistência ou recebem -1 em Habilidade temporariamente."}
+        ]
+    },
+    {
+        "name": "Dragão Vermelho",
+        "stats": "P9, H6, R8 (9PA, 40PM, 40PV)",
+        "pontos": "30pt Sugoi",
+        "pericias": "Luta",
+        "vantagens": "Voo, Sentidos Especiais (todos), Telepatia, Regeneração",
+        "desvantagens": "Má Fama, Modelo Especial",
+        "poderes": [
+            {"name": "Sopro de Fogo", "desc": "Ataque em área com Poder 8 (dano de fogo). Uma esquiva bem-sucedida reduz o dano à metade. Pode ser usado uma vez a cada 1d turnos."},
+            {"name": "Presença Aterradora", "desc": "Inimigos que veem o dragão devem passar em um teste de Resistência ou sofrem os efeitos da magia Pânico."}
+        ]
+    },
+    {
+        "name": "Kobold",
+        "stats": "P1, H1, R0 (1PA, 5PM, 1PV)",
+        "pontos": "1pt",
+        "vantagens": "Alcance 1",
+        "desvantagens": "Diferente, Inculto",
+        "poderes": [{"name": "Reunião de Família", "desc": "Com 5PM e um grito, invoca uma Horda Kobold em 1D rodadas."}]
+    },
+    {
+        "name": "Basilisco",
+        "stats": "P1, H4, R2 (1PA, 20PM, 10PV)",
+        "pontos": "8pt",
+        "vantagens": "Paralisia (seu olhar petrificante)",
+        "desvantagens": "Monstruoso",
+        "poderes": [
+            {"name": "Olhar Petrificante", "desc": "Vítimas que encontram seu olhar devem fazer um teste de Resistência (meta 12) ou são transformadas em pedra. Não gasta PM."},
+            {"name": "Saliva Ácida", "desc": "Pode cuspir um jato de ácido (Ataque com Poder 1, dano químico)."}
+        ]
+    }
+]
