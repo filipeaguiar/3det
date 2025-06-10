@@ -207,21 +207,162 @@
         </nav>
 
         <main id="content">
-            <!-- PÁGINAS DE CONTEÚDO... (as seções existentes permanecem aqui) -->
-
             <!-- PAINEL 1: BÁSICO & TESTES -->
             <section id="basico" class="content-section">
-                <!-- ... conteúdo existente ... -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2">
+                        <div class="info-card h-full p-6 rounded-lg shadow">
+                            <h2 class="text-xl font-bold mb-4 text-accent">A Mecânica Central: 3 Dados e Teste</h2>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left">
+                                    <tbody>
+                                        <tr class="border-b"><td class="py-2 font-semibold">Fórmula do Teste</td><td class="py-2">Atributo + (1d6 a 3d6) vs. Meta</td></tr>
+                                        <tr class="border-b"><td class="py-2 font-semibold">1D (Base)</td><td class="py-2">Rolagem padrão.</td></tr>
+                                        <tr class="border-b"><td class="py-2 font-semibold">+1D (Perícia)</td><td class="py-2">Se possui a perícia adequada.</td></tr>
+                                        <tr class="border-b"><td class="py-2 font-semibold">+1D (Ganho)</td><td class="py-2">Vantagem tática, uso de 1 PA, etc.</td></tr>
+                                        <tr class="border-b"><td class="py-2 font-semibold">-1D (Perda)</td><td class="py-2">Desvantagem tática, terreno ruim, etc.</td></tr>
+                                        <tr class="border-b"><td class="py-2 font-semibold">Acerto Crítico</td><td class="py-2">Resultado 6 no dado. Permite <strong>somar o Atributo de novo</strong>.</td></tr>
+                                        <tr><td class="py-2 font-semibold">Falha Crítica</td><td class="py-2">Todos os dados resultam 1. Consequência narrativa.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-card p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Rolador de Dados</h2>
+                        <div class="flex justify-around mb-4">
+                            <button onclick="rollDice(1)" class="w-16 h-16 bg-slate-700 text-white font-bold rounded-lg text-2xl shadow-md hover:bg-slate-600 transition">1D</button>
+                            <button onclick="rollDice(2)" class="w-16 h-16 bg-slate-700 text-white font-bold rounded-lg text-2xl shadow-md hover:bg-slate-600 transition">2D</button>
+                            <button onclick="rollDice(3)" class="w-16 h-16 bg-slate-700 text-white font-bold rounded-lg text-2xl shadow-md hover:bg-slate-600 transition">3D</button>
+                        </div>
+                        <div id="dice-result" class="dynamic-panel p-4 rounded-lg text-center min-h-[100px] flex flex-col justify-center">
+                            <p class="text-sm text-secondary">Clique para rolar</p>
+                        </div>
+                    </div>
+                    <div class="info-card p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Metas de Teste</h2>
+                        <table class="w-full text-left">
+                            <tbody>
+                                <tr class="border-b"><td class="py-2">Fácil</td><td class="py-2 text-right font-semibold">6</td></tr>
+                                <tr class="border-b"><td class="py-2">Médio</td><td class="py-2 text-right font-semibold">9</td></tr>
+                                <tr class="border-b"><td class="py-2">Difícil</td><td class="py-2 text-right font-semibold">12</td></tr>
+                                <tr class="border-b"><td class="py-2">Muito Difícil</td><td class="py-2 text-right font-semibold">15</td></tr>
+                                <tr><td class="py-2">Lendário</td><td class="py-2 text-right font-semibold">18+</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="info-card p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Atributos & Recursos</h2>
+                        <table class="w-full text-left">
+                           <tbody>
+                               <tr class="border-b"><td class="py-2">Poder (P)</td><td class="py-2 text-right">Força, intimidação, carisma.</td></tr>
+                               <tr class="border-b"><td class="py-2">Habilidade (H)</td><td class="py-2 text-right">Agilidade, inteligência, mira.</td></tr>
+                               <tr class="border-b"><td class="py-2">Resistência (R)</td><td class="py-2 text-right">Vigor, força de vontade.</td></tr>
+                               <tr class="border-b"><td class="py-2 font-semibold">Pontos de Vida (PV)</td><td class="py-2 text-right">R x 5</td></tr>
+                               <tr class="border-b"><td class="py-2 font-semibold">Pontos de Mana (PM)</td><td class="py-2 text-right">H x 5</td></tr>
+                               <tr><td class="py-2 font-semibold">Pontos de Ação (PA)</td><td class="py-2 text-right">Poder (P)</td></tr>
+                           </tbody>
+                        </table>
+                    </div>
+                    <div class="info-card p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Recuperação</h2>
+                         <table class="w-full text-left">
+                            <tbody>
+                               <tr class="border-b"><td class="py-2 font-semibold">Descanso (8h)</td><td class="py-2 text-right">Recupera todos os PV, PM e PA.</td></tr>
+                               <tr class="border-b"><td class="py-2 font-semibold">Descanso Curto (2h)</td><td class="py-2 text-right">Recupera PV=R e PM=H. Não recupera PA.</td></tr>
+                               <tr><td class="py-2 font-semibold">Lugar Ruim</td><td class="py-2 text-right">Recupera metade dos PV e PM.</td></tr>
+                            </tbody>
+                         </table>
+                    </div>
+                </div>
             </section>
 
             <!-- PAINEL 2: COMBATE & AÇÕES -->
             <section id="combate" class="content-section">
-                <!-- ... conteúdo existente ... -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="info-card lg:col-span-1 p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Ordem de Combate</h2>
+                        <ol class="list-decimal list-inside space-y-2">
+                            <li><strong>Iniciativa:</strong> Teste de <strong>Habilidade</strong>. Personagens agem em ordem decrescente.</li>
+                            <li><strong>Turno:</strong> <strong>1 Ação</strong> (atacar, usar Vantagem, etc.) e <strong>1 Movimento</strong>.</li>
+                            <li><strong>Opções:</strong> Pode trocar <strong>Ação</strong> por <strong>Movimento</strong> extra, mas não o contrário.</li>
+                        </ol>
+                    </div>
+                    <div class="info-card lg:col-span-2 p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Ataque e Defesa</h2>
+                        <table class="w-full text-left">
+                           <thead class="table-header"><tr><th class="p-2 rounded-l-lg">Ação</th><th class="p-2 rounded-r-lg">Detalhes</th></tr></thead>
+                           <tbody>
+                               <tr class="border-b"><td class="p-2 font-semibold">Ataque (Padrão)</td><td class="p-2">Teste de <strong>Poder</strong> (corpo a corpo) ou <strong>Habilidade</strong> (à distância).</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Defesa (Padrão)</td><td class="p-2">Teste de <strong>Resistência</strong>.</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Dano</td><td class="p-2">Total do Ataque - Total da Defesa.</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Dano Mínimo</td><td class="p-2">Todo ataque bem-sucedido causa pelo menos <strong>1 PV</strong>.</td></tr>
+                               <tr><td class="p-2 font-semibold">Defesa Perfeita</td><td class="p-2">Defesa dobra o valor do Ataque. Dano é <strong>zero</strong>.</td></tr>
+                           </tbody>
+                        </table>
+                    </div>
+                    <div class="info-card p-6 rounded-lg shadow">
+                         <h2 class="text-xl font-bold mb-4 text-accent">Movimento & Distâncias</h2>
+                         <table class="w-full text-left">
+                           <tbody>
+                               <tr class="border-b"><td class="p-2 font-semibold">Distâncias</td><td class="p-2 text-right">Perto → Longe → Muito Longe → Fora de Alcance</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Movimento</td><td class="p-2 text-right">1 passo de distância por 1 movimento.</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Ataque Corpo a Corpo</td><td class="p-2 text-right">Apenas em alvos Perto.</td></tr>
+                               <tr><td class="p-2 font-semibold">Ataque à Distância</td><td class="p-2 text-right"><strong>Perda</strong> contra alvos <strong>Longe</strong> (sem Vantagem Alcance).</td></tr>
+                           </tbody>
+                        </table>
+                    </div>
+                    <div class="info-card lg:col-span-2 p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Derrota e Morte</h2>
+                         <table class="w-full text-left">
+                           <thead class="table-header"><tr><th class="p-2 rounded-l-lg">Condição</th><th class="p-2 rounded-r-lg">Efeito</th></tr></thead>
+                           <tbody>
+                               <tr class="border-b"><td class="p-2 font-semibold">0 PV (Derrotado)</td><td class="p-2">Sofre <strong>Perda</strong> em todos os testes até o fim da cena.</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Teste de Morte</td><td class="p-2">Se com 0 PV sofre dano, faz Teste de <strong>Resistência (Meta 9)</strong>.</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Sucesso (12+)</td><td class="p-2"><strong>Caído:</strong> Consciente, mas não pode agir.</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Sucesso (8-11)</td><td class="p-2"><strong>Inconsciente:</strong> Desmaia por 1 hora.</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Falha (6-7)</td><td class="p-2"><strong>Quase Morto:</strong> Morre em 1d rodadas se não for estabilizado.</td></tr>
+                               <tr><td class="p-2 font-semibold">Falha (5 ou menos)</td><td class="p-2"><strong>Morto.</strong></td></tr>
+                           </tbody>
+                        </table>
+                    </div>
+                </div>
             </section>
             
             <!-- PAINEL 3: MANOBRAS & CONDIÇÕES -->
             <section id="manobras" class="content-section">
-                <!-- ... conteúdo existente ... -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="info-card p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Condições Comuns</h2>
+                        <dl class="space-y-4">
+                            <div><dt class="font-semibold">Caído</dt><dd class="text-sm text-secondary"><strong>Perda</strong> em todos os testes. Gasta um <strong>Movimento</strong> para se levantar.</dd></div>
+                            <div><dt class="font-semibold">Confuso</dt><dd class="text-sm text-secondary">Alvos de perícias/vantagens são escolhidos ao acaso.</dd></div>
+                            <div><dt class="font-semibold">Derrotado</dt><dd class="text-sm text-secondary"><strong>Perda</strong> em todos os testes e não consegue acertos críticos.</dd></div>
+                            <div><dt class="font-semibold">Desprevenido</dt><dd class="text-sm text-secondary"><strong>Perda</strong> nos testes de defesa.</dd></div>
+                            <div><dt class="font-semibold">Indefeso</dt><dd class="text-sm text-secondary">Não rola dados na defesa. Ataques contra o alvo têm <strong>Ganho</strong>.</dd></div>
+                            <div><dt class="font-semibold">Paralisado</dt><dd class="text-sm text-secondary">Fica <strong>Indefeso</strong> e não pode realizar ações ou movimentos.</dd></div>
+                        </dl>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="info-card p-6 rounded-lg shadow">
+                            <h2 class="text-xl font-bold mb-4 text-accent">Manobras de Combate (1 Ação)</h2>
+                            <dl class="space-y-4">
+                                <div><dt class="font-semibold">Ataque Total</dt><dd class="text-sm text-secondary">Recebe <strong>Ganho</strong> no ataque, mas fica <strong>Desprevenido</strong> até o próximo turno.</dd></div>
+                                <div><dt class="font-semibold">Defesa Total</dt><dd class="text-sm text-secondary">Recebe <strong>Ganho</strong> em todas as jogadas de defesa até seu próximo turno.</dd></div>
+                                <div><dt class="font-semibold">Agarrão</dt><dd class="text-sm text-secondary">Teste de <strong>Poder</strong> vs. <strong>Poder</strong>. Vítima fica imobilizada e com <strong>Perda</strong> para atacar.</dd></div>
+                                <div><dt class="font-semibold">Fuga</dt><dd class="text-sm text-secondary">Teste de <strong>Habilidade (Meta 6 + nº de oponentes)</strong> para escapar.</dd></div>
+                            </dl>
+                        </div>
+                        <div class="info-card p-6 rounded-lg shadow">
+                            <h2 class="text-xl font-bold mb-4 text-accent">Usando Pontos de Ação (PA)</h2>
+                             <dl class="space-y-4">
+                                <div><dt class="font-semibold">1 PA</dt><dd class="text-sm text-secondary">Receber um <strong>Ganho</strong> ou anular uma <strong>Perda</strong> em um teste.</dd></div>
+                                <div><dt class="font-semibold">1 PA (+Regras)</dt><dd class="text-sm text-secondary">Recuperar 10 PV ou 10 PM. Pedir uma dica ao Mestre.</dd></div>
+                                <div><dt class="font-semibold">Custo da Vantagem (+Regras)</dt><dd class="text-sm text-secondary">Usar uma Vantagem que não possui por uma vez.</dd></div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
             </section>
             
             <!-- PAINEL 4: PERSONAGENS -->
@@ -252,9 +393,41 @@
             
             <!-- PAINEL 6: MESTRANDO -->
             <section id="mestrando" class="content-section">
-                <!-- ... conteúdo existente ... -->
-            </section>
-            
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="info-card p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Escalas de Poder</h2>
+                        <p class="mb-4 text-sm text-secondary">Efeitos por nível de diferença entre o personagem de escala superior e o inferior.</p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Níveis:</strong> Ningen (padrão) → Sugoi → Kiodai → Kami</li>
+                            <li>Recebe <strong>+1 Ganho</strong> por nível.</li>
+                            <li>Recebe <strong>+1 crítico automático</strong> por nível.</li>
+                            <li>A defesa é <strong>sempre perfeita</strong> (dano mínimo de 1 PV é ignorado).</li>
+                            <li>Um crítico no dado pode anular temporariamente a vantagem da escala.</li>
+                        </ul>
+                    </div>
+                    <div class="info-card p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Recompensas de XP</h2>
+                        <table class="w-full text-left">
+                           <tbody>
+                               <tr class="border-b"><td class="p-2 font-semibold">Objetivo Menor</td><td class="p-2 text-right">1 XP</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Objetivo Maior</td><td class="p-2 text-right">5 XP</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Interpretação</td><td class="p-2 text-right">+1 XP / sessão</td></tr>
+                               <tr class="border-b"><td class="p-2 font-semibold">Marco de Campanha</td><td class="p-2 text-right">+10 XP</td></tr>
+                               <tr><td class="p-2 font-semibold text-accent">Conversão</td><td class="p-2 text-right text-accent">10 XP = 1 Ponto de Personagem</td></tr>
+                           </tbody>
+                        </table>
+                    </div>
+                    <div class="lg:col-span-2 info-card p-6 rounded-lg shadow">
+                        <h2 class="text-xl font-bold mb-4 text-accent">Gerador Rápido de NPCs</h2>
+                        <div class="text-center">
+                            <button onclick="generateNPC()" class="px-6 py-3 bg-amber-500 text-white font-semibold rounded-lg shadow-md hover:bg-amber-600 transition mb-4">Gerar NPC Aleatório</button>
+                            <div id="npc-result" class="dynamic-panel p-4 rounded-lg min-h-[120px] flex flex-col items-center justify-center">
+                                <p class="text-sm text-secondary">Clique para gerar uma ideia de NPC.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>            
             <!-- PAINEL 7: CAMPANHA (NOVO) -->
             <section id="campanha" class="content-section">
                 <div class="info-card p-6 rounded-lg shadow">
