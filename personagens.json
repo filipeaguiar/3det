@@ -7,9 +7,9 @@
             "Poder": 3,
             "Habilidade": 3,
             "Resistência": 2,
-            "Pontos de Vida": 10,
+            "Pontos de Ação": 3,
             "Pontos de Mana": 15,
-            "Pontos de Ação": 3
+            "Pontos de Vida": 10
         },
         "pontos": "10pt",
         "pericias": [
@@ -35,9 +35,9 @@
             "Poder": 3,
             "Habilidade": 3,
             "Resistência": 2,
-            "Pontos de Vida": 10,
+            "Pontos de Ação": 3,
             "Pontos de Mana": 15,
-            "Pontos de Ação": 3
+            "Pontos de Vida": 10
         },
         "pontos": "10pt",
         "pericias": [
