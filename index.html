@@ -353,6 +353,10 @@
         <i class="fa-solid fa-hat-wizard fa-fw"></i>
         <span class="hidden sm:inline">Mestrando</span>
       </button>
+      <button data-target="sessao" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+        <i class="fa-solid fa-scroll fa-fw"></i>
+        <span class="hidden sm:inline">Sessão Atual</span>
+      </button>
       <button data-target="campanha" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
         <i class="fa-solid fa-book-open fa-fw"></i>
         <span class="hidden sm:inline">Campanha</span>
@@ -916,6 +920,11 @@
           </div>
         </div>
       </section>
+      <section id="sessao" class="content-section">
+        <div id="session-content" class="space-y-6">
+          <p class="text-secondary text-center">Carregando dados da sessão...</p>
+        </div>
+      </section>
       <section id="campanha" class="content-section">
         <div class="info-card p-6 rounded-lg shadow">
           <h2 class="text-2xl font-bold mb-4 text-accent text-center flex items-center justify-center gap-x-2">
@@ -1381,8 +1390,111 @@
       });
 
       loadCampaign();
+      loadSession();
       showSection('basico');
     });
+
+    // ==========================================================================
+    //  FUNÇÃO PARA CARREGAR E EXIBIR A SESSÃO ATUAL
+    // ==========================================================================
+    async function loadSession() {
+      const sessionContainer = document.getElementById('session-content');
+      try {
+        const response = await fetch('sessao.json');
+        if (!response.ok) {
+          throw new Error('Arquivo sessao.json não encontrado.');
+        }
+        const data = await response.json();
+
+        // Limpa o contêiner
+        sessionContainer.innerHTML = '';
+
+        // Template para cada bloco de informação da aventura
+        const createCard = (title, icon, content) => {
+          return `
+                <div class="info-card p-6 rounded-lg shadow">
+                    <h2 class="text-xl font-bold mb-4 text-accent flex items-center gap-x-2">
+                        <i class="fa-solid ${icon} fa-fw"></i>
+                        <span>${title}</span>
+                    </h2>
+                    ${content}
+                </div>
+            `;
+        };
+
+        // 1. Começo Forte
+        sessionContainer.innerHTML += createCard('Começo Forte', 'fa-wand-sparkles', `<p class="text-secondary leading-relaxed">${data.comecoForte}</p>`);
+
+        // 2. Ganchos dos Personagens
+        const ganchosContent = `<ul class="list-none space-y-2">${data.ganchosPersonagens.map(g => `<li class="flex items-start gap-x-2"><i class="fa-solid fa-link fa-fw mt-1 text-slate-500"></i><span>${g}</span></li>`).join('')}</ul>`;
+        sessionContainer.innerHTML += createCard('Ganchos dos Personagens', 'fa-link', ganchosContent);
+
+        // Grid para Locais e NPCs
+        let gridContent = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
+
+        // 3. Locais Interessantes
+        const locaisContent = data.locaisInteressantes.map(l => `
+            <div class="mb-4">
+                <h4 class="font-semibold flex items-center gap-x-2"><i class="fa-solid fa-location-dot fa-fw text-slate-500"></i><span>${l.nome}</span></h4>
+                <ul class="list-disc list-inside pl-2 text-secondary text-sm space-y-1 mt-1">${l.caracteristicas.map(c => `<li>${c}</li>`).join('')}</ul>
+            </div>
+        `).join('');
+        gridContent += createCard('Locais Interessantes', 'fa-map-location-dot', locaisContent);
+
+        // 4. NPCs Importantes
+        const npcsContent = data.npcsImportantes.map(n => `
+            <div class="mb-4">
+                <h4 class="font-semibold flex items-center gap-x-2"><i class="fa-solid fa-user fa-fw text-slate-500"></i><span>${n.nome} (${n.papel})</span></h4>
+                <p class="text-secondary text-sm pl-6"><strong>Motivação:</strong> ${n.motivacao}</p>
+                <p class="text-secondary text-sm pl-6"><strong>Stats:</strong> ${n.stats}</p>
+            </div>
+        `).join('');
+        gridContent += createCard('NPCs Importantes', 'fa-users-line', npcsContent);
+
+        gridContent += '</div>';
+        sessionContainer.innerHTML += gridContent;
+
+        // 5. Objetivos da Sessão
+        const objetivosContent = `
+            <div>
+                <h4 class="font-semibold flex items-center gap-x-2 mb-2"><i class="fa-solid fa-star fa-fw text-yellow-500"></i><span>Principal</span></h4>
+                <p class="text-secondary pl-6 mb-3">${data.objetivosSessao.principal}</p>
+                <h4 class="font-semibold flex items-center gap-x-2 mb-2"><i class="fa-solid fa-list-check fa-fw text-slate-500"></i><span>Secundários</span></h4>
+                <ul class="list-disc list-inside pl-2 text-secondary text-sm space-y-1">${data.objetivosSessao.secundarios.map(s => `<li>${s}</li>`).join('')}</ul>
+            </div>`;
+        sessionContainer.innerHTML += createCard('Objetivos da Sessão', 'fa-bullseye', objetivosContent);
+
+        // 6. Segredos e Rumores
+        const segredosContent = `<ul class="list-none space-y-2">${data.segredosRumores.map(s => `<li class="flex items-start gap-x-2"><i class="fa-solid fa-key fa-fw mt-1 text-slate-500"></i><span>${s}</span></li>`).join('')}</ul>`;
+        sessionContainer.innerHTML += createCard('Segredos e Rumores', 'fa-key', segredosContent);
+
+        // 7. Encontros e Desafios
+        const encontrosContent = data.encontrosDesafios.map(e => `
+            <div class="mb-4">
+                 <h4 class="font-semibold flex items-center gap-x-2"><i class="fa-solid fa-skull-crossbones fa-fw text-slate-500"></i><span>${e.titulo}</span></h4>
+                 <p class="text-secondary text-sm pl-6 my-1">${e.descricao}</p>
+                 <p class="text-secondary text-sm pl-6 bg-slate-200 dark:bg-slate-800 p-2 rounded-md"><strong>Mecânica:</strong> ${e.mecanica}</p>
+            </div>
+        `).join('');
+        sessionContainer.innerHTML += createCard('Encontros e Desafios', 'fa-gavel', encontrosContent);
+
+        // 8. Tesouros e Recompensas
+        const tesourosContent = data.tesourosRecompensas.map(t => `
+             <div class="mb-2">
+                <h4 class="font-semibold flex items-center gap-x-2"><i class="fa-solid fa-gem fa-fw text-cyan-500"></i><span>${t.nome}</span></h4>
+                <p class="text-secondary text-sm pl-6">${t.descricaoMecanica}</p>
+             </div>
+        `).join('');
+        sessionContainer.innerHTML += createCard('Tesouros e Recompensas', 'fa-treasure-chest', tesourosContent);
+
+        // 9. Gancho para a Próxima Aventura
+        sessionContainer.innerHTML += createCard('Gancho para a Próxima Aventura', 'fa-angles-right', `<p class="text-secondary leading-relaxed">${data.ganchoProximaAventura}</p>`);
+
+      } catch (error) {
+        console.error("Erro ao carregar os dados da sessão:", error);
+        sessionContainer.innerHTML = `<p class="text-center text-error">Não foi possível carregar os dados da sessão. Verifique se o arquivo 'sessao.json' existe e está no formato correto.</p>`;
+      }
+    }
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

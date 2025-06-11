@@ -1,0 +1,157 @@
+{
+
+  "comecoForte": "Após a batalha contra os brinquedos corrompidos, Chispa, o gato falante, cumpre sua promessa. Ele retorna acompanhado de Elara Ventus, uma Arcanauta séria com asas de energia. 'O glifo que vocês viram, a 'Arca Entrópica', ainda está instável', diz Elara. 'Precisamos que entrem lá e recuperem um artefato, um Fragmento de Eco, para entendermos a ameaça. Esta é sua primeira missão oficial. Estão prontos?'",
+
+  "ganchosPersonagens": [
+
+    "João, a energia caótica da Arca reage à sua felicidade. Seus poderes de sombra parecem mais densos e vivos aqui, mas também mais difíceis de controlar. O que acontece se você ficar triste neste lugar?",
+
+    "Arco-Íris, suas chamas vibrantes parecem dançar em sintonia com a instabilidade da Arca. Em alguns momentos, elas brilham com cores que você nunca viu antes. Será que você pode usar essa energia caótica a seu favor?"
+
+  ],
+
+  "locaisInteressantes": [
+
+    {
+
+      "nome": "O Corredor que Desaprende a Reta",
+
+      "caracteristicas": [
+
+        "As paredes ondulam suavemente, como se respirassem, e o chão por vezes se torna íngreme ou escorregadio sem aviso.",
+
+        "A distância entre dois pontos muda constantemente. O que parece Perto pode subitamente se tornar Longe, exigindo um Movimento extra.",
+
+        "Grafites feitos de luz pura aparecem e desaparecem nas paredes, mostrando criaturas estranhas e símbolos incompreensíveis."
+
+      ]
+
+    },
+
+    {
+
+      "nome": "O Jardim de Cristais Sussurrantes",
+
+      "caracteristicas": [
+
+        "Uma caverna ampla onde cristais multicoloridos brotam do chão e do teto, emitindo uma melodia suave e dissonante.",
+
+        "Os cristais reagem à presença dos heróis, brilhando mais forte ou mudando de cor quando se aproximam.",
+
+        "Sussurros incompreensíveis ecoam pelo local, parecendo vir dos próprios cristais. Um teste de Percepção (Médio 9) pode revelar fragmentos de frases sobre 'o coração que dorme'."
+
+      ]
+
+    }
+
+  ],
+
+  "npcsImportantes": [
+
+    {
+
+      "nome": "Elara Ventus",
+
+      "papel": "Mentor/Guia",
+
+      "motivacao": "Garantir a segurança das crianças e avaliar seu verdadeiro potencial para lidar com a ameaça da Dissonância.",
+
+      "stats": "P2 H4 R3, Voo, Patrono (Agentes da BUSCA), Perícias: Luta, Mística."
+
+    },
+
+    {
+
+      "nome": "Guardião Entrópico (Cactolem)",
+
+      "papel": "Obstáculo/Monstro",
+
+      "motivacao": "Proteger instintivamente o coração da Arca de qualquer intruso, usando seus poderes de desorientação para expulsá-los.",
+
+      "stats": "Use a ficha da Fera-Cactus (P3 H2 R2) e adicione a Vantagem 'Confusão'."
+
+    }
+
+  ],
+
+  "objetivosSessao": {
+
+    "principal": "Adentrar a Arca Entrópica, localizar o 'Fragmento de Eco' e retornar em segurança para a análise de Elara Ventus.",
+
+    "secundarios": [
+
+      "Sobreviver aos desafios do ambiente instável da Arca.",
+
+      "Derrotar ou enganar pelo menos um Guardião Entrópico.",
+
+      "Obter uma pista sobre a natureza da Arca através do Fragmento.",
+
+      "Mostrar para Elara que vocês são capazes de trabalhar em equipe."
+
+    ]
+
+  },
+
+  "segredosRumores": [
+
+    "A Arca Entrópica não é uma masmorra comum; ela parece ser a manifestação física de um sonho ou pesadelo de uma entidade poderosa.",
+
+    "Elara Ventus não está contando tudo. Ela já esteve nesta Arca antes, há muito tempo, e a instabilidade atual a preocupa profundamente.",
+
+    "O 'Fragmento de Eco' não é apenas um artefato; é um pedaço da memória da própria Arca.",
+
+    "Dizem que quem se perde na Arca Entrópica não morre, mas se torna parte da paisagem, transformando-se em um cristal ou corredor.",
+
+    "Os Guardiões Entrópicos não são maus. Eles estão tentando 'consertar' a realidade instável da Arca, e veem os heróis como mais uma anomalia a ser corrigida.",
+
+    "Os poderes de João e Arco-Íris podem, na verdade, estabilizar ou desestabilizar ainda mais a Arca, dependendo de como são usados."
+
+  ],
+
+  "encontrosDesafios": [
+
+    {
+
+      "titulo": "O Ataque do Cactolem Desorientador",
+
+      "descricao": "Em uma clareira onde o chão pisca entre pedra e grama, uma criatura que parece um cacto coberto de olhos de boneca se ergue. Ele não se move de forma lógica, deslizando pelo chão e atacando com espinhos que, ao atingir o ambiente, fazem a realidade local tremular.",
+
+      "mecanica": "Guardião Entrópico: P3 H2 R2; Perícias: Luta; Vantagens: Alcance 1, Confusão; Desvantagens: Fraqueza (Fogo), Monstruoso. Corpo Espinhoso."
+
+    },
+
+    {
+
+      "titulo": "A Travessia do Abismo Instável",
+
+      "descricao": "Vocês chegam a uma grande falha no chão da Arca. Do outro lado, em uma plataforma flutuante, brilha o Fragmento de Eco. Não há ponte, apenas uma série de pequenas plataformas que aparecem e desaparecem em um padrão caótico.",
+
+      "mecanica": "Meta Estendida (3 sucessos). Requer um teste de Esportes ou Percepção (Difícil 12) de cada personagem para saltar com segurança. Uma falha pode causar dano de queda (1D) ou deixá-los presos em uma plataforma isolada, exigindo resgate."
+
+    }
+
+  ],
+
+  "tesourosRecompensas": [
+
+    {
+
+      "nome": "Fragmento de Eco",
+
+      "descricaoMecanica": "Item de Missão. Um cristal que pulsa com uma luz suave e emite sussurros confusos. Funciona como um Acessório com a Vantagem 'Inteligente'. Pode gastar 3PM para ter Ganho em um teste de Saber ou Mística para entender os fenômenos da Arca Entrópica."
+
+    },
+
+    {
+
+      "nome": "Essência do Caos",
+
+      "descricaoMecanica": "Consumível (Incomum). Uma pequena esfera de energia rodopiante. Ao ser consumida, recupera 5PM. O personagem deve rolar 1D: com um resultado 1, ele troca de lugar com um objeto aleatório Perto dele."
+
+    }
+
+  ],
+
+  "ganchoProximaAventura": "Ao segurar o Fragmento de Eco, João e Arco-Íris compartilham uma visão rápida e estonteante: as profundezas da Arca, onde não há um, mas vários glifos distorcidos, e uma sombra gigantesca com olhos tristes que parece estar no centro de tudo. Elara, ao ver a reação deles, fica pálida. 'É pior do que eu pensava', ela sussurra. 'Precisaremos encontrar os outros Fragmentos.'"
+
+} 
