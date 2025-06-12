@@ -1,102 +1,68 @@
 [
     {
-        "name": "Abelha-Gigante",
-        "stats": "P1, H3, R0 (1PA, 15PM, 1PV)",
-        "pontos": "2pt",
-        "pericias": [],
-        "vantagens": [
-            { "name": "Voo", "desc": "Você pode voar. Gastando 2PM, ignora terreno difícil e só pode ser alcançado em corpo-a-corpo por outros seres voadores." }
-        ],
-        "desvantagens": [
-            { "name": "Monstruoso", "desc": "Sua aparência grotesca causa repulsa. Tem Perda em iniciativa e em testes sociais que envolvem aparência." }
-        ],
-        "poderes": [{"name": "Ferroada Suicida", "desc": "Ao acertar um ataque, a abelha morre, mas o ferrão causa 1 de dano por rodada até ser removido (gasta uma ação)." }]
+      "name": "Caco-Demônio Saltitante",
+      "archetype": "Espírito (Caos)",
+      "concept": "Fragmentos de realidade quebrada que ganharam consciência. Saltitam de forma errática, emitindo sons de estática e risadas distorcidas para desorientar suas presas.",
+      "stats": { "Poder": 1, "Habilidade": 2, "Resistência": 1, "Pontos de Ação": 1, "Pontos de Mana": 10, "Pontos de Vida": 5 },
+      "pontos": "4pt",
+      "pericias": [],
+      "vantagens": ["Aceleração", "Confusão"],
+      "tecnicas": [],
+      "desvantagens": ["Monstruoso"],
+      "image": "caco_demonio_monstro.jpg"
     },
     {
-        "name": "Aparição",
-        "stats": "P3, H2, R3 (3PA, 10PM, 15PV)",
-        "pontos": "11pt",
-        "pericias": [],
-        "vantagens": [
-            { "name": "Incorpóreo", "desc": "Pode se tornar intangível com uma ação e 5PM, ficando imune a dano físico, mas também incapaz de causá-lo." },
-            { "name": "Imortal", "desc": "Não pode ser morto permanentemente. Em testes de morte, nunca tem um resultado pior que Inconsciente." },
-            { "name": "Invisibilidade", "desc": "Com uma ação e 3PM, fica invisível, impondo Perda a ataques contra você." }
-        ],
-        "desvantagens": [
-            { "name": "Maldição (vulnerável à luz do dia)", "desc": "Sofre uma perturbação grave. Neste caso, a luz do dia causa penalidades severas ou dano." }
-        ],
-        "poderes": [
-            {"name": "Toque Mortífero", "desc": "Vítimas atingidas devem passar em um teste de Resistência ou perdem 1 ponto de Resistência permanentemente."},
-            {"name": "Cria", "desc": "Humanoides mortos pela Aparição se tornam uma nova Aparição na rodada seguinte."}
-        ]
+      "name": "Guardião Entrópico",
+      "archetype": "Aberrante",
+      "concept": "Uma entidade disforme que patrulha os corredores da Arca, 'corrigindo' a realidade de forma agressiva. Seus tentáculos de energia pura distorcem o espaço ao redor.",
+      "stats": { "Poder": 3, "Habilidade": 2, "Resistência": 3, "Pontos de Ação": 1, "Pontos de Mana": 15, "Pontos de Vida": 15 },
+      "pontos": "8pt",
+      "pericias": ["Luta"],
+      "vantagens": ["Ataque Especial (Área)", "Paralisia", "Aura (-1pt)"],
+      "tecnicas": [],
+      "desvantagens": ["Restrição (Não pode sair de sua sala)"],
+      "image": "guardiao_entropico_monstro.jpg"
     },
     {
-        "name": "Golem de Matéria Vermelha",
-        "stats": "P4, H1, R5 (4PA, 5PM, 25PV)",
-        "pontos": "12pt",
-        "pericias": [],
-        "vantagens": [
-            { "name": "Construto", "desc": "Você não nasceu, foi construído. É imune a doenças, venenos e efeitos mentais, mas não recupera PV normalmente, precisando de consertos (teste de Máquinas)." }
-        ],
-        "desvantagens": [
-            { "name": "Monstruoso", "desc": "Sua aparência grotesca causa repulsa. Tem Perda em iniciativa e em testes sociais que envolvem aparência." }
-        ],
-        "poderes": [
-            {"name": "Toque Corrosivo", "desc": "Ataques corpo-a-corpo contra o golem causam 1d de dano de ácido no atacante."},
-            {"name": "Aparência Insana", "desc": "Personagens que veem o golem devem passar em um teste de Resistência ou recebem -1 em Habilidade temporariamente."}
-        ]
+      "name": "Eco-Sombra Rastejante",
+      "archetype": "Fera Mágica",
+      "concept": "Uma criatura feita de sombra solidificada que se esconde na penumbra, imitando as sombras dos heróis antes de atacar com garras que drenam a alegria.",
+      "stats": { "Poder": 2, "Habilidade": 3, "Resistência": 1, "Pontos de Ação": 1, "Pontos de Mana": 15, "Pontos de Vida": 5 },
+      "pontos": "6pt",
+      "pericias": ["Manha"],
+      "vantagens": ["Ataque Especial (Espiritual)", "Invisível"],
+      "tecnicas": [],
+      "desvantagens": ["Fraqueza (Luz Forte)"],
+      "image": "eco_sombra_monstro.jpg"
     },
-    {
-        "name": "Dragão Vermelho",
-        "stats": "P9, H6, R8 (9PA, 40PM, 40PV)",
-        "pontos": "30pt Sugoi",
-        "pericias": [
-            { "name": "Luta", "desc": "Sabe atacar e se defender em combate. Concede +1d em testes de combate." }
-        ],
-        "vantagens": [
-            { "name": "Voo", "desc": "Você pode voar. Gastando 2PM, ignora terreno difícil e só pode ser alcançado em corpo-a-corpo por outros seres voadores." },
-            { "name": "Sentidos Especiais (todos)", "desc": "Possui todos os sentidos especiais: Aguçado, Infravisão, Intuição, Radar e Raio-X." },
-            { "name": "Telepatia", "desc": "Pode ler pensamentos e prever movimentos, ganhando vantagens em combate ou interações sociais." },
-            { "name": "Regeneração", "desc": "Recupera Pontos de Vida automaticamente a cada turno." }
-        ],
-        "desvantagens": [
-            { "name": "Má Fama", "desc": "É universalmente conhecido e temido, o que pode complicar interações não-hostis." },
-            { "name": "Modelo Especial", "desc": "Seu corpo imenso e não-humanoide o impede de usar equipamentos e espaços feitos para criaturas menores." }
-        ],
-        "poderes": [
-            {"name": "Sopro de Fogo", "desc": "Ataque em área com Poder 8 (dano de fogo). Uma esquiva bem-sucedida reduz o dano à metade. Pode ser usado uma vez a cada 1d turnos."},
-            {"name": "Presença Aterradora", "desc": "Inimigos que veem o dragão devem passar em um teste de Resistência ou sofrem os efeitos da magia Pânico."}
-        ]
-    },
-    {
-        "name": "Kobold",
-        "stats": "P1, H1, R0 (1PA, 5PM, 1PV)",
-        "pontos": "1pt",
-        "pericias": [],
-        "vantagens": [
-            { "name": "Alcance (1pt)", "desc": "Pode atingir inimigos Longe sem penalidades, e Muito Longe com uma Perda." }
-        ],
-        "desvantagens": [
-            { "name": "Diferente", "desc": "Seu corpo pequeno e reptiliano o impede de usar equipamentos feitos para humanos." },
-            { "name": "Inculto", "desc": "Não entende a cultura local, tendo dificuldade para se comunicar e Perda em testes sociais." }
-        ],
-        "poderes": [{"name": "Reunião de Família", "desc": "Com 5PM e um grito, invoca uma Horda Kobold em 1D rodadas."}]
-    },
-    {
-        "name": "Basilisco",
-        "stats": "P1, H4, R2 (1PA, 20PM, 10PV)",
-        "pontos": "8pt",
-        "pericias": [],
-        "vantagens": [
-            { "name": "Paralisia", "desc": "Pode impedir um alvo de agir com um ataque bem-sucedido. O alvo fica indefeso até sofrer dano ou passar em um teste de R." }
-        ],
-        "desvantagens": [
-            { "name": "Monstruoso", "desc": "Sua aparência grotesca causa repulsa. Tem Perda em iniciativa e em testes sociais que envolvem aparência." }
-        ],
-        "poderes": [
-            {"name": "Olhar Petrificante", "desc": "Vítimas que encontram seu olhar devem fazer um teste de Resistência (meta 12) ou são transformadas em pedra. Não gasta PM."},
-            {"name": "Saliva Ácida", "desc": "Pode cuspir um jato de ácido (Ataque com Poder 1, dano químico)."}
-        ]
-    }
-]
+{
+  "name": "Cactolem, o Guardião Entrópico",
+  "archetype": "Constructo (Caos)",
+  "concept": "Uma manifestação semi-consciente da própria Arca Entrópica, um construto de cristais que se assemelham a cactos e olhos de boneca inertes. Ele não 'vê', mas 'sente' as dissonâncias na realidade — como a presença dos heróis. Seu único propósito é 'podar' essas anomalias de forma metódica e implacável.",
+  "stats": {
+    "Poder": 4,
+    "Habilidade": 3,
+    "Resistência": 5,
+    "Pontos de Ação": 4,
+    "Pontos de Mana": 15,
+    "Pontos de Vida": 25
+  },
+  "pontos": "16pt",
+  "pericias": [
+    "Luta"
+  ],
+  "vantagens": [
+    "Ataque Especial (Área)",
+    "Confusão",
+    "Corpo Espinhoso"
+  ],
+  "tecnicas": [],
+  "desvantagens": [
+    "Monstruoso",
+    "Fraqueza (Fogo)",
+    "Vulnerabilidade (Som Puro)"
+  ],
+  "image": "cactolem_guardian.jpg"
+}
+  ]
 

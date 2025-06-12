@@ -1,157 +1,71 @@
 {
-
-  "comecoForte": "Após a batalha contra os brinquedos corrompidos, Chispa, o gato falante, cumpre sua promessa. Ele retorna acompanhado de Elara Ventus, uma Arcanauta séria com asas de energia. 'O glifo que vocês viram, a 'Arca Entrópica', ainda está instável', diz Elara. 'Precisamos que entrem lá e recuperem um artefato, um Fragmento de Eco, para entendermos a ameaça. Esta é sua primeira missão oficial. Estão prontos?'",
-
-  "ganchosPersonagens": [
-
-    "João, a energia caótica da Arca reage à sua felicidade. Seus poderes de sombra parecem mais densos e vivos aqui, mas também mais difíceis de controlar. O que acontece se você ficar triste neste lugar?",
-
-    "Arco-Íris, suas chamas vibrantes parecem dançar em sintonia com a instabilidade da Arca. Em alguns momentos, elas brilham com cores que você nunca viu antes. Será que você pode usar essa energia caótica a seu favor?"
-
-  ],
-
-  "locaisInteressantes": [
-
-    {
-
-      "nome": "O Corredor que Desaprende a Reta",
-
-      "caracteristicas": [
-
-        "As paredes ondulam suavemente, como se respirassem, e o chão por vezes se torna íngreme ou escorregadio sem aviso.",
-
-        "A distância entre dois pontos muda constantemente. O que parece Perto pode subitamente se tornar Longe, exigindo um Movimento extra.",
-
-        "Grafites feitos de luz pura aparecem e desaparecem nas paredes, mostrando criaturas estranhas e símbolos incompreensíveis."
-
+    "comecoForte": "Após a batalha contra os brinquedos corrompidos na Ciclovia dos Ventos, Chispa, o Gato-Foguete, cumpre sua promessa e retorna. Ele não está sozinho; traz consigo Elara Ventus, uma elfa especialista em anomalias planares, que explica que o glifo distorcido é um portal para uma 'Arca Entrópica', um lugar de pura instabilidade que ameaça vazar mais caos para o mundo. A única forma de fechá-lo é entrar e encontrar sua fonte de poder.",
+    "ganchosPersonagens": [
+      "Para João: Elara teoriza que a energia caótica da Arca ressoa com seus poderes sombrios. Dentro da Arca, seus poderes podem se tornar mais fortes, mas também mais difíceis de controlar, especialmente se ele estiver com medo ou triste.",
+      "Para Arco-Íris: A coragem inabalável de Arco-Íris é uma âncora de estabilidade. Elara percebe que a energia de fogo da menina pode ser capaz de 'cauterizar' pequenas fendas na realidade, tornando a travessia mais segura para o grupo.",
+      "Para ambos: Chispa revela que seu antigo mestre desapareceu em uma Arca parecida. Ele acredita que investigar a Arca Entrópica pode trazer pistas sobre o paradeiro de seu criador."
+    ],
+    "locaisInteressantes": [
+      {
+        "nome": "O Corredor de Ecos Visuais",
+        "caracteristicas": [
+          "As paredes translúcidas mostram imagens atrasadas dos heróis, como um vídeo com lag, revelando ações que eles acabaram de fazer.",
+          "O chão parece feito de água colorida e ondula a cada passo, exigindo testes de Esporte (meta 9) para não escorregar e perder um movimento.",
+          "Portas e passagens trocam de lugar aleatoriamente sempre que ninguém está olhando diretamente para elas, tornando a navegação um quebra-cabeça."
+        ]
+      },
+      {
+        "nome": "A Floresta de Cristais Sussurrantes",
+        "caracteristicas": [
+          "Árvores de cristal emitem uma melodia dissonante que causa uma leve dor de cabeça (teste de Resistência (meta 6) ou Perda em testes de Percepção).",
+          "O chão é coberto por uma grama de vidro que se quebra ruidosamente, tornando a furtividade quase impossível.",
+          "A luz se refrata nos cristais de formas estranhas, criando múltiplos sóis e sombras que dançam e enganam a visão."
+        ]
+      }
+    ],
+    "npcsImportantes": [
+      "Elara Ventus",
+      "Chispa"
+    ],
+    "objetivosSessao": {
+      "principal": "Aventurar-se na Arca Entrópica, sobreviver aos seus perigos e encontrar o artefato conhecido como 'Fragmento de Eco'.",
+      "secundarios": [
+        "Aprender a navegar e superar os desafios do ambiente instável da Arca.",
+        "Descobrir a natureza dos Guardiões Entrópicos e como derrotá-los.",
+        "Proteger Elara Ventus, que é uma guia valiosa mas não uma combatente."
       ]
-
     },
-
-    {
-
-      "nome": "O Jardim de Cristais Sussurrantes",
-
-      "caracteristicas": [
-
-        "Uma caverna ampla onde cristais multicoloridos brotam do chão e do teto, emitindo uma melodia suave e dissonante.",
-
-        "Os cristais reagem à presença dos heróis, brilhando mais forte ou mudando de cor quando se aproximam.",
-
-        "Sussurros incompreensíveis ecoam pelo local, parecendo vir dos próprios cristais. Um teste de Percepção (Médio 9) pode revelar fragmentos de frases sobre 'o coração que dorme'."
-
-      ]
-
-    }
-
-  ],
-
-  "npcsImportantes": [
-
-    {
-
-      "nome": "Elara Ventus",
-
-      "papel": "Mentor/Guia",
-
-      "motivacao": "Garantir a segurança das crianças e avaliar seu verdadeiro potencial para lidar com a ameaça da Dissonância.",
-
-      "stats": "P2 H4 R3, Voo, Patrono (Agentes da BUSCA), Perícias: Luta, Mística."
-
-    },
-
-    {
-
-      "nome": "Guardião Entrópico (Cactolem)",
-
-      "papel": "Obstáculo/Monstro",
-
-      "motivacao": "Proteger instintivamente o coração da Arca de qualquer intruso, usando seus poderes de desorientação para expulsá-los.",
-
-      "stats": "Use a ficha da Fera-Cactus (P3 H2 R2) e adicione a Vantagem 'Confusão'."
-
-    }
-
-  ],
-
-  "objetivosSessao": {
-
-    "principal": "Adentrar a Arca Entrópica, localizar o 'Fragmento de Eco' e retornar em segurança para a análise de Elara Ventus.",
-
-    "secundarios": [
-
-      "Sobreviver aos desafios do ambiente instável da Arca.",
-
-      "Derrotar ou enganar pelo menos um Guardião Entrópico.",
-
-      "Obter uma pista sobre a natureza da Arca através do Fragmento.",
-
-      "Mostrar para Elara que vocês são capazes de trabalhar em equipe."
-
-    ]
-
-  },
-
-  "segredosRumores": [
-
-    "A Arca Entrópica não é uma masmorra comum; ela parece ser a manifestação física de um sonho ou pesadelo de uma entidade poderosa.",
-
-    "Elara Ventus não está contando tudo. Ela já esteve nesta Arca antes, há muito tempo, e a instabilidade atual a preocupa profundamente.",
-
-    "O 'Fragmento de Eco' não é apenas um artefato; é um pedaço da memória da própria Arca.",
-
-    "Dizem que quem se perde na Arca Entrópica não morre, mas se torna parte da paisagem, transformando-se em um cristal ou corredor.",
-
-    "Os Guardiões Entrópicos não são maus. Eles estão tentando 'consertar' a realidade instável da Arca, e veem os heróis como mais uma anomalia a ser corrigida.",
-
-    "Os poderes de João e Arco-Íris podem, na verdade, estabilizar ou desestabilizar ainda mais a Arca, dependendo de como são usados."
-
-  ],
-
-  "encontrosDesafios": [
-
-    {
-
-      "titulo": "O Ataque do Cactolem Desorientador",
-
-      "descricao": "Em uma clareira onde o chão pisca entre pedra e grama, uma criatura que parece um cacto coberto de olhos de boneca se ergue. Ele não se move de forma lógica, deslizando pelo chão e atacando com espinhos que, ao atingir o ambiente, fazem a realidade local tremular.",
-
-      "mecanica": "Guardião Entrópico: P3 H2 R2; Perícias: Luta; Vantagens: Alcance 1, Confusão; Desvantagens: Fraqueza (Fogo), Monstruoso. Corpo Espinhoso."
-
-    },
-
-    {
-
-      "titulo": "A Travessia do Abismo Instável",
-
-      "descricao": "Vocês chegam a uma grande falha no chão da Arca. Do outro lado, em uma plataforma flutuante, brilha o Fragmento de Eco. Não há ponte, apenas uma série de pequenas plataformas que aparecem e desaparecem em um padrão caótico.",
-
-      "mecanica": "Meta Estendida (3 sucessos). Requer um teste de Esportes ou Percepção (Difícil 12) de cada personagem para saltar com segurança. Uma falha pode causar dano de queda (1D) ou deixá-los presos em uma plataforma isolada, exigindo resgate."
-
-    }
-
-  ],
-
-  "tesourosRecompensas": [
-
-    {
-
-      "nome": "Fragmento de Eco",
-
-      "descricaoMecanica": "Item de Missão. Um cristal que pulsa com uma luz suave e emite sussurros confusos. Funciona como um Acessório com a Vantagem 'Inteligente'. Pode gastar 3PM para ter Ganho em um teste de Saber ou Mística para entender os fenômenos da Arca Entrópica."
-
-    },
-
-    {
-
-      "nome": "Essência do Caos",
-
-      "descricaoMecanica": "Consumível (Incomum). Uma pequena esfera de energia rodopiante. Ao ser consumida, recupera 5PM. O personagem deve rolar 1D: com um resultado 1, ele troca de lugar com um objeto aleatório Perto dele."
-
-    }
-
-  ],
-
-  "ganchoProximaAventura": "Ao segurar o Fragmento de Eco, João e Arco-Íris compartilham uma visão rápida e estonteante: as profundezas da Arca, onde não há um, mas vários glifos distorcidos, e uma sombra gigantesca com olhos tristes que parece estar no centro de tudo. Elara, ao ver a reação deles, fica pálida. 'É pior do que eu pensava', ela sussurra. 'Precisaremos encontrar os outros Fragmentos.'"
-
-} 
+    "segredosRumores": [
+      "Elara Ventus não é apenas uma estudiosa. Ela usa um broche que é, na verdade, um comunicador da BUSCA, e está reportando tudo sobre a Arca e os poderes das crianças.",
+      "O 'Fragmento de Eco' não é um objeto inanimado. Ele parece reagir à presença das crianças, emitindo um brilho quente para Arco-Íris e um frio reconfortante para João.",
+      "Os Guardiões Entrópicos não são inerentemente maus. Eles são como o sistema imunológico da Arca, tentando conter o caos que vaza de seu núcleo."
+    ],
+    "encontrosDesafios": [
+      {
+        "titulo": "A Cacofonia dos Cacos",
+        "descricao": "Logo ao entrar, a realidade parece se quebrar em pedaços. Fragmentos saltitantes de caos puro, os Caco-Demônios, emergem das paredes e do chão, rindo com vozes distorcidas enquanto tentam confundir e separar os heróis.",
+        "mecanica": "Enxame de 4x [Caco-Demônio Saltitante]."
+      },
+      {
+        "titulo": "O Labirinto do Guardião",
+        "descricao": "Uma sala ampla onde as plataformas e paredes se rearranjam a cada rodada. Um Guardião Entrópico flutua no centro, imune a ataques diretos. Para derrotá-lo, os heróis precisam usar o ambiente em constante mudança para flanqueá-lo ou usar os poderes de Arco-Íris para 'travar' uma plataforma no lugar por um turno.",
+        "mecanica": "Confronto com 1x [Guardião Entrópico]. O desafio principal é um Teste Estendido de Esporte ou Percepção (4 sucessos, meta 12) para se posicionar corretamente e permitir um ataque."
+      },
+      {
+        "titulo": "A Sombra que Imita",
+        "descricao": "Em uma área de penumbra, as sombras dos heróis começam a se mover por conta própria. Uma delas, a Eco-Sombra, ganha corpo e ataca, tentando drenar a felicidade e a coragem do grupo.",
+        "mecanica": "Combate contra 1x [Eco-Sombra Rastejante]. O monstro tem vantagem na escuridão, e os heróis precisam usar os poderes de fogo de Arco-Íris para criar fontes de luz e enfraquecê-lo."
+      }
+    ],
+    "tesourosRecompensas": [
+      {
+        "nome": "Fragmento de Eco",
+        "descricaoMecanica": "Artefato. Acessório. Qualidade: Inteligente. Custo: 10XP. Este cristal pulsante concede ao portador Ganho em um teste de Resistência para evitar efeitos de confusão ou medo, uma vez por aventura. Também sussurra pistas sobre a natureza da Arca, que apenas as crianças podem entender."
+      },
+      {
+        "nome": "Pó de Cristal Estabilizador",
+        "descricaoMecanica": "Item Consumível Incomum. Quando aspergido, cria uma pequena zona de realidade estável por 3 rodadas. Dentro da zona, os efeitos caóticos do ambiente são anulados."
+      }
+    ],
+    "ganchoProximaAventura": "Ao pegar o Fragmento de Eco, ele projeta um mapa distorcido de uma área mais profunda da Arca, mostrando uma estrutura que se assemelha a um gigantesco castelo de brinquedos quebrado. Elara percebe que a energia caótica está se concentrando lá, e que o fragmento é a chave para entrar."
+  }
