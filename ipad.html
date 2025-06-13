@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Sessão (iPad) - 3DeT Victory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ESTILOS LEGACY - TEMA CLARO */
+        body {
+            font-family: 'Poppins', 'Helvetica', 'Arial', sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            margin: 0;
+            padding: 8px;
+            -webkit-text-size-adjust: 100%;
+            font-size: 16px;
+        }
+        .container { max-width: 1024px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 24px; border-bottom: 4px solid #f59e0b; padding-bottom: 16px; }
+        header h1 { font-family: 'Bangers', cursive; letter-spacing: 0.05em; color: #1e293b; font-size: 36px; margin:0; }
+        header p { font-size: 18px; text-transform: uppercase; letter-spacing: 0.2em; margin-top: 4px; color: #475569; }
+        
+        .info-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        h2 { font-size: 20px; margin-top: 0; margin-bottom: 16px; color: #b45309; display: block; }
+        h2 .icon { margin-right: 8px; }
+        h4 { font-size: 16px; font-weight: 600; margin: 12px 0 4px 0; }
+        p, li, dd { line-height: 1.6; }
+        ul { padding-left: 20px; margin-top: 4px; margin-bottom: 12px; }
+        
+        .grid-container { font-size: 0; margin-left: -8px; margin-right: -8px; }
+        .grid-item { width: 50%; display: inline-block; vertical-align: top; box-sizing: border-box; padding: 0 8px; font-size: 16px; }
+
+        .text-secondary { color: #475569; }
+        .text-error { color: #b91c1c; }
+        
+        .hp-marker, .mp-marker { display: inline-block; vertical-align: middle; }
+        .hp-marker label, .mp-marker label { display: inline-block; width: 14px; height: 14px; margin: 1px; border: 1px solid #cbd5e1; border-radius: 2px; }
+        .hp-marker input, .mp-marker input { display: none; }
+        .hp-marker label { background-color: #fca5a5; }
+        .hp-marker input:checked + label { background-color: #b91c1c; }
+        .mp-marker label { background-color: #93c5fd; }
+        .mp-marker input:checked + label { background-color: #1e40af; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Escudo do Mestre Digital</h1>
+            <p>Sessão Atual (Versão iPad)</p>
+        </header>
+
+        <main id="session-content">
+            <p class="text-secondary" style="text-align: center;">Carregando dados da aplicação...</p>
+        </main>
+    </div>
+
+    <script>
+        // SCRIPT ES5 LEGACY - VERSÃO ROBUSTA E CORRIGIDA
+        'use strict';
+
+        var sessionData = null, bestiaryData = null, npcData = null;
+
+        function arrayFind(arr, predicate) {
+            for (var i = 0; i < arr.length; i++) {
+                if (predicate(arr[i], i, arr)) { return arr[i]; }
+            }
+            return undefined;
+        }
+
+        function fetchData(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        try {
+                            callback(null, JSON.parse(xhr.responseText));
+                        } catch (e) {
+                            callback(e, null);
+                        }
+                    } else {
+                        callback(new Error('Erro HTTP ' + xhr.status + ' ao carregar: ' + url), null);
+                    }
+                }
+            };
+            xhr.onerror = function() {
+                callback(new Error('Erro de rede ao carregar: ' + url), null);
+            };
+            xhr.send();
+        }
+
+        function renderSession() {
+            var container = document.getElementById('session-content');
+            if (!sessionData || !bestiaryData || !npcData) {
+                container.innerHTML = '<p class="text-error" style="text-align:center;">Falha fatal: um ou mais arquivos de dados não puderam ser carregados.</p>';
+                return;
+            }
+            container.innerHTML = '';
+
+            function createCard(title, icon, content) {
+                var card = document.createElement('div');
+                card.className = 'info-card';
+                card.innerHTML = '<h2><i class="fa-solid ' + icon + ' icon"></i>' + title + '</h2>' + content;
+                container.appendChild(card);
+            }
+
+            function createCharacteristicList(title, items) {
+                if (!items || items.length === 0) return '';
+                return '<p style="font-size:14px;"><strong>' + title + ':</strong> ' + items.join(', ') + '</p>';
+            }
+
+            createCard('Começo Forte', 'fa-wand-sparkles', '<p class="text-secondary">' + sessionData.comecoForte + '</p>');
+            
+            var ganchosHtml = '<ul>';
+            for (var i = 0; i < sessionData.ganchosPersonagens.length; i++) { ganchosHtml += '<li>' + sessionData.ganchosPersonagens[i] + '</li>'; }
+            ganchosHtml += '</ul>';
+            createCard('Ganchos dos Personagens', 'fa-link', ganchosHtml);
+
+            var gridDiv = document.createElement('div');
+            gridDiv.className = 'grid-container';
+            
+            var locaisHtml = '<h4>Locais Interessantes</h4>';
+            for (var j = 0; j < sessionData.locaisInteressantes.length; j++) {
+                var local = sessionData.locaisInteressantes[j];
+                locaisHtml += '<div style="margin-bottom:10px;"><strong>' + local.nome + '</strong><ul>'; // CORRIGIDO: de 'name' para 'nome'
+                for(var c = 0; c < local.caracteristicas.length; c++) {
+                    locaisHtml += '<li>' + local.caracteristicas[c] + '</li>';
+                }
+                locaisHtml += '</ul></div>';
+            }
+
+            var npcsHtml = '<h4>NPCs Importantes</h4>';
+            for (var k = 0; k < sessionData.npcsImportantes.length; k++) {
+                var npcName = sessionData.npcsImportantes[k];
+                var npcDetails = arrayFind(npcData, function(n) { return n.name.indexOf(npcName) !== -1; });
+                if (npcDetails) {
+                    var stats = npcDetails.stats;
+                    var statsText = 'P' + stats.Poder + ' H' + stats.Habilidade + ' R' + stats.Resistência + ' | PV ' + stats['Pontos de Vida'] + ' PM ' + stats['Pontos de Mana'] + ' PA ' + stats['Pontos de Ação'];
+                    npcsHtml += '<div style="margin-bottom: 12px;">' +
+                                    '<p><strong>' + npcDetails.name + '</strong></p>' +
+                                    '<div style="padding-left:15px; color:#475569;">' +
+                                    '<p style="font-size:14px;">' + statsText + '</p>' +
+                                    createCharacteristicList('Perícias', npcDetails.pericias) +
+                                    createCharacteristicList('Vantagens', npcDetails.vantagens) +
+                                    createCharacteristicList('Técnicas', npcDetails.tecnicas) +
+                                    createCharacteristicList('Desvantagens', npcDetails.desvantagens) +
+                                    '</div></div>';
+                }
+            }
+            gridDiv.innerHTML = '<div class="grid-item">' + locaisHtml + '</div><div class="grid-item">' + npcsHtml + '</div>';
+            var gridCard = document.createElement('div');
+            gridCard.className = 'info-card';
+            gridCard.appendChild(gridDiv);
+            container.appendChild(gridCard);
+            
+            // --- TRACKER DE ENCONTROS (LÓGICA CORRIGIDA) ---
+            var monstersToRender = [];
+            for (var l = 0; l < sessionData.encontrosDesafios.length; l++) {
+                var encounter = sessionData.encontrosDesafios[l];
+                var re = /(\d*)\s*x\s*\[([^\]]+)\]/gi;
+                var match;
+                while ((match = re.exec(encounter.mecanica)) !== null) {
+                    var quantity = parseInt(match[1], 10) || 1;
+                    var name = match[2].trim();
+                    var monsterData = arrayFind(bestiaryData, function(m) { return m.name.toLowerCase() === name.toLowerCase(); });
+                    if (monsterData) {
+                        for (var m = 0; m < quantity; m++) {
+                            monstersToRender.push({
+                                name: monsterData.name, instance: m + 1,
+                                hp: monsterData.stats['Pontos de Vida'] || 0,
+                                mp: monsterData.stats['Pontos de Mana'] || 0,
+                                statsString: 'P' + monsterData.stats.Poder + ' H' + monsterData.stats.Habilidade + ' R' + monsterData.stats.Resistência,
+                                vantagens: monsterData.vantagens || [],
+                                desvantagens: monsterData.desvantagens || []
+                            });
+                        }
+                    }
+                }
+            }
+            
+            if (monstersToRender.length > 0) {
+                var trackerHtml = '';
+                for (var n = 0; n < monstersToRender.length; n++) {
+                    var monster = monstersToRender[n];
+                    var hpMarkers = '';
+                    for (var h = 0; h < monster.hp; h++) { hpMarkers += '<div class="hp-marker"><input type="checkbox" id="hp-' + n + '-' + h + '"><label for="hp-' + n + '-' + h + '"></label></div>'; }
+                    var mpMarkers = '';
+                    for (var p = 0; p < monster.mp; p++) { mpMarkers += '<div class="mp-marker"><input type="checkbox" id="mp-' + n + '-' + p + '"><label for="mp-' + n + '-' + p + '"></label></div>'; }
+                    
+                    var totalInstances = 0;
+                    for (var i = 0; i < monstersToRender.length; i++) {
+                        if (monstersToRender[i].name === monster.name) totalInstances++;
+                    }
+
+                    trackerHtml += '<div style="margin-bottom:12px; border-bottom:1px solid #e2e8f0; padding-bottom:8px;">' +
+                        '<h4>' + monster.name + ' ' + (totalInstances > 1 ? monster.instance : '') + '</h4>' +
+                        '<div style="padding-left:15px; color:#475569;">' +
+                        '<p style="font-size:14px;"><strong>Stats:</strong> ' + monster.statsString + '</p>' +
+                        createCharacteristicList('Vantagens', monster.vantagens) +
+                        createCharacteristicList('Desvantagens', monster.desvantagens) +
+                        '</div>' +
+                        '<div style="font-size:0; margin-top:8px;"><strong style="font-size:16px;display:inline-block;width:40px; vertical-align:middle;">PV:</strong><div style="font-size:0;display:inline-block;vertical-align:middle;">' + hpMarkers + '</div></div>' +
+                        '<div style="font-size:0;"><strong style="font-size:16px;display:inline-block;width:40px; vertical-align:middle;">PM:</strong><div style="font-size:0;display:inline-block;vertical-align:middle;">' + mpMarkers + '</div></div>' +
+                        '</div>';
+                }
+                createCard('Tracker de Encontros', 'fa-swords', trackerHtml);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var files = { sessao: 'sessao.json', bestiario: 'bestiario.json', npcs: 'npcs.json' };
+            var loadedData = {};
+            var fileCount = Object.keys(files).length;
+            var loadedCount = 0;
+
+            function onDataLoaded(key, error, data) {
+                if (error) {
+                    console.error('Falha ao carregar ' + key + ':', error);
+                } else {
+                    loadedData[key] = data;
+                }
+                loadedCount++;
+                if (loadedCount === fileCount) {
+                    sessionData = loadedData.sessao;
+                    bestiaryData = loadedData.bestiario;
+                    npcData = loadedData.npcs;
+                    renderSession();
+                }
+            }
+            
+            for (var key in files) {
+                if (files.hasOwnProperty(key)) {
+                    (function(currentKey) {
+                        fetchData(files[currentKey], function(err, data) { onDataLoaded(currentKey, err, data); });
+                    })(key);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
