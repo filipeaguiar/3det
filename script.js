@@ -623,7 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/3det/sw.js')
+    navigator.serviceWorker.register('/3det/sw.js', { scope: '/3det/' })
       .then(registration => {
         console.log('Service Worker registado com sucesso:', registration.scope);
       })

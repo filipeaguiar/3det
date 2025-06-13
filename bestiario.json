@@ -1,6 +1,6 @@
 [
     {
-      "name": "Caco-Demônio Saltitante",
+      "name": "Fragmento Caótico",
       "archetype": "Espírito (Caos)",
       "concept": "Fragmentos de realidade quebrada que ganharam consciência. Saltitam de forma errática, emitindo sons de estática e risadas distorcidas para desorientar suas presas.",
       "stats": { "Poder": 1, "Habilidade": 2, "Resistência": 1, "Pontos de Ação": 1, "Pontos de Mana": 10, "Pontos de Vida": 5 },
@@ -9,7 +9,7 @@
       "vantagens": ["Aceleração", "Confusão"],
       "tecnicas": [],
       "desvantagens": ["Monstruoso"],
-      "image": "caco_demonio_monstro.jpg"
+      "image": "fragmento_caotico.png"
     },
     {
       "name": "Guardião Entrópico",
@@ -21,7 +21,7 @@
       "vantagens": ["Ataque Especial (Área)", "Paralisia", "Aura (-1pt)"],
       "tecnicas": [],
       "desvantagens": ["Restrição (Não pode sair de sua sala)"],
-      "image": "guardiao_entropico_monstro.jpg"
+      "image": "guardiao_entropico.png"
     },
     {
       "name": "Eco-Sombra Rastejante",
@@ -33,7 +33,7 @@
       "vantagens": ["Ataque Especial (Espiritual)", "Invisível"],
       "tecnicas": [],
       "desvantagens": ["Fraqueza (Luz Forte)"],
-      "image": "eco_sombra_monstro.jpg"
+      "image": "sombra.png"
     },
 {
   "name": "Cactolem, o Guardião Entrópico",
