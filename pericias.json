@@ -5,11 +5,11 @@
     },
     {
         "name": "Arte",
-        "desc": "Você sabe fazer performances artísticas como cantar, dançar, tocar música, cozinhar, fazer cosplay (e se disfarçar), desenhar, avaliar objetos de arte e outras."
+        "desc": "Você sabe fazer performances artísticas como cantar, dançar, tocar música, cozinhar, fazer cosplay (e se disfarçar), desenhar, avaliar objetos de arte e outras. "
     },
     {
         "name": "Esporte",
-        "desc": "Você conhece os muitos tipos de esportes e suas regras, além de ser capacitado em atividades físicas como correr, escalar, nadar, fazer acrobacias, equilibrar-se, saltar e outras."
+        "desc": "Você conhece os muitos tipos de esportes e suas regras, além de ser capacitado em atividades físicas como correr, escalar, nadar, fazer acrobacias, equilibrar-se, saltar e outras. "
     },
     {
         "name": "Influência",
@@ -17,7 +17,7 @@
     },
     {
         "name": "Luta",
-        "desc": "Você sabe atacar e se defender em combate, seja corpo a corpo ou à distância. Também envolve a parte teórica dos combates, como reconhecer estilos de luta, analisar técnicas de inimigos e desenvolver táticas ou planos de ação - incluindo confrontos entre grandes grupos, como exércitos. Conflitos violentos (quase) sempre exigem testes de Luta!"
+        "desc": "Você sabe atacar e se defender em combate, seja corpo a corpo ou à distância. Também envolve a parte teórica dos combates, como reconhecer estilos de luta, analisar técnicas de inimigos e desenvolver táticas ou planos de ação - incluindo confrontos entre grandes grupos, como exércitos. Conflitos violentos (quase) sempre exigem testes de Luta! "
     },
     {
         "name": "Manha",
@@ -41,7 +41,7 @@
     },
     {
         "name": "Saber",
-        "desc": "Você sabe tudo sobre tudo, qualquer conhecimento teórico em ciências, idiomas e até assuntos sobrenaturais, ou como e onde pesquisá-los. Note que é uma perícia ampla, engloba todos os campos, própria para aqueles cientistas exagerados ou super nerds que sabem de tudo!"
+        "desc": "Você sabe tudo sobre tudo, qualquer conhecimento teórico em ciências, idiomas e até assuntos sobrenaturais, ou como e onde pesquisá-los. Note que é uma perícia ampla, engloba todos os campos, própria para aqueles cientistas exagerados ou super nerds que sabem de tudo! "
     },
     {
         "name": "Sobrevivência",

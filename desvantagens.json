@@ -1,114 +1,162 @@
 [
     {
         "name": "Ambiente",
-        "desc": "Você depende de um ambiente específico (água, calor, etc.). Fora dele (1 em 1d6), tem Perda em todos os testes."
+        "cost": "-1pt",
+        "desc": "Você é mais acostumado a certo ambiente: água, clima muito quente ou gelado, atmosfera de metano, shopping, home theater, fliperama, cozinha de restaurante totalmente equipada, ou outro lugar/clima/terreno que não existe em abundância no local da campanha. No início de cada cena, role 1D. Com um resultado 1, nada relacionado a seu ambiente existe ali, e você tem Perda em todos os testes. O mestre pode julgar situações especiais e dispensar a rolagem."
     },
     {
         "name": "Amnésia",
-        "desc": "Você não sabe quem é. O mestre cria sua ficha em segredo e só revela os resultados dos seus testes, sem explicar suas capacidades."
+        "cost": "-2pt",
+        "desc": "Você não sabe quem é. Talvez seja um espião que sofreu lavagem cerebral, ou um androide com dados apagados, ou algum grande trauma tirou sua memória. Se você decide ter esta desvantagem, o mestre faz sua ficha em segredo. Você pode tentar fazer coisas, e o mestre diz se conseguiu ou não - sem jamais dizer se você tem mesmo a perícia ou vantagem. Você pode ter Ganho ou Perda em testes sem saber a razão. O mestre pode escolher rolar seus testes secretamente, apenas anunciando os resultados. Suas vantagens só funcionam em situações de risco real, e as desvantagens aparecem no pior momento possível."
     },
     {
         "name": "Antipático",
-        "desc": "Você tem dificuldade em interações sociais. Em testes de Poder social, tem Perda e nunca consegue acertos críticos."
+        "cost": "-1pt",
+        "desc": "Você não consegue (ou não quer) se expressar bem. Pode ser por timidez, deselegância, orgulho, rabugice, aura de energia sinistra, ou você é apenas um baita chato! Quando faz um teste de Poder envolvendo interação social, você tem Perda e nunca tem acertos críticos. Você não pode ser Antipático e também Carismático."
     },
     {
         "name": "Assombrado",
-        "desc": "Algo perturba sua concentração. -1pt: Em situações de risco, 1 em 1d6 para ter Perda em todos os testes na cena. -2pt: O mesmo, mas com resultado ímpar."
+        "cost": "-1 ou -2pt",
+        "desc": "Você é assombrado por um espírito, sentimento ruim, lembrança amarga ou outra coisa que tira a sua concentração.\n\n-1pt: Ao entrar em uma situação em que a assombração poderia afetá-lo, role um dado. Com um resultado 1, todos os seus testes têm Perda até o fim da cena.\n-2pt: A assombração aparece com qualquer resultado ímpar."
     },
     {
         "name": "Atrapalhado",
-        "desc": "Você é desajeitado. Em testes de Habilidade envolvendo agilidade, tem Perda e nunca consegue acertos críticos."
+        "cost": "-1pt",
+        "desc": "Você se atrapalha com facilidade. Quando faz um teste de Habilidade envolvendo coordenação e agilidade, você tem Perda e nunca tem acertos críticos. Você não pode ser Atrapalhado e também Ágil."
     },
     {
         "name": "Aura",
-        "desc": "Você emana uma energia negativa. -1pt: Todos (aliados e inimigos) Perto de você têm Perda em seus testes. -2pt: O mesmo, mas Longe ou menos."
+        "cost": "-1 ou -2pt",
+        "desc": "Você emana uma aura pesada de energia negativa, estática eletromagnética, karma ruim, mau-cheiro, ou pura uruca. Qualquer um pode senti-la e perceber que você é a fonte, causando Perda em testes sociais.\n\n-1pt: Qualquer teste de outras pessoas realizado Perto de você, seja de aliados ou inimigos, tem Perda.\n-2pt: Qualquer teste Longe de você ou menos."
     },
     {
         "name": "Bateria",
-        "desc": "Você precisa de energia para se manter ativo. Com 0 PM, fica inconsciente. Com PM abaixo da sua Habilidade, tem Perda em todos os testes."
+        "cost": "-1pt",
+        "desc": "Você tem uma reserva de energia para permanecer ativo. Sempre que ficar com 0PM você \"desliga\", ficando inconsciente e indefeso. Além disso, quando está com pouco PM (abaixo de sua H), sua bateria está fraca e todos os seus testes têm Perda."
     },
     {
         "name": "Código",
-        "desc": "Você segue um código de conduta (Heróis, Honestidade, etc.). Violar o código resulta em Perda em todos os testes até se redimir."
+        "cost": "-1pt cada",
+        "desc": "Você segue um código de conduta que o impede de fazer (ou deixar de fazer) alguma coisa. Sempre que violar seu código, a culpa o deixará com Perda em todos os testes, até que consiga se redimir. Exemplos: 1ª Lei de Asimov, 2ª Lei de Asimov, Código do Caçador, Código do Combate, Código da Derrota, Código da Gratidão, Código dos Heróis, Código da Honestidade, Código da Redenção. Você pode ter mais de um Código."
     },
     {
         "name": "Dependência",
-        "desc": "Você depende de algo raro ou proibido para viver (sangue, cérebros...). Sem satisfazer a dependência diariamente, tem Perda em todos os testes. (Não recomendado para PJs)."
+        "cost": "-2pt",
+        "desc": "O personagem depende de algo raro, proibido ou desumano para viver. Pode ser um vampiro que bebe sangue, um zumbi que devora cérebros, ou um viciado em alguma substância ilícita. A Dependência deve ser satisfeita todos os dias. Se não o fizer, o personagem tem Perda em todos os testes, até que ele satisfaça a Dependência."
     },
     {
         "name": "Diferente",
-        "desc": "Seu corpo não é humanoide padrão. Você tem Perda ao usar equipamentos feitos para outros e vice-versa. Pode receber Ganho em situações específicas."
+        "cost": "-1pt",
+        "desc": "Seu corpo é muito diferente de um corpo humanoide comum. Você tem problemas para usar as armas, roupas, equipamentos, máquinas e veículos disponíveis - pode usar apenas aqueles feitos especialmente para você. Você tem Perda ao usar itens feitos para outros. O mestre pode decidir que seu corpo é vantajoso em algumas situações, podendo até receber Ganho."
+    },
+    {
+        "name": "Elo Vital",
+        "cost": "-1pt",
+        "desc": "Escolha um aliado, que também deve ter esta desvantagem. Sempre que um de vocês sofre dano, o outro também perde PV na mesma quantidade. Se os personagens pertencem a escalas diferentes, o dano é ajustado de forma proporcional. Curar um não cura o outro."
     },
     {
         "name": "Fracote",
-        "desc": "Você é fraco. Em testes de Poder envolvendo esforço físico, tem Perda e nunca consegue acertos críticos."
+        "cost": "-1pt",
+        "desc": "Você é fraco. Ao fazer um teste de Poder envolvendo esforço físico, como para mover uma pedra ou derrubar uma porta, você tem Perda e nunca tem acertos críticos. Você não pode ser Fracote e também Forte."
     },
     {
         "name": "Frágil",
-        "desc": "Você tem pouco vigor físico. Em testes de Resistência física (doenças, veneno, morte), tem Perda e nunca consegue acertos críticos."
+        "cost": "-1pt",
+        "desc": "Você tem pouco vigor físico. Ao fazer um teste de Resistência envolvendo saúde física, como para resistir doenças, venenos e testes de morte, você tem Perda e nunca tem acertos críticos. Você não pode ser Frágil e também Vigoroso."
     },
     {
         "name": "Fraqueza",
-        "desc": "Você é vulnerável a algo. Perto dessa coisa, tem Perda em todos os testes. -1pt para algo incomum, -2pt para algo comum."
+        "cost": "-1 ou -2pt",
+        "desc": "Existe um objeto, elemento ou condição à qual você é especialmente vulnerável. Enquanto você estiver Perto dessa coisa, todos os seus testes têm Perda. O valor da desvantagem depende de quão comum é a fonte da Fraqueza:\n\n• Incomum (-1pt): Algo que aparece raramente (1 em 1D). Livros, espelhos, gatos, etc.\n• Comum (-2pt): Algo que aparece mais frequentemente (1-3 em 1D). Lugares escuros, vento, água, etc."
     },
     {
         "name": "Fúria",
-        "desc": "Sempre que sofre dano, deve passar em um teste de R (9 ou dano) ou entra em frenesi, atacando o alvo mais próximo. Durante a fúria, tem Perda em testes de defesa e vantagens custam o dobro."
+        "cost": "-2pt",
+        "desc": "Sempre que você sofre dano ou fica irritado, deve fazer um teste de Resistência (9 ou igual ao dano, o que for maior). Se falhar, você entra em frenesi de batalha e ataca imediatamente o alvo de sua irritação. Durante a Fúria todos os seus testes que não sejam de ataque têm Perda, e suas vantagens gastam o dobro de PM. A Fúria termina quando você ou seu oponente é derrotado, ou caso o oponente consiga fugir. Você então fica imediatamente esgotado (seus PM caem para zero e você tem Perda em todos os testes até descansar)."
     },
     {
         "name": "Inapto",
-        "desc": "Escolha uma perícia que não possui. Em testes com essa perícia, você tem Perda e qualquer falha é crítica."
+        "cost": "-1pt",
+        "desc": "Escolha uma perícia que não possua. Você é um completo incompetente quando se trata dela. Sempre que o mestre pede um teste com a perícia escolhida, você está em Perda. Além disso, qualquer falha é considerada uma falha crítica."
     },
     {
         "name": "Inculto",
-        "desc": "Você não conhece a cultura local. Tem dificuldade para ler e se comunicar, e Perda em testes sociais com quem não o entende."
+        "cost": "-1pt",
+        "desc": "Você não tem familiaridade com a cultura local. Você não sabe ler a língua local, ou acha muito difícil fazê-lo (teste Difícil). Você tem a mesma dificuldade para se comunicar, exceto com seus aliados. Testes sociais com personagens que não o entendem têm Perda."
     },
     {
         "name": "Indeciso",
-        "desc": "Você tem pouca força de vontade. Em testes de Resistência mental, tem Perda e nunca consegue acertos críticos."
+        "cost": "-1pt",
+        "desc": "Você tem pouca convicção e muita dificuldade para tomar decisões importantes. Em testes de Resistência envolvendo força de vontade, você tem Perda e nunca tem acertos críticos. Você não pode ser Indeciso e também Resoluto."
     },
     {
         "name": "Infame",
-        "desc": "Você é famoso por um mau motivo. Em testes sociais com NPCs que o reconhecem, tem Perda."
+        "cost": "-1pt",
+        "desc": "Você é muito conhecido, mas não por uma boa razão. Quando faz testes sociais relacionados a um NPC que o reconhece (normalmente 1-4 em 1D), você está sempre em Perda. Você não pode ser Infame e também Famoso."
     },
     {
         "name": "Lento",
-        "desc": "Você se move devagar. Tem Perda em iniciativa e gasta um movimento extra para cruzar cada distância."
+        "cost": "-1pt",
+        "desc": "Você se move devagar. Em testes de iniciativa, está sempre em Perda, e também gasta um movimento a mais para cruzar cada distância. Você não pode ser Lento e também ter Aceleração."
     },
     {
         "name": "Maldição",
-        "desc": "Você é vítima de uma maldição. -1pt: algo irritante que pode causar Perda. -2pt: algo grave, com efeitos mecânicos severos."
+        "cost": "-1 ou -2pt",
+        "desc": "Você é vítima de uma maldição que o perturba quase o tempo inteiro. A natureza e efeito exatos podem ser inventados por você, mas devem ser autorizados pelo mestre.\n\n-1pt: A Maldição é suave, mais irritante ou constrangedora. Ex: um bicho mágico chato o persegue.\n-2pt: A Maldição é muito grave, desafiadora. Ex: sempre que você causa dano a alguém, recebe o mesmo dano de volta."
     },
     {
         "name": "Monstruoso",
-        "desc": "Sua aparência causa repulsa. Tem Perda em iniciativa (exceto surpresa) e em testes sociais que envolvem aparência."
+        "cost": "-1pt",
+        "desc": "Você tem uma aparência grotesca, que causa repulsa. Outros personagens estão sempre de prontidão contra você: exceto quando os pega de surpresa, você sempre tem Perda em testes de iniciativa. Você também tem Perda em testes sociais que envolvem aparência. Você não pode ser Monstruoso e também Inofensivo."
     },
     {
         "name": "Munição",
-        "desc": "Sua arma precisa ser recarregada. Após um ataque, deve usar um movimento para recarregar. Atacar sem recarregar não soma seu Poder ao teste."
+        "cost": "-1pt",
+        "desc": "Sua arma ou técnica exige algum tipo de recarga cada vez que é utilizada. Sempre que você usa uma ação para atacar, precisa usar um movimento para recarregar. Se fizer um ataque sem recarregar, você não soma seu Poder ao teste de ataque, nem pode somá-lo novamente em críticos."
+    },
+    {
+        "name": "Pacifista",
+        "cost": "-1 ou -2pt",
+        "desc": "Você rejeita conflito e violência.\n\n-1pt: Você não se envolve em combate violento. Pode se defender, mas não fazer testes de ataque.\n-2pt: Você não faz absolutamente nada que cause dano. Se violar seu pacifismo, a culpa o deixará em Perda até que você consiga se redimir."
+    },
+    {
+        "name": "Pobreza",
+        "cost": "-1pt",
+        "desc": "Você não tem recursos financeiros e tende a não conseguir acumulá-los. Todos os seus testes de compra são feitos em Perda. Você não pode ter Pobreza e também Riqueza."
     },
     {
         "name": "Ponto Fraco",
-        "desc": "Você tem uma fraqueza que pode ser explorada. Um adversário que a conheça pode gastar 1 PM para ter Ganho contra você."
+        "cost": "-1pt",
+        "desc": "Você tem uma característica que seu adversário pode explorar. Seu Ponto Fraco pode ser descoberto por alguém que já tenha visto você em ação, por Telepatia, ou ser conhecido por todos se você é Famoso ou Infame. Um teste resistido de Percepção também permite descobrir. Qualquer adversário que conhece seu Ponto Fraco pode gastar 1PM para ter Ganho contra você em um teste que explora esse problema."
     },
     {
         "name": "Protegido",
-        "desc": "Você precisa proteger alguém. Se essa pessoa estiver em perigo, você tem Perda em todos os testes."
+        "cost": "-1pt",
+        "desc": "Existe alguém que você precisa proteger de qualquer maneira. Pode ser outro personagem jogador, ou um NPC. Sempre que o Protegido está desaparecido, indefeso ou ferido, todos os seus testes têm Perda. Se o Protegido morre ou desaparece para sempre, você adquire a versão severa de Assombrado (-2pt)."
     },
     {
         "name": "Restrição",
-        "desc": "Uma condição dificulta o uso de seus poderes, dobrando o custo em PM de suas vantagens. -1pt para algo incomum, -2pt para algo comum."
+        "cost": "-1 ou -2pt",
+        "desc": "Certa condição torna mais difícil usar seus poderes. Quando ela acontece, você sempre gasta o dobro de PM para usar suas vantagens. O valor da desvantagem depende de quão comum é a Restrição:\n\n• Incomum (-1pt): A Restrição acontece raramente. Ex: você está molhado, com fome.\n• Comum (-2pt): A Restrição acontece muito frequentemente. Ex: é noite, você está em lugar fechado."
     },
     {
         "name": "Sem Vida",
-        "desc": "Você não é um ser vivo (construto, morto-vivo). Não recupera PV de formas normais, apenas com conserto (teste de Máquinas ou Mística)."
+        "cost": "-2pt",
+        "desc": "Você não é um ser vivo. Pode ser um construto, morto-vivo, etc. A boa notícia é que você não pode morrer; em testes de morte, seu pior resultado é inconsciente. A má notícia é que você não recupera PV de formas normais (descanso, itens, Cura, Regeneração). Você pode ser consertado ou restaurado com outra perícia, como Máquinas ou Mística, por outro personagem. Você ainda precisa descansar para recuperar PA e PM."
     },
     {
         "name": "Tapado",
-        "desc": "Você não é muito inteligente. Em testes de Habilidade envolvendo raciocínio, tem Perda e nunca consegue acertos críticos."
+        "cost": "-1pt",
+        "desc": "Você não é uma pessoa muito brilhante. Quando faz testes de Habilidade relacionado a inteligência e raciocínio, você tem Perda e nunca tem acertos críticos. Você não pode ser Tapado e também Gênio."
+    },
+    {
+        "name": "Transtorno",
+        "cost": "-1pt cada",
+        "desc": "Você lida com um transtorno mental. Escolha um entre os seguintes: Cleptomania, Compulsão, Distração, Fantasia, Fobia, Megalomania, Mitomania, Paranoia. Quando a superação do transtorno pede um teste, é um teste de Resistência (9)."
     },
     {
         "name": "Utensílio",
-        "desc": "Você precisa de um item para usar uma perícia ou vantagem. -1pt: sem ele, não consegue críticos na perícia. -2pt: sem ele, não pode usar vantagens que gastam PM."
+        "cost": "-1 ou -2pt",
+        "desc": "Você precisa de um item para usar adequadamente uma perícia ou vantagens.\n\n-1pt: Escolha uma perícia que você tem. Sem o Utensílio, você não consegue acertos críticos com ela.\n-2pt: Sem o Utensílio, você não pode usar vantagens ou técnicas que gastam PM, nem usar PA (exceto para recuperar o Utensílio). Se rolar uma falha crítica usando o Utensílio, você o deixa cair. Se um atacante rola um acerto crítico contra você, ele pode escolher destruir seu Utensílio. Se o Utensílio é destruído ou perdido, você consegue outro igual depois que a cena termina, ou gastando 1PA para improvisá-lo."
     }
 ]

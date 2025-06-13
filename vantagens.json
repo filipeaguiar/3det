@@ -1,102 +1,297 @@
 [
     {
         "name": "Aceleração",
+        "cost": "1pt",
         "desc": "Você se move muito rápido. Pode gastar 1PM para realizar um movimento extra em seu turno. Você também pode gastar 1PM antes de rolar os dados para receber um Ganho na iniciativa, ou em testes de Habilidade para correr, fugir ou perseguir um oponente."
     },
     {
         "name": "+Ação",
-        "desc": "Você tem mais Pontos de Ação, além daqueles oferecidos por seu Poder. Cada vez que compra esta vantagem você recebe +2PA. Você pode comprar esta vantagem várias vezes."
+        "cost": "1pt cada",
+        "desc": "Você tem mais Pontos de Ação, além daqueles oferecidos por seu Poder. Cada vez que compra esta vantagem você recebe +2PA. Então, se tem P3 (3PA) e paga 1 ponto por +Ação, agora tem 5PA. Você pode comprar esta vantagem várias vezes, para novos aumentos de +2PA."
     },
     {
         "name": "Acumulador",
-        "desc": "Sempre que você acerta um ataque, pode gastar 2PM para ganhar Poder +1 no ataque seguinte. Se acertar de novo, pode gastar 2PM de novo para P+2. E assim por diante, até um máximo de P+5. Se você erra um ataque, os bônus acabam."
+        "cost": "1pt",
+        "desc": "Quanto mais seus ataques acertam, mais forte você bate ou argumenta. Sempre que você acerta um ataque (ou seja, quando causa dano), pode gastar 2PM para ganhar Poder +1 no ataque seguinte. Se acertar de novo, pode gastar 2PM de novo para P+2. E assim por diante, até um máximo de P+5 (sempre 2PM por ataque). Os ataques podem ser contra o mesmo alvo ou alvos diferentes. Se você erra um ataque, ou por algum motivo deixa de atacar (fazendo qualquer coisa que não causa dano), os bônus acabam."
     },
     {
         "name": "Ágil",
-        "desc": "Você tem grande agilidade e coordenação motora. Recebe H+2 em testes envolvendo agilidade, coordenação ou equilíbrio. Pode gastar 2PM para conseguir acerto crítico com 5 ou 6 nesses testes."
+        "cost": "1pt",
+        "desc": "Você tem grande agilidade e coordenação motora. Recebe H+2 em testes envolvendo agilidade, coordenação ou equilíbrio, incluindo testes de iniciativa. Este bônus é incluído em acertos críticos. Você também pode gastar 2PM antes de fazer um desses testes para conseguir acerto crítico com 5 ou 6."
     },
     {
         "name": "Ajudante",
-        "desc": "Você tem algo ou alguém para ajudar. Uma vez por rodada, pode gastar PM para invocar o ajudante. Curandeiro (2PM): Cura 2D PV ou permite repetir teste de R. Especialista (2PM): Ganho em um teste de perícia (exceto ataque/defesa). Familiar (1PM): Reduz pela metade o custo em PM de outra vantagem. Lutador (2PM): Ganho em um teste de ataque ou defesa. Montaria (1PM): Movimento extra ou Ganho em iniciativa/corrida."
+        "cost": "1pt cada",
+        "desc": "Você tem algo ou alguém com quem pode contar, seja em combate ou outras situações. O ajudante pode ser uma pessoa - aprendiz, mercenário, clérigo, enfermeiro, mecânico... Ou algum animal - bicho de estimação, de caça, montaria. Ou um monstro, alien, robô, veículo, objeto encantado... Qualquer coisa que combine com as habilidades que ele oferece. Uma vez por rodada, você pode gastar 2PM para invocar o ajudante. O tipo de ajuda depende de sua função:\n\n• Curandeiro. Cura 2D PV em você ou outro personagem Perto, ou permite repetir um teste de Resistência contra algum efeito negativo (paralisia, veneno, doença, tristeza...) após ter falhado.\n• Especialista. Escolha uma perícia. Ganho em um teste com esta perícia, exceto para defender ou atacar.\n• Familiar. Este ajudante sobrenatural gasta 1PM para ser invocado (em vez de 2) e diminui à metade o custo em PM para usar outra vantagem na rodada.\n• Lutador. Ganho em um teste de ataque, ou em testes de defesa por uma rodada.\n• Montaria. Concede um movimento extra, ou um Ganho em um teste de iniciativa ou para correr ou perseguir um oponente. Custa 1PM.\n\nVocê pode comprar esta vantagem mais vezes para ter outros ajudantes diferentes (ou um mesmo ajudante com diferentes funções). Contudo, em ambos os casos, você pode receber apenas uma ajuda por rodada."
     },
     {
         "name": "Alcance",
-        "desc": "Seus ataques acertam mais longe. 1pt: atinge Longe sem penalidades, e Muito Longe com Perda. 2pt: atinge Muito Longe sem penalidades."
+        "cost": "1-2pt",
+        "desc": "Seus ataques acertam mais longe. Vale para todos os tipos de ataque, como atirar, jogar coisas, esticar, gritar mais alto...\n\n1pt Você pode atingir inimigos que estejam Longe sem penalidades, e Muito Longe com uma Perda.\n2pt Você também pode atingir Muito Longe sem penalidades.\n\nO Alcance também afeta suas outras vantagens. Você pode usar sua Cura em aliados distantes, ou Magia em alvos afastados. Sem Alcance, a menos que uma vantagem diga o contrário, você só pode usá-la contra alvos que estejam Perto."
     },
     {
         "name": "Anulação",
-        "desc": "Após um alvo usar uma vantagem, você pode usar uma ação e 3PM para anulá-la. O alvo faz um teste de R (9 + seu Poder). Se falhar, não pode usar a vantagem até o fim da cena. Pode ser usada preventivamente com um teste de perícia (12)."
+        "cost": "2pt",
+        "desc": "Você consegue impedir o alvo de usar um de seus poderes. Após o uso de uma vantagem em sua presença (Longe ou menos), você pode tentar usar uma ação e 3PM para tentar anular essa vantagem. O alvo faz um teste de R (9 + Poder do anulador) para tentar evitar. Se falhar, não pode mais usar essa vantagem até o fim da cena, cancelar o efeito ou ser derrotado. Você também pode anular uma vantagem se souber, com antecedência, que o alvo a tem. Você pode já ter visto ele usar, ou descobrir por ser Telepata, ou já saber disso porque ele é Famoso ou Infame, ou com um teste de perícia (Saber, Manha, Percepção, 12). A cada turno após o primeiro, o alvo pode fazer um teste de R (9 + Poder do anulador) para cancelar o efeito. Apenas uma vantagem pode ser anulada por vez. Se você quiser anular outra vantagem, a primeira será liberada."
     },
     {
         "name": "Arena",
-        "desc": "Você se dá melhor em um certo tipo de terreno (água, céu, cidades, ermos, etc.). Quando está nesse lugar, pode gastar 2PM para ter Ganho em um teste."
+        "cost": "1pt cada",
+        "desc": "Você se dá melhor em um certo tipo de terreno. Quando está nesse lugar, pode gastar 2PM para ter Ganho em um teste. A Arena é escolhida pelo jogador, mas sempre com aprovação do mestre. Algumas sugestões são:\n\n• Água (praia, barcos, chuva, superfície da água, embaixo d'água)\n• Céu (em testes contra oponentes, só vale se ele também está voando)\n• Cidades (ruas, telhados, topo de prédio, aposentos, corredores, escadas)\n• Ermos (desertos, florestas, montanhas, pântanos, geleiras...)\n• Subterrâneo (cavernas, arcas, esgotos)\n• Uma categoria de lugares específicos (bares, hospitais, bibliotecas, shoppings...)\n• Um único lugar no mundo (provavelmente sua base de operações) e vizinhanças."
     },
     {
         "name": "Artefato",
-        "desc": "Você possui um item especial. Cada ponto gasto nesta vantagem vale 10XP para comprar qualidades para seu item."
+        "cost": "1pt ou mais",
+        "desc": "Você possui um item especial, único. Apenas você pode utilizá-lo. Pode ser uma espada mágica, arma de raios experimental ou armadura robótica, à sua escolha. Diferente de algum equipamento comum, que não afeta as regras, seu artefato oferece benefícios de jogo. Cada ponto ao comprar esta vantagem vale 10XP para adquirir uma arma, armadura ou acessório (mas não um veículo) como descrito em Recompensas."
     },
     {
         "name": "Ataque Especial",
-        "desc": "Ao atacar, gaste PM para ativar efeitos: Área (3PM), Choque (R em vez de P, 1PM), Distante (1PM), Espiritual (dano em PM, 1PM), Investida (1PM), Múltiplo (1PM/alvo extra), Penetrante (Perda na defesa do alvo, 2PM), Perigoso (crítico com 5-6, 1PM), Poderoso (soma P mais uma vez no crítico, 2PM), Potente (P+2, 1PM), Preciso (H em vez de P, 1PM), Titânico (crítico automático, 3PM)."
+        "cost": "1pt cada",
+        "desc": "Ao fazer um ataque, você pode gastar energia para ativar alguma arma ou técnica superior. Cada efeito tem seu custo em PM:\n\n• Área. Todos os personagens Perto do alvo também recebem o ataque. 3PM.\n• Choque. Reforçando o ataque com sua resolução, você ataca usando Resistência em vez de Poder. Qualquer bônus ou penalidade que afetaria seu Poder passa a afetar a Resistência. 1PM.\n• Distante. Você pode atingir um passo de distância além. Este ataque é cumulativo com a vantagem Alcance (pode atingir até Fora de Alcance!). 1PM.\n• Espiritual. O alvo perde PM em vez de PV com este ataque. 1PM.\n• Investida. Quando ataca um alvo Longe ou mais distante, você também se move até o alvo com a mesma ação. Você não usa um movimento, mas precisa ser capaz de alcançar esse alvo com um movimento. 1PM.\n• Múltiplo. Você atinge mais alvos que estejam ao alcance. 1PM por alvo extra, até um máximo igual à Habilidade. Cada alvo faz um teste de defesa separado, mas você usa o mesmo teste de ataque para todos. Vale apenas para vários alvos: para atacar o mesmo alvo várias vezes, use Potente para representar o dano dos ataques extras.\n• Penetrante. O alvo tem Perda de defesa. 2PM.\n• Perigoso. O ataque causa um acerto crítico com 5 ou 6. 1PM.\n• Poderoso. Quando consegue um crítico no ataque, você pode gastar 2PM para somar o Poder mais uma vez.\n• Potente. Aumenta o Poder do ataque em P+2. Você pode comprar este efeito mais vezes (por exemplo, 3pt por um Ataque Especial que gasta 3PM e ataca com P+6). 1PM para cada P+2.\n• Preciso. Calculando bem, você ataca usando Habilidade em vez de Poder. Qualquer bônus ou penalidade que afetaria seu Poder passa a afetar sua Habilidade. 1PM.\n• Titânico. Você supera seus limites e seu potencial! Você tem um crítico automático no ataque. 3PM.\n\nVocê pode comprar esta vantagem mais vezes para ter vários efeitos. Você pode escolher, no momento do ataque, quais efeitos quer usar ou não. Para efeitos que reduzem o custo em PM, um Ataque Especial com vários efeitos é considerado uma única vantagem."
     },
     {
         "name": "Base",
-        "desc": "Você tem um porto seguro. Pode se teleportar para sua base fora de combate, levando aliados. Testes na base têm Ganho."
+        "cost": "1pt",
+        "desc": "Você tem uma base de operações, quartel-general, esconderijo, estação orbital, apartamento, quarto na casa dos pais, ou outro porto seguro onde pode descansar. Ou para onde pode fugir. Através de teleporte (ou outro meio que você invente), você pode alcançar sua base em qualquer situação fora de combate. A critério do mestre, situações de risco ou perigo (como estar preso em uma armadilha) impedem você de alcançar a base. Você pode levar consigo um número máximo de aliados igual a seu Poder + Habilidade. Note que esta é uma viagem de mão única - você pode alcançar sua base de qualquer lugar, mas não pode voltar para onde estava! Para isso, terá que recorrer a outros meios. Sua base é considerada o lugar ideal para descansar e recuperar recursos. Além disso, todos os seus testes realizados ali têm Ganho."
     },
     {
         "name": "Brutal",
-        "desc": "Ao causar dano, você recupera recursos. Vida: para cada 3 de dano, recupera 1 PV. Mana: para cada 3 de dano, recupera 1 PM. Derrota: ao derrotar um oponente, recupera 3 PV e 1 PM."
+        "cost": "1pt cada",
+        "desc": "Ao atacar inimigos, além de causar dano, você recupera suas próprias energias.\n\n• Vida. Para cada 3 pontos de dano causados a um oponente em combate, você recupera 1 Ponto de Vida.\n• Mana. Para cada 3 pontos de dano causados a um oponente em combate, você recupera 1 Ponto de Mana.\n• Derrota. Cada vez que derrota um oponente em combate, você recupera 3 Pontos de Vida e 1 Ponto de Mana.\n\nVocê pode comprar cada versão por 1pt cada, e/ou a mesma versão várias vezes. Seus efeitos se acumulam. Esta vantagem funciona apenas em combates de verdade, contra oponentes de verdade. Você não recupera vida ou mana atacando as paredes, e nem aliados voluntários com Cura ou Regeneração!"
     },
     {
         "name": "Carismático",
-        "desc": "Você tem facilidade para agradar. Recebe P+2 em testes sociais. Pode gastar 2PM para conseguir acerto crítico com 5 ou 6 nesses testes."
+        "cost": "1pt",
+        "desc": "Você tem facilidade para fazer com que gostem de você. Recebe P+2 em testes sociais ou que envolvam interações com outras pessoas. Este bônus é incluído em acertos críticos. Você também pode gastar 2PM antes de fazer um desses testes para conseguir acerto crítico com 5 ou 6."
+    },
+    {
+        "name": "Clone",
+        "cost": "1pt",
+        "desc": "Você pode criar cópias exatas de si mesmo, gastando 2PM por clone e um movimento. Sempre que você recebe um ataque bem-sucedido, não sofre nenhum dano, mas uma cópia desaparece. Cópias restantes duram até o fim da cena. Os clones fazem o que você quiser, mas não realizam ações próprias. Eles podem ajudar em certas tarefas a critério do mestre (por exemplo, distraindo adversários), gerando Ganho para testes. Um atacante com um Sentido adequado pode fazer um teste de Percepção (9+ Poder do copiador) para ignorar seus clones e atacar você normalmente."
+    },
+    {
+        "name": "Confusão",
+        "cost": "1pt",
+        "desc": "Você é capaz de deixar os oponentes tontos. Faça um ataque e gaste 2PM. Se vencer a defesa do alvo, além de sofrer dano, ele fica confuso. Nesse estado ele não consegue escolher os alvos de suas perícias ou vantagens, incluindo ele próprio: os alvos são escolhidos ao acaso pelo mestre. A confusão dura até o fim da cena, ou até o alvo sofrer dano. A cada turno, o alvo pode fazer um teste de R (9+ Poder do atacante) para cancelar o efeito."
     },
     {
         "name": "Cura",
-        "desc": "Você pode curar. Gaste 2PM para curar 1D PV (até um limite de dados igual à Habilidade). Pode gastar 2PM para permitir que um alvo repita um teste de R contra um efeito negativo."
+        "cost": "1pt",
+        "desc": "Você pode curar a si mesmo, ou a alguém que possa tocar. Você gasta 2PM para curar 1D PV, até um limite de dados igual à Habilidade. Por exemplo, se tiver H2 você pode curar até 2D PV em um personagem, gastando 4PM. Você também pode gastar 2PM para que um personagem repita um teste de Resistência contra algum efeito negativo duradouro (paralisia, veneno, doença, chateação...) após ter falhado."
     },
     {
         "name": "Defesa Especial",
-        "desc": "Ao defender, gaste PM para ativar efeitos: Blindada (crítico com 5-6, 1PM), Bloqueio (P em vez de R, 1PM), Esquiva (H em vez de R, 1PM), Proteção (defende um aliado, 1PM/aliado), Provocação (recebe o ataque no lugar do aliado, 1PM), Reflexão (devolve dano, 1PM), Robusta (soma R mais uma vez no crítico, 2PM), Tenaz (R+2, 1PM), Titânica (crítico automático, 3PM)."
+        "cost": "1pt cada",
+        "desc": "Ao receber um ataque, você pode gastar energia para ativar alguma técnica de defesa, como um escudo, campo de força, bloqueio de artes marciais ou cara feia. Cada efeito tem seu custo em PM:\n\n• Blindada. A defesa consegue acerto crítico com 5 ou 6. 1PM.\n• Bloqueio. Você defende usando Poder em vez de Resistência. Qualquer bônus ou penalidade que afetaria sua Resistência passa a afetar Poder. 1PM.\n• Esquiva. Você defende usando Habilidade em vez de Resistência. Qualquer bônus ou penalidade que afetaria sua Resistência passa a afetar Habilidade. 1PM.\n• Proteção. Você ajuda um aliado a se defender. Se um personagem Perto de você é atacado, você pode ativar a vantagem e usar sua defesa em vez da dele, com quaisquer manobras ou recursos que quiser. Se mesmo assim o ataque causa dano, é o aliado que o recebe. 1PM por aliado.\n• Provocação. Você atrai sobre si um ataque contra um aliado, recebendo-o em seu lugar. Se um personagem Perto de você é atacado, você pode ativar a vantagem e receber esse ataque no lugar dele. Você usa sua defesa normalmente, com quaisquer manobras ou recursos que quiser. Se mesmo assim o ataque causa dano, é você que o recebe. 1PM.\n• Reflexão. Você devolve o golpe para o oponente. Caso sua defesa seja maior que o ataque do adversário, ele sofre dano igual à diferença. 1PM.\n• Robusta. Quando consegue um crítico na defesa, você pode gastar 2PM para somar sua Resistência mais uma vez.\n• Tenaz. Aumenta a Resistência em +2 na defesa. Você pode comprar este efeito mais vezes (por exemplo, 4pt por uma Defesa Especial que gasta 4PM e defende com +8). 1PM para cada +2.\n• Titânica. Você supera seus limites e seu potencial! Você tem um crítico automático na defesa, e ela será considerada perfeita com qualquer resultado. 3PM.\n\nVocê pode comprar esta vantagem mais vezes para ter vários efeitos. Você pode escolher, no momento da defesa, quais efeitos quer usar ou não. Para efeitos que reduzem o custo em PM, uma Defesa Especial com vários efeitos é considerada uma única vantagem."
+    },
+    {
+        "name": "Desgaste",
+        "cost": "1pt",
+        "desc": "Mesmo depois do ataque, seu alvo sofre mais dano. Seja por veneno, ácido, queimadura, radiação, fadiga, dor de barriga, rancor ou o que você inventar. Faça um ataque e gaste 2PM. Se vencer a defesa do alvo e causar dano, ele vai sofrer o mesmo dano outra vez na próxima rodada. O dano extra pode ser evitado se o alvo gasta sua próxima ação para fazer isso - apagando as chamas na roupa, entoando um mantra, tomando um antiácido ou coisa parecida."
+    },
+    {
+        "name": "Devoto",
+        "cost": "1pt",
+        "desc": "Você serve a uma causa ou crença. O objeto de sua devoção fica à sua escolha. Uma entidade espiritual superior, uma filosofia ancestral, os ensinamentos de seu antigo mestre, uma promessa solene, uma jornada de vingança. Seja qual for, esse grande objetivo guia seus atos e sua vida. Ao fazer um teste quando está seguindo ou defendendo sua devoção, você pode gastar 2PM para ter Ganho. Você pode recorrer à devoção até duas vezes por cena."
+    },
+    {
+        "name": "Elo Mental",
+        "cost": "1pt",
+        "desc": "Você tem uma ligação especial com outro personagem, que pode ser um jogador ou NPC. Ele também deve ter esta vantagem. Vocês compartilham os seguintes poderes:\n\n• Enquanto conseguem ver um ao outro, vocês percebem seus pensamentos e se comunicam sem nenhum sinal aparente.\n• Em situações de perigo, você pode gastar PM de seu aliado para seu próprio uso, e vice-versa.\n• Quando você tem Ganho em certo teste, antes de rolar, pode escolher passar esse Ganho para o aliado. Ele deve usar o Ganho no mesmo tipo de teste, na primeira oportunidade.\n\nQuando não podem ver um ao outro, vocês sentem apenas emoções gerais, mas sempre sabem em que distância e direção o outro está."
+    },
+    {
+        "name": "Estender",
+        "cost": "1pt",
+        "desc": "Você pode estender o efeito de suas vantagens a seus companheiros. Ao usar uma vantagem pessoal (que afeta apenas você), pode gastar 1PM por turno para que ela também funcione com um aliado Perto. Por exemplo, pode usar Teleporte e levar consigo outros dois personagens gastando mais 2PM. Vantagens que atacam ou prejudicam outros alvos não podem ser afetadas por Estender."
+    },
+    {
+        "name": "Famoso",
+        "cost": "1pt",
+        "desc": "Você é conhecido ao redor do mundo. Quando faz um teste em situações sociais envolvendo NPCs que o reconhecem (normalmente 1-4 em 1D), pode gastar 3PM para receber Ganho."
+    },
+    {
+        "name": "Foco",
+        "cost": "1pt",
+        "desc": "Você pode se concentrar para melhorar seu desempenho. Gaste 2PM e use um turno inteiro se concentrando. Você tem Perda na defesa durante esse tempo e, se sofrer dano, perde a concentração e os PM gastos. No turno seguinte, seu próximo teste recebe um crítico automático (atributo somado outra vez). Você ainda pode rolar mais críticos normalmente."
+    },
+    {
+        "name": "Forte",
+        "cost": "1pt",
+        "desc": "Você é muito forte. Recebe P+2 em testes para empreender esforço físico, como levantar peso, derrubar porta ou socar vilão. Este bônus é incluído em acertos críticos. Você também pode gastar 2PM antes de fazer um desses testes para conseguir acerto crítico com 5 ou 6."
+    },
+    {
+        "name": "Gênio",
+        "cost": "1pt",
+        "desc": "Você tem um cérebro notável. Recebe H+2 em testes para resolver problemas que envolvem conhecimento, inteligência e capacidade de raciocínio. Este bônus é incluído em acertos críticos. Você também pode gastar 2PM antes de fazer um desses testes para conseguir acerto crítico com 5 ou 6."
+    },
+    {
+        "name": "Golpe Final",
+        "cost": "1pt",
+        "desc": "Você tem um golpe poderoso que pode finalizar um alvo já enfraquecido. Gaste 3PM e faça um ataque contra um alvo que esteja perto da derrota. Esse ataque é elevado uma escala acima."
+    },
+    {
+        "name": "Grimório",
+        "cost": "1pt ou mais",
+        "desc": "Você tem um grimório de magias, pergaminho monástico, caderno de receitas, manual de instruções, revistinha de cifras, livro didático, aplicativo de celular ou outra fonte de conhecimentos contendo segredos de capacidades únicas. Esta vantagem permite já começar com uma ou mais técnicas (veja em Recompensas). Cada ponto de Grimório vale 10XP para adquirir truques ou técnicas comuns (mas não lendárias). As técnicas escolhidas precisam receber autorização do mestre."
+    },
+    {
+        "name": "Ilusão",
+        "cost": "2pt",
+        "desc": "Você consegue criar ilusões. Uma ilusão é uma imagem tridimensional. Não tem massa ou substância, não pode ser tocada, nem sofrer ou causar dano. Mas engana os outros sentidos como se fosse real. Em situações normais, não se pode perceber que algo é uma ilusão. Caso se tente interagir com ela, um personagem pode fazer um teste de Percepção. A meta padrão para esse teste é 9 + quantidade de PM gastos na ilusão. O custo para criar uma ilusão depende de seu tamanho: 1PM (livro ou menor), 3PM (pessoa ou menor), 5PM (caminhão), 8PM (prédio). Criar uma ilusão gasta uma ação. Mover uma ilusão exige que o personagem gaste um movimento. Uma ilusão se mantém por quanto tempo você quiser, mas você não pode recuperar os PM usados para criá-la até dissipá-la."
+    },
+    {
+        "name": "Imitar",
+        "cost": "1pt",
+        "desc": "Você consegue imitar uma das vantagens de seu alvo. Quando alguém usa uma vantagem em sua presença (Longe ou menos), você pode tentar imitar essa vantagem. Faça um teste de Percepção (9): se tiver sucesso, você pode gastar 3PM para adquirir a mesma vantagem até o fim da cena. Você também pode imitar se já souber que o alvo a tem. Neste caso, além de gastar PM, você precisa usar uma ação. Apenas uma vantagem pode ser imitada por vez."
+    },
+    {
+        "name": "Imortal",
+        "cost": "1pt",
+        "desc": "Você pode ser derrotado, e até tirado de cena por algum tempo, mas não morto. Em testes de morte, você nunca tem um resultado pior que inconsciente."
     },
     {
         "name": "Improviso",
-        "desc": "Você pode gastar 3PM para aprender e usar uma perícia que não tenha até o fim da cena. Apenas uma por vez."
+        "cost": "2pt",
+        "desc": "Na hora do aperto, você consegue usar capacidades que não deveria ter! Você pode gastar 3PM para aprender, na hora, uma perícia que não tenha. Você pode usar essa perícia até o fim da cena. Você pode improvisar apenas uma perícia por vez."
+    },
+    {
+        "name": "Imune",
+        "cost": "1pt cada",
+        "desc": "Você é imune a algo que normalmente afeta outras criaturas.\n\n• Abiótico. Você não tem necessidades biológicas básicas, como comer, beber, respirar ou dormir.\n• Anfibio. Você respira e se move normalmente embaixo d'água, sem ser afetado por terreno difícil, nem sofrer pressão submarina.\n• Doenças. Você é imune a doenças naturais ou mágicas.\n• Resiliente. Você não se cansa por realizar esforço intenso por muito tempo. Além disso, qualquer lugar de descanso é considerado ideal.\n• Sem Mente. Você é imune a magias e efeitos que afetam a mente, como telepatia e outros efeitos mentais."
+    },
+    {
+        "name": "Incorpóreo",
+        "cost": "2pt",
+        "desc": "Você pode se tornar intangível. Ao gastar uma ação e 5PM, você pode atravessar portas e outras barreiras físicas, e também será imune a qualquer dano por combate violento exceto Magia ou ataques de outros seres Incorpóreos. Da mesma forma, você também não pode interagir fisicamente com objetos materiais e nem causar dano, exceto com Magia. Este efeito dura até o fim da cena, ou até você decidir encerrá-lo, ou ser derrotado. Mesmo intangível, você pode sofrer dano mental/emocional."
+    },
+    {
+        "name": "Inimigo",
+        "cost": "1-2pt cada",
+        "desc": "Você é treinado em enfrentar certo tipo de criatura. Escolha um grupo entre: Humanos, Humanoides, Construtos, Espíritos, Monstros. Em todos os testes contra criaturas do tipo escolhido, você consegue acerto crítico com 5 ou 6. O custo é 1 ponto, mas aumenta para 2pt se o grupo ou criatura existe em grande abundância na campanha. Em vez de um grupo, você também pode escolher um único arquétipo ou personagem; contra ele, todos os seus testes também recebem Ganho."
+    },
+    {
+        "name": "Inofensivo",
+        "cost": "1pt",
+        "desc": "Você não parece perigoso, por alguma razão. Em combate, por surpreender seu oponente, você ganha uma ação extra antes do primeiro turno. Sua aparência inofensiva não funciona com alguém que viu você lutar antes, nem funciona duas vezes com a mesma pessoa. Mesmo contra estes, no entanto, você tem Ganho ao rolar iniciativa. Você também pode gastar 3PM para Ganho em testes para tentar enganar alguém ou passar despercebido."
+    },
+    {
+        "name": "Instrutor",
+        "cost": "1pt",
+        "desc": "Você sabe ensinar ou inspirar outra pessoa. Usando uma ação e gastando 2PM, você permite a um aliado fazer um teste como se ele tivesse uma perícia que você tem. Caso o aliado já tenha a perícia, você pode permitir que ele use uma vantagem que você possua e a afete, como Maestria ou Mentor. Outros custos de uso da vantagem devem ser pagos pelo aliado. O teste deve ser feito até o próximo turno do aliado."
+    },
+    {
+        "name": "Inventário",
+        "cost": "1-3pt",
+        "desc": "Você carrega itens consumíveis consigo. A quantidade depende do custo:\n\n• 1pt Pequeno. 3 itens comuns e 1 incomum.\n• 2pt Grande. 5 itens comuns e 2 incomuns.\n• 3pt Supremo. 5 itens comuns, 4 incomuns e 1 raro.\n\nVocê pode trocar três itens de um nível inferior por um superior, e vice-versa. Você não precisa decidir quais itens o Inventário carrega; você escolhe no momento do uso. O Inventário é recarregado no início de cada aventura."
+    },
+    {
+        "name": "Invisível",
+        "cost": "1-2pt",
+        "desc": "Você pode usar uma ação e gastar 3PM para ficar invisível. Quando está assim, você tem Ganho em testes para se esconder, e todos os ataques contra você têm Perda.\n\n• 1pt Sua invisibilidade é interrompida quando você faz um ataque ou sofre qualquer dano.\n• 2pt Sua invisibilidade é interrompida apenas quando você sofre dano.\n\nUm inimigo com Sentido pode fazer um teste resistido de Percepção para tentar encontrá-lo."
+    },
+    {
+        "name": "Irresistível",
+        "cost": "1pt",
+        "desc": "Seus poderes são mais difíceis de resistir. Quando um alvo faz um teste para evitar ser afetado por uma de suas vantagens (como Anulação, Confusão, Ilusão, Paralisia ou Punição), você pode gastar 2PM ou mais. Para cada 2PM gastos, a meta do teste para resistir aumenta um passo (+3). Você deve anunciar o uso desta vantagem antes que o alvo faça seu teste."
+    },
+    {
+        "name": "Maestria",
+        "cost": "1pt cada",
+        "desc": "Escolha uma perícia que você tem. Em testes dessa perícia, você pode gastar 1PM para ter um acerto crítico com 5 ou 6. Você pode comprar esta vantagem mais vezes para outras perícias."
     },
     {
         "name": "Magia",
-        "desc": "Você faz mágica. Gaste PM para somar o mesmo valor em qualquer teste (limite igual à Habilidade). Pode usar a perícia Mística em vez de Luta."
+        "cost": "2pt",
+        "desc": "Você faz mágica. Gastando 1PM, você soma +1 em qualquer teste. Com 3PM, por exemplo, você soma +3. Você também pode gastar PM e usar uma ação para conceder esse bônus a um aliado que possa alcançar. O bônus máximo que você pode gerar é igual à sua Habilidade. Quando ataca ou defende com Magia, você pode usar a perícia Mística em vez de Luta. Você também pode fazer testes de Mística sem gastar PM para efeitos mágicos menores."
+    },
+    {
+        "name": "+Mana",
+        "cost": "1pt cada",
+        "desc": "Você tem mais Pontos de Mana, além daqueles oferecidos por sua Habilidade. Cada vez que compra esta vantagem você recebe +10PM. Você pode comprar esta vantagem várias vezes, para novos aumentos de +10PM."
+    },
+    {
+        "name": "+Membros",
+        "cost": "2pt",
+        "desc": "Você tem um ou mais membros extras. Você pode gastar 3PM para fazer uma segunda ação em seu turno. Essa ação pode ser de combate ou não. Em alguns casos, a ação extra pode conceder um Ganho à sua outra ação. Você compra esta vantagem apenas uma vez para qualquer quantidade de membros. Você não pode fazer mais de uma ação extra por rodada."
+    },
+    {
+        "name": "Mentor",
+        "cost": "1pt cada",
+        "desc": "Escolha uma perícia que você tem. Uma vez por cena, você pode lembrar de um ensinamento e ter Ganho em um teste da perícia escolhida. Além disso, técnicas que tenham a perícia do Mentor como pré-requisito gastam -1PM (mínimo 1PM). Você pode comprar esta vantagem mais vezes para outras perícias."
+    },
+    {
+        "name": "Obstinado",
+        "cost": "1pt",
+        "desc": "Você é capaz de consumir seu próprio corpo, mente e alma para perseverar. Você pode gastar 1 ponto de P, H ou R (à sua escolha) como se fosse 1 Ponto de Ação. Quando um atributo é reduzido, o limite máximo do recurso correspondente também diminui de acordo. Pontos de atributo podem ser recuperados apenas com descanso: 8 horas de sono restauram 1 ponto em cada atributo."
+    },
+    {
+        "name": "Paralisia",
+        "cost": "1pt",
+        "desc": "Você tem um meio para impedir o alvo de agir. Faça um ataque e gaste 2PM. Se vencer a defesa do alvo, em vez de sofrer dano, ele fica imobilizado. Um alvo paralisado fica indefeso. A Paralisia dura até o fim da cena, ou até o alvo sofrer dano. A cada turno, o alvo pode fazer um teste de R (6 + Poder do atacante) para cancelar o efeito."
     },
     {
         "name": "Patrono",
-        "desc": "Você serve a uma pessoa ou organização poderosa. Ganho em testes de compra para missões do patrono (1PM) e um item consumível extra de cada raridade."
+        "cost": "1pt",
+        "desc": "Você serve a uma pessoa, organização ou instituição com mais recursos que você. Quando faz um teste de compra para algo que ajude na missão para o Patrono, você pode gastar 1PM para receber um Ganho. Você também recebe um item consumível extra de cada raridade já disponível em seu Inventário."
+    },
+    {
+        "name": "Punição",
+        "cost": "1-2pt",
+        "desc": "Você pode impor um efeito negativo a um alvo. Ao comprar esta vantagem, escolha também uma desvantagem de mesmo valor. Faça um ataque e gaste 2PM. Se vencer a defesa do alvo, em vez de sofrer dano, ele sofre os efeitos da desvantagem escolhida. A Punição dura até o fim da cena, ou até o alvo sofrer dano. A cada turno, o alvo pode fazer um teste de R (6 + Poder do atacante) para cancelar o efeito. Você pode comprar Punição mais vezes para outras desvantagens, mas só pode impor uma por vez em cada adversário."
     },
     {
         "name": "Regeneração",
-        "desc": "Você recupera PV automaticamente. 1pt: 1PV por turno. 2pt: 3PV por turno. Nunca tem um resultado pior que Inconsciente em testes de morte."
+        "cost": "1-2pt",
+        "desc": "Você é muito, muito chato de derrotar.\n\n• 1pt No início do seu turno, você recupera 1PV.\n• 2pt No início do seu turno, você recupera 3PV.\n\nAlém disso, quando faz um teste de morte, você nunca tem um resultado pior que Inconsciente. Neste caso, você desperta no final da cena e volta a regenerar."
+    },
+    {
+        "name": "Resoluto",
+        "cost": "1pt",
+        "desc": "Sua determinação é inabalável. Você recebe R+2 em testes envolvendo força de vontade, como perceber fraudes, resistir a encantos e ilusões (isso inclui testes de morte). Este bônus é incluído em acertos críticos. Você também pode gastar 2PM antes de fazer um desses testes para conseguir acerto crítico com 5 ou 6."
     },
     {
         "name": "Riqueza",
-        "desc": "Você tem muitos recursos. Pode gastar PM para elevar sua escala em testes de compra. 2pt: Sugoi (1 nível, 2PM). 4pt: Kiodai (2 níveis, 4PM). 6pt: Kami (3 níveis, 6PM)."
+        "cost": "2, 4 ou 6pt",
+        "desc": "Você tem recursos financeiros de escala superior. Quando faz testes de compra, pode gastar PM para subir sua escala em um nível ou mais.\n\n• 2pt Sugoi. Aumenta um nível (Ganho e um crítico adicional). Custo: 2PM\n• 4pt Kiodai. Aumenta até dois níveis (dois Ganhos e dois críticos adicionais). Custo: 4PM\n• 6pt Kami. Aumenta até três níveis (três Ganhos e três críticos adicionais). Custo: 6PM\n\nPM gastos nesta vantagem não podem ser recuperados até o fim da cena."
     },
     {
-        "name": "Sentidos Especiais",
-        "desc": "Você tem um sentido melhor ou diferente: Aguçado, Infravisão, Intuição, Radar, Raio X. Permite testes de Percepção em situações impossíveis para outros."
+        "name": "Sentido",
+        "cost": "1pt cada",
+        "desc": "Você tem um sentido melhor, ou diferente. Pode fazer testes de Percepção em situações impossíveis para outros.\n\n• Aguçado. Escolha entre audição, faro, paladar, tato ou visão. Em testes de Percepção usando esse sentido, você sempre tem Ganho.\n• Infravisão. Você percebe seres de sangue quente e também enxerga no escuro.\n• Intuição. Você percebe intenções ocultas de outras pessoas.\n• Radar. Você percebe tudo em volta, mesmo de costas ou no escuro. Também pode 'ouvir' rádio, tevê, celular, wi-fi e outros.\n• Raio X. Você pode ver através de portas e paredes, exceto quando feitos de materiais muito densos ou mágicos.\n\nDetectar algo exige um teste de Percepção. Você pode inventar um sentido especial único, como poder detectar um tipo de material, criatura, energia ou objeto específico."
+    },
+    {
+        "name": "Telepata",
+        "cost": "1pt",
+        "desc": "Você pode ler ou sentir os pensamentos de outras pessoas. Pode usar um movimento e gastar 1PM para:\n\n• Ter Ganho em um teste de perícia social relacionado a um personagem na cena.\n• Fazer um teste de Habilidade (9) para descobrir algo sobre um personagem na cena (como um valor de atributo, uma vantagem ou desvantagem).\n• Prever os movimentos de um adversário em combate; Ganho em defesa contra ele até a próxima rodada.\n\nVocê só pode usar telepatia em criaturas vivas e que consiga ver."
     },
     {
         "name": "Teleporte",
-        "desc": "Use um movimento e PM para se deslocar para qualquer lugar que possa ver (1PM por passo de distância). Pode gastar 3PM para Ganho na defesa."
+        "cost": "1pt",
+        "desc": "Você pode usar um movimento e gastar PM para se deslocar até qualquer lugar que possa ver. Cada movimento que você substitui por Teleporte custa 1PM. Teleporte não é afetado por terreno difícil. Se o local de destino é observado por meios indiretos, o mestre pode exigir um teste ou gasto maior de PM. Você também pode gastar 3PM para ter Ganho de defesa contra um ataque."
     },
     {
         "name": "Torcida",
-        "desc": "Você luta melhor com uma torcida. Se houver uma (1 em 1d6), você tem um Ganho por rodada em qualquer teste."
+        "cost": "1pt",
+        "desc": "Você está acostumado a agir na presença de muita gente aplaudindo. Quando uma torcida está presente, você tem um Ganho por rodada, em qualquer teste que quiser. No início de cada cena, role 1D. Com um resultado 1, existe algum tipo de torcida favorável a você. Na falta de uma torcida, um aliado pode substituí-la usando uma ação para motivá-lo."
     },
     {
         "name": "Transformação",
-        "desc": "Você pode mudar de forma e poderes. Crie outro personagem com a mesma pontuação. 1pt: desvantagens se acumulam. 2pt: cada forma tem suas próprias desvantagens. Mudar de forma usa uma ação, restaura PM e PV e só pode ser feito uma vez por sessão (ou gastando 1 PA)."
+        "cost": "1-2pt cada",
+        "desc": "Você pode mudar de forma e poderes. Faça outro personagem, com o mesmo número de pontos. Ele pode ser diferente em tudo, exceto que também deve ter esta vantagem, no mesmo valor.\n\n• 1pt Se a nova forma tem desvantagens diferentes, todas as formas sofrem os efeitos de todas as desvantagens combinadas.\n• 2pt Cada forma sofre apenas os efeitos de suas próprias desvantagens.\n\nMudar de forma exige uma ação. A transformação restaura seus PM e PV, ajustados conforme os atributos da nova forma. Você pode se transformar apenas uma vez por sessão, ou pagar 1PA por cada transformação extra."
+    },
+    {
+        "name": "+Vida",
+        "cost": "1pt cada",
+        "desc": "Você tem mais Pontos de Vida, além daqueles oferecidos por sua Resistência. Cada vez que compra esta vantagem você recebe +10PV. Você pode comprar esta vantagem várias vezes, para novos aumentos de +10PV."
+    },
+    {
+        "name": "Vigoroso",
+        "cost": "1pt",
+        "desc": "Você é robusto como um cavalo. Recebe R+2 em testes envolvendo saúde física, como resistir a fadiga, doenças e venenos (isso inclui testes de morte). Este bônus é incluído em acertos críticos. Você também pode gastar 2PM antes de fazer um desses testes para conseguir acerto crítico com 5 ou 6."
     },
     {
         "name": "Voo",
-        "desc": "Você pode voar. Usa um movimento e 2PM para levantar voo. Ignora terreno difícil e só pode ser alcançado por outros voadores."
+        "cost": "1pt",
+        "desc": "Você pode voar! Ao usar um movimento para ficar Longe ou mais distante pelo ar, apenas personagens que também possam voar poderão usar movimentos para alcançá-lo. Além disso, você ignora certas restrições causadas por terrenos difíceis. Em combate, levantar voo quando você está no chão usa um movimento e gasta 2PM. Você não precisa gastar mais PM para manter-se no ar, mas gasta se quiser levantar voo novamente após pousar."
     }
 ]

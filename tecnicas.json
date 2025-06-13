@@ -1,38 +1,345 @@
 [
-    {
-        "name": "Absorver Mana",
-        "desc": "Requisito: Mística. Custo: 0. Duração: Instantânea. Use um movimento para absorver 1D PM do ambiente, ou uma ação para 1D+H PM. PM absorvidos podem superar seu limite, mas são perdidos no final do seu próximo turno se não forem usados."
-    },
-    {
-        "name": "Área de Batalha",
-        "desc": "Requisitos: P ou H 2, Mística. Custo: 2 PM para ativar, 1 PM por rodada. Duração: Sustentada. Com uma ação, transporte a si mesmo e até P ou H aliados para uma dimensão de bolso onde você ganha duas vantagens de 1 ponto (ou uma de 2 pontos) temporariamente."
-    },
-    {
-        "name": "Bola de Fogo",
-        "desc": "Requisitos: H2, Magia. Custo: 3PM + Magia. Duração: Instantânea. Ataque em área que causa dano de fogo. Oponentes na área têm Perda em seus testes de defesa."
-    },
-    {
-        "name": "Combo",
-        "desc": "Requisitos: H1, Golpes. Custo: 0. Duração: Instantânea. Ao acertar um golpe, você pode usar um movimento para realizar um novo golpe diferente contra o mesmo alvo. Pode continuar adicionando golpes gastando mais movimentos, até um máximo igual à sua Habilidade."
-    },
-    {
-        "name": "Disparo de Energia",
-        "desc": "Requisito: Luta ou Magia. Custo: 3PM. Duração: Instantânea. Faça um ataque com P+2 a um alvo Longe. Pode concentrar por mais turnos para aumentar o bônus de Poder (+2 por movimento gasto)."
-    },
-    {
-        "name": "Golpe Púrpura",
-        "desc": "Requisitos: P3, Luta. Custo: 3PM. Duração: Instantânea. Ataque com um crítico automático. Se conseguir outro crítico, o alvo é arremessado para longe."
-    },
-    {
-        "name": "Queimar o Cosmo",
-        "desc": "Requisitos: R2, Luta. Custo: 5-25PM. Duração: Duradoura. Use uma ação para aumentar todos os seus atributos em +1 para cada 5PM gastos, até o fim da cena. Bônus máximo igual à sua Resistência."
-    },
-    {
-        "name": "Mata-Kaiju",
-        "desc": "Requisitos: H5, Magia. Custo: 10PM + Magia. Duração: Instantânea. Requer 3 rodadas de conjuração. O ataque tem dois críticos automáticos (escala +2) e atinge uma vasta área (todos Longe do alvo principal), com os alvos sofrendo duas Perdas na defesa."
-    },
-    {
-        "name": "Visão do Futuro",
-        "desc": "Requisito: H5. Custo: 3PM. Duração: Instantânea. Como reação a um teste contra você, pode forçar o oponente a rolar duas vezes e você escolhe o resultado."
-    }
+  {
+    "name": "Ás Indomável",
+    "desc": "Você é um prodígio da pilotagem. Quando comanda um veículo, pode usar as seguintes manobras:\n• Até o limite! Você força o veículo até quase explodir. Pode usar PV do veículo em vez de PM para ativar uma vantagem, com custo máximo igual à sua Habilidade.\n• Drifting. Você usa uma ação e 2PM para colocar-se em posição de vantagem, tem Ganho em um teste na próxima rodada.\n• Nunca me diga as chances! Você gasta 2PM para anular uma Perda em um teste, fazendo algo que parecia impossível. Só pode fazer isso uma vez por teste.\n• Vai, corredor, vai! Você gasta 1PM para fazer um movimento extra, como se tivesse Aceleração.",
+    "requirements": "Esporte ou Máquinas",
+    "cost": "0 a 2PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Barreira Mística",
+    "desc": "Você usa seus poderes mágicos para se defender. Com um 1PM, você conjura uma Barreira Mística como reação contra um ataque. Seu teste de defesa é normal, mas você pode escolher usar a perícia Mística em vez de Luta. Você também pode gastar 1PM extra para adicionar um destes efeitos:\n• Debilitante. Se sua defesa superar o ataque, você reduz um atributo do atacante (à sua escolha) em –1, até o fim da cena. Isso não afeta os seus recursos.\n• Drenante. Se sua defesa superar o ataque, você recupera 2PM. Cada crítico na defesa recupera mais 2PM.\n• Elétrica. Sua defesa eletrifica e atordoa o alvo; o próximo ataque contra ele tem Ganho.\n• Espinhosa. Se o atacante está Perto, ele sofre 1 ponto de dano. Cada crítico na defesa causa mais 1 ponto de dano.\n• Luminosa. Se sua defesa superar o ataque, a barreira causa um clarão que ofusca o atacante, causando Perda em seu próximo teste.\n• Maciça. Você tem defesa perfeita.\n• Solidária. Você pode conjurar a Barreira Mística para um aliado Perto. Ele tem Ganho na defesa. Você não recebe nenhum benefício nesta rodada.",
+    "requirements": "Magia, Mística",
+    "cost": "1 a 2PM por uso",
+    "duration": "Um turno"
+  },
+  {
+    "name": "Cancioneiro Popular",
+    "desc": "Suas canções têm efeitos emocionais diversos:\n• Canção de amor. Escolha um alvo e faça um teste de Arte (9). Com sucesso, ele se tornará amigável a você, garantindo Ganho em seu próximo teste social contra ele.\n• Canção de ninar. Você canta para o grupo antes de dormir, aumentando a recuperação de recursos em terreno ruim em +1D PM e PV.\n• Canção de protesto. Escolha um alvo para protestar e faça um teste de Arte (9). Com sucesso, ele terá Perda em seu próximo teste social.\n• Canção de rua. Faça um teste de Arte (9) onde houver muitos transeuntes. Se passar, tem Ganho no próximo teste de compra.\n• Canção relaxante. Você canta para o grupo em um momento de descanso, aumentando a recuperação de recursos em um descanso curto em +1 por ponto de atributo.",
+    "requirements": "Arte",
+    "cost": "2PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Dobrar Elemento",
+    "desc": "Você pode controlar um único elemento à sua escolha, como fogo, terra, água, ar, luz ou trevas; ou elementos mais exóticos. Você pode gastar 1PM ou mais para:\n• Manipular, levitar ou controlar pequenas quantidades do elemento.\n• Causar incômodo a um alvo, impondo Perda em um teste. 2PM.\n• Reforçar um ataque com o elemento, adicionando um tipo de dano adequado.\n• Usar o elemento para se proteger, conseguindo defesa perfeita se vencer o teste de defesa.\n• Outros efeitos menores ligados ao elemento escolhido.",
+    "requirements": "Nenhum",
+    "cost": "1PM ou mais por uso",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Golpes",
+    "desc": "Você domina diversas manobras únicas de artes marciais. Este é um conjunto de truques diferente, pois não contém um grupo completo de habilidades; em vez disso, você escolhe dois golpes da lista. Você pode comprar este truque várias vezes: cada vez, escolhe mais dois golpes. Golpes não podem ser combinados com outras técnicas e vantagens, exceto quando dito o contrário. Lista de Golpes:\n• Derrubar. Quando vence a defesa do adversário, em vez de causar dano, você pode escolher derrubá-lo (ou gastar 1PM para causar dano e também derrubá-lo). Um oponente derrubado tem Perda em todos os testes até usar um movimento para se levantar.\n• Finta. Você pode usar um movimento e 1PM para causar Perda no próximo ataque que receber antes de seu próximo turno. Se a defesa vencer o ataque, você tem defesa perfeita, e pode fazer um ataque com Ganho contra o mesmo adversário no seu próximo turno.\n• Golpe Arriscado. Gaste 1PM ao atacar. Você tem chance de crítico máxima (4, 5 ou 6 em cada dado), mas qualquer outro resultado é considerado 0. Se não rolar pelo menos um crítico, será uma falha crítica.\n• Golpe Atordoante. Gaste 2PM ao atacar. Se causar dano maior que a Resistência do alvo, ele fica atordoado: não pode realizar uma ação no próximo turno, apenas um movimento.\n• Golpe Debilitante. Gaste 2PM ao atacar. Se vencer a defesa, em vez de causar dano, reduz um atributo do oponente (à sua escolha) em –1 até o fim do combate. Se você rolar pelo menos um crítico, reduz em –2.\n• Golpe Forte. Gaste 1PM ao atacar. Se vencer a defesa do oponente, causa +2 pontos de dano. Cada crítico aumenta o dano extra em +1. O dano extra ignora limite de dano.\n• Golpe Rápido. Você pode gastar 1PM para fazer um ataque com um movimento, mas o teste tem Perda e não pode utilizar vantagens e técnicas.\n• Recuperar Fôlego. Use um movimento para recuperar 1D pontos de mana, até um máximo igual à sua Resistência. Só pode fazer isso durante combates e conflitos.",
+    "requirements": "Luta",
+    "cost": "Variável",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Grimório Debilitante",
+    "desc": "Você utiliza sua magia para atrapalhar adversários, alterando as condições do ambiente para ter vantagens contra eles.\n• Luz/Trevas. Você ilumina ou escurece a área Perto de um alvo. Duradoura.\n• Pés de Chumbo. Você aumenta a gravidade no alvo, deixando-o mais lento. O alvo pode resistir com um teste de Resistência. Duradoura.\n• Tempestade Mental. Você faz um ataque contra um alvo, diminuindo seus PM em vez de PV. Instantânea.\n• Terreno Escorregadio de Neo. A área Perto do alvo fica escorregadia, causando Perda em ações de movimentação. Dura 1 turno, mas pode ser tornada duradoura por 9PM.",
+    "requirements": "Magia",
+    "cost": "3PM por uso",
+    "duration": "Instantânea ou duradoura"
+  },
+  {
+    "name": "Grimório Irritante",
+    "desc": "Você utiliza sua magia para irritar e provocar.\n• A Aporrinhação do Caos. Cria um pequeno enxame de criaturas que causam Perda em um teste fora de combate. Custa 1PM, e pode ser mantido.\n• O Apavorante Gás de Luignaccio. O alvo pode emitir flatulências, causando Perda em testes sociais.\n• A Flor Perene de Milady “A”. Faz um gerânio nascer no local desejado, que renasce se arrancado. Custo 0.\n• A Gagueira de Raviollius. O alvo é acometido por gagueira, causando Perda em testes que usam a voz.",
+    "requirements": "Magia",
+    "cost": "0 a 1PM ou mais",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Monasticismo Marcial",
+    "desc": "Você passou por treinamento marcial rigoroso. Permite usar os seguintes truques:\n• Corpo fechado. Ganho em um teste de Resistência para evitar um efeito negativo.\n• Inviolável. Mantendo-se imóvel, você tem Ganho e defesa perfeita em todos os testes de defesa até seu próximo turno.\n• Palma de ferro. Ganho em um teste de Poder para quebrar objetos inanimados.\n• Realinhar chakras. Usando uma ação, pode repetir um teste de Resistência para eliminar algum efeito negativo.",
+    "requirements": "Nenhum",
+    "cost": "2PM por uso",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Ninjutsu",
+    "desc": "Você é um mestre em truques de infiltração e sabotagem.\n• Bomba de fumaça. Usando uma ação, todos os personagens Perto ficam cegos por uma rodada.\n• Corrida ninja. Você dobra seu deslocamento neste turno.\n• Estrepes. Usando uma ação, espalha objetos espinhosos para atrapalhar um alvo Perto.\n• Jutsu de troca. Como reação, troca de lugar com um item, ganhando um bônus na defesa.\n• Pipa ninja. Permite voar por uma rodada.",
+    "requirements": "Manha",
+    "cost": "2PM por uso",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Pequenos Desejos",
+    "desc": "Esta magia realiza uma série de efeitos e ilusões inofensivas. Para truques muito simples não há custo em PM. Custa 1PM para criar um pequeno ser feérico que realiza uma tarefa simples. Personagens treinados em Mística e com a vantagem Magia recebem esta técnica sem gastar XP.",
+    "requirements": "Mística",
+    "cost": "0 a 1PM por uso",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Praga",
+    "desc": "Você aponta o dedo e roga uma praga contra alguém! Faça um teste de Poder contra a Resistência do alvo. Se vencer, ele sofre um dos efeitos a seguir: -1 em testes de um atributo; Perda em um único teste; Vantagens e técnicas custam +1PM; ou qualquer resultado 1 em um teste causa falha crítica.",
+    "requirements": "Mística",
+    "cost": "2PM",
+    "duration": "Até o fim da cena ou sessão"
+  },
+  {
+    "name": "Raio Místico",
+    "desc": "Você usa seus poderes mágicos para atacar. Com uma ação e 1PM, você dispara um Raio Místico. Pode usar Mística em vez de Luta. Pode gastar 1PM extra para adicionar um destes efeitos: Ácido, Congelante, Debilitante, Distante, Elétrico, Flamejante.",
+    "requirements": "Magia, Mística",
+    "cost": "1 a 2PM por uso",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Super-Movimento",
+    "desc": "Você realiza movimentos impossíveis. Pode andar em paredes e tetos; saltar até Muito Longe; correr sobre a água; ou ter Ganho para se livrar de amarras.",
+    "requirements": "Esporte, Luta ou Magia",
+    "cost": "1PM por uso",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Absorver Mana",
+    "desc": "Você pode absorver energia do ambiente em vez de gastar a sua. Um movimento absorve 1D PM; uma ação absorve 1D+H PM. A mana absorvida que não for gasta até o fim do seu próximo turno é perdida.",
+    "requirements": "Mística",
+    "cost": "0",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Área de Batalha",
+    "desc": "Usando uma ação, você se transporta com outros personagens para um campo de batalha especial onde possui vantagens. Você ganha duas vantagens de 1 ponto ou uma de 2 pontos temporariamente.",
+    "requirements": "Poder ou Habilidade 2, Mística",
+    "cost": "2 PM para ativar, 1 PM por rodada para manter",
+    "duration": "Enquanto pagar o custo"
+  },
+  {
+    "name": "Bola de Fogo",
+    "desc": "Cria uma grande esfera flamejante que explode ao atingir o alvo, afetando também todos os alvos Perto do original. Todos sofrem Perda em seus testes de defesa.",
+    "requirements": "Habilidade 2, Magia",
+    "cost": "3PM + Magia",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Combo",
+    "desc": "Você pode realizar diversos golpes em sequência. Quando acerta um golpe, pode usar um movimento para realizar um novo golpe contra o mesmo oponente, até um máximo igual à sua Habilidade. Nenhum golpe pode ser repetido no mesmo combo.",
+    "requirements": "Habilidade 1, Golpe",
+    "cost": "0",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Consertar",
+    "desc": "Você pode gastar uma ação e 2PM para curar 1D Pontos de Vida em um construto. Pode gastar mais PM para aumentar a recuperação, até um máximo de dados igual à sua Habilidade ou 5.",
+    "requirements": "Máquinas",
+    "cost": "2 a 10 PM",
+    "duration": "instantânea"
+  },
+  {
+    "name": "Desprezo",
+    "desc": "Seu inimigo é inferior, e você o deixa saber. Com uma ação e 2PM, faça um teste de Poder contra a Resistência do alvo. Se vencer, até o fim da cena, você pode gastar 1PM como reação para causar Perda nos testes dele.",
+    "requirements": "Poder 2 e Arte ou Influência",
+    "cost": "2PM, depois 1PM por uso",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Disparo de Energia",
+    "desc": "Você dispara uma esfera de energia. O ataque tem Poder +2 e atinge um personagem Longe sem Perda. Você pode gastar tempo para concentrar energia e aumentar o bônus de Poder. O jogador deve gritar o nome do golpe para reduzir o custo em PM.",
+    "requirements": "Luta ou Magia",
+    "cost": "3PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Encantar",
+    "desc": "Torna um alvo extremamente amigável a você. Faça um teste de Poder resistido. Se tiver sucesso, ele não poderá realizar ações agressivas contra você e entenderá seus pedidos como sugestões razoáveis.",
+    "requirements": "Arte, Influência ou Magia",
+    "cost": "3PM (ou mais com Magia)",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Gambiarra",
+    "desc": "Você pode juntar um barbante, chiclete e clipes de papel e fazer uma bomba. Ou um computador. Ou ambos! Você pode gastar 2PM para trocar qualquer perícia por Saber em um teste, mantendo a mesma meta, desde que não seja em combate e tenha tempo e recursos.",
+    "requirements": "Saber, Maestria (Saber)",
+    "cost": "2PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Golpe Púrpura",
+    "desc": "Um golpe poderoso que atinge o alvo com força tremenda. Faça um ataque com um crítico automático. Críticos adicionais arremessam o alvo para trás, podendo causar dano extra.",
+    "requirements": "Poder 3, Luta",
+    "cost": "3PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Grito da Selva",
+    "desc": "Você emite um grito poderoso. No início do seu próximo turno, animais selvagens surgem para ajudá-lo, atuando como um Ajudante de tipo à sua escolha.",
+    "requirements": "Poder 2, Animais",
+    "cost": "3PM",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Inspirar",
+    "desc": "Você inspira um aliado com uma música ou discurso. Faça um teste de Poder (9). Com sucesso, o aliado ganha +2 em todos os testes até o fim da cena. Por 6PM, afeta todos os aliados Perto.",
+    "requirements": "Poder 2 e Arte, Influência ou Devoto",
+    "cost": "3 ou 6PM",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Invocar Elemental",
+    "desc": "Você invoca uma criatura elemental que age como um Ajudante, de um tipo escolhido por você ao conjurar a magia.",
+    "requirements": "Habilidade 2, Magia",
+    "cost": "3PM",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Megalon",
+    "desc": "Você aumenta o tamanho de uma criatura. O alvo tem Ganho em todos os testes de esforço físico, mas Perda em testes de agilidade e furtividade.",
+    "requirements": "Habilidade 3, Magia",
+    "cost": "10PM",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Mikron",
+    "desc": "Você diminui o tamanho de uma criatura. O alvo tem Ganho em todos os testes de agilidade, mas Perda em testes de esforço físico.",
+    "requirements": "Habilidade 3, Magia",
+    "cost": "10PM",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Pisão do Titã",
+    "desc": "Você golpeia o chão, atingindo com uma onda de choque todos os alvos Perto. Alvos que recebam dano acima de seu valor de Resistência são derrubados.",
+    "requirements": "Poder 3",
+    "cost": "3PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Poeira Glacial",
+    "desc": "Você esfria o ar ao redor de um alvo, congelando-o. Se o alvo perde um valor de PV acima de sua Resistência, ele congela, recebendo Perda em todos os testes por uma rodada.",
+    "requirements": "Habilidade 2, Magia",
+    "cost": "3PM + bônus de Magia",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Queimar o Cosmo",
+    "desc": "Você usa uma ação para queimar energia cósmica, aumentando seus três atributos em +1 para cada 5PM gastos, até o fim da cena. O bônus máximo é igual à sua Resistência original.",
+    "requirements": "Resistência 2, Luta",
+    "cost": "5 a 25PM",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Raio da Fúria",
+    "desc": "Você tem o poder de enfurecer os seres. O alvo recebe Poder +2 em testes de ataque e críticos com 5 ou 6, mas tem Perda em todos os outros testes e gasta o dobro de PM. Quando o efeito termina, o alvo fica exausto.",
+    "requirements": "Habilidade 3, Magia",
+    "cost": "10PM",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Rajada de Golpes",
+    "desc": "Você atinge o alvo com uma sequência veloz de golpes, atacando com Poder+2 e chance de crítico 5 ou 6. Você pode gastar movimentos para aumentar o Poder do ataque.",
+    "requirements": "Habilidade 2, Luta",
+    "cost": "3PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Relâmpago",
+    "desc": "Você dispara um raio elétrico. Se o alvo perde um valor de PV acima da sua Resistência, fica atordoado, dando Ganho ao oponente em todos os testes resistidos por uma rodada.",
+    "requirements": "Habilidade 2, Magia",
+    "cost": "3PM + bônus de Magia",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Role os Dados",
+    "desc": "Com um teste de Arte (9), você e todos os aliados Perto recuperam 1PA. Para cada crítico, recuperam 1PA extra. Cantar a música pode reduzir o custo.",
+    "requirements": "Habilidade 3, Arte",
+    "cost": "5 PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Sabedoria dos Ermos",
+    "desc": "Quando está na sua Arena, você pode gastar 1PM para usar um item comum, ou 3PM para um item incomum, além do que tiver no Inventário.",
+    "requirements": "Arena, Sobrevivência",
+    "cost": "1 ou 3PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Setas Infalíveis de Petrovna",
+    "desc": "Você cria setas de energia mágica que atingem automaticamente, sem teste, causando 1 ponto de dano cada. O número de setas é limitado pela sua Habilidade.",
+    "requirements": "Habilidade 1, Magia",
+    "cost": "1PM por seta",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Abrir Chakra",
+    "desc": "Você desbloqueia um chakra. Abrir o chakra usa um movimento. Até o fim da cena, você tem Ganho e um crítico automático em testes do atributo correspondente. Cada atributo tem um efeito extra: Poder (alvo tem Perda na defesa), Habilidade (movimento extra), Resistência (20PV extras e defesa perfeita). Quando o efeito termina você cai exausto.",
+    "requirements": "Atributo 4, Luta",
+    "cost": "15PM",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Bomba Vital",
+    "desc": "Você absorve energia da natureza para criar uma esfera de energia. A cada rodada se concentrando, acumula PM na bomba. Pode demorar mais para acumular mais energia. Aliados podem doar PM. O ataque final atinge todos os alvos Perto do principal com bônus de Poder igual aos PM acumulados. Após o uso, seus PM caem a zero.",
+    "requirements": "Resistência 4, Luta",
+    "cost": "Variável",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Dim Mak",
+    "desc": "Você atinge pontos de pressão, para paralisar ou matar. É um ataque com chance de crítico máxima (4, 5 ou 6). Superando a defesa, em vez de dano, o alvo perde 2 pontos em um atributo à sua escolha. Cada crítico faz perder 1 ponto adicional. Se um atributo for reduzido a 0, o alvo perde seus recursos e não pode fazer testes com ele.",
+    "requirements": "Habilidade 5, Luta",
+    "cost": "5PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Mata-Kaiju",
+    "desc": "Uma magia de destruição que requer três rodadas para ser conjurada. O teste de ataque tem dois críticos automáticos (duas escalas acima!) e atinge todos os alvos Longe do alvo principal. Todos os testes de defesa recebem duas Perdas.",
+    "requirements": "Habilidade 5, Magia",
+    "cost": "10PM + bônus de Magia",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Megalon Superior",
+    "desc": "Versão aprimorada da magia Megalon, capaz de transformar o alvo em algo titânico! O alvo é elevado uma escala acima (25PM) ou duas (50PM).",
+    "requirements": "Habilidade 6, Megalon",
+    "cost": "25 ou 50PM",
+    "duration": "Duradoura"
+  },
+  {
+    "name": "Metamagia",
+    "desc": "Você modifica os parâmetros de suas magias. Pode gastar mais PM para adicionar efeitos como: Acelerar, Alvos extras, Duplicar, Estender ou Expandir magia.",
+    "requirements": "Habilidade 5, Magia, Maestria (Mística)",
+    "cost": "Variável",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Morte Estelar",
+    "desc": "A magia mais destrutiva, consome a energia de uma estrela para destruir imediatamente o alvo, não importando ser uma criatura, cidade, planeta ou deus. Cada uso pode extinguir mundos, atraindo a ira de entidades cósmicas.",
+    "requirements": "Habilidade 9, Magia",
+    "cost": "100PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Percepção Cósmica",
+    "desc": "Você entra em um estado de conexão com o universo. Você tem Ganho e um crítico automático em todos os testes de Percepção. Pode gastar 1PM para adquirir qualquer Sentido por uma rodada, ou trocar a perícia de qualquer teste por Percepção.",
+    "requirements": "Habilidade 5, Maestria (Percepção)",
+    "cost": "5 PM para ativar, 1 PM por rodada para manter",
+    "duration": "Enquanto pagar o custo"
+  },
+  {
+    "name": "Rapsódia das Arcas",
+    "desc": "Você executa uma canção épica de 4 rodadas. A cada rodada, com um teste de Poder bem-sucedido, seus aliados Perto recebem um novo benefício cumulativo: custo de PM reduzido, recuperação de PV/PM, chance de crítico aumentada e defesa perfeita com Ganho.",
+    "requirements": "Poder 4, Maestria (Arte)",
+    "cost": "3PM por rodada",
+    "duration": "4 rodadas"
+  },
+  {
+    "name": "Sabedoria Selvagem",
+    "desc": "Quando está na sua Arena, você pode gastar 5PM para usar um item raro, ou 10PM para um item lendário, que não estão em seu Inventário.",
+    "requirements": "Habilidade 4, Sabedoria dos Ermos",
+    "cost": "5 ou 10PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Trapacear o Destino",
+    "desc": "Sempre que rolar 1 em um dado, você pode gastar 5PM para trocá-lo por um 6 (e um acerto crítico). Este custo nunca pode ser reduzido.",
+    "requirements": "Habilidade 5, Maestria (Manha)",
+    "cost": "5 a 15 PM",
+    "duration": "Instantânea"
+  },
+  {
+    "name": "Visão do Futuro",
+    "desc": "Você enxerga instantes no futuro. Sempre que alguém faz um teste contra você, pode gastar 3PM como reação para fazê-lo rolar esse teste duas vezes, e ficar com o resultado que você escolher.",
+    "requirements": "Habilidade 5",
+    "cost": "3PM",
+    "duration": "Instantânea"
+  }
 ]

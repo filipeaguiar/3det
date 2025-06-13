@@ -9,7 +9,7 @@
       "vantagens": ["Mentor", "Patrono (BUSCA)", "Voo"],
       "tecnicas": ["Barreira Mística"],
       "desvantagens": ["Código dos Heróis"],
-      "image": "elara_ventus_npc.jpg"
+      "image": "elara.jpg"
     },
     {
       "name": "Chispa",
@@ -21,6 +21,6 @@
       "vantagens": ["Gênio", "Ajudante (Drones de Reparo)", "Aceleração"],
       "tecnicas": ["Consertar"],
       "desvantagens": ["Bateria", "Distração (Coisas Brilhantes)"],
-      "image": "chispa_o_gato_foguete_npc.jpg"
+      "image": "chispa.png"
     }
   ]

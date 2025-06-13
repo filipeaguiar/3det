@@ -1,0 +1,335 @@
+   body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f1f5f9;
+      /* slate-100 */
+      color: #1e293b;
+      /* slate-800 */
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    header h1 {
+      font-family: 'Bangers', cursive;
+      letter-spacing: 0.05em;
+      /* Opcional: um pequeno espaçamento para estilizar */
+    }
+
+    /* Adicione este código ao final da sua tag <style> */
+
+    /* --- Estilos do Tracker de Encontros --- */
+    .hp-marker input[type="checkbox"],
+    .mp-marker input[type="checkbox"] {
+      display: none;
+      /* Esconde o checkbox padrão */
+    }
+
+    .hp-marker label,
+    .mp-marker label {
+      display: inline-block;
+      width: 1rem;
+      /* 16px */
+      height: 1rem;
+      /* 16px */
+      margin: 2px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    /* Cor para os bloquinhos de Vida (HP) */
+    .hp-marker label {
+      background-color: #fca5a5;
+      /* red-300 */
+    }
+
+    .hp-marker input[type="checkbox"]:checked+label {
+      background-color: #7f1d1d;
+      /* red-900 */
+      border-color: #7f1d1d;
+    }
+
+    /* Cor para os bloquinhos de Mana (MP) */
+    .mp-marker label {
+      background-color: #93c5fd;
+      /* blue-300 */
+    }
+
+    .mp-marker input[type="checkbox"]:checked+label {
+      background-color: #1e3a8a;
+      /* blue-900 */
+      border-color: #1e3a8a;
+    }
+
+    /* --- Tipografia --- */
+    .text-primary {
+      color: #1e293b;
+    }
+
+    .text-secondary {
+      color: #475569;
+    }
+
+    .text-accent {
+      color: #b45309;
+    }
+
+    /* amber-700 */
+    .text-error {
+      color: #dc2626;
+    }
+
+    /* --- Componentes de Navegação --- */
+    .nav-btn {
+      background-color: #ffffff;
+      color: #334155;
+      /* slate-700 */
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background-color: #f59e0b;
+      /* amber-500 */
+      color: #ffffff;
+    }
+
+    .nav-btn.active {
+      background-color: #f59e0b;
+      /* amber-500 */
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* --- Cards e Painéis --- */
+    .info-card {
+      background-color: #ffffff;
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .table-header {
+      background-color: #e2e8f0;
+      /* slate-200 */
+      font-weight: 600;
+    }
+
+    .dynamic-panel {
+      background-color: #e2e8f0;
+      /* slate-200 */
+      transition: background-color 0.3s ease;
+    }
+
+    .dice-span {
+      background-color: #ffffff;
+      color: #1e293b;
+      box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    }
+
+    /* --- Estilos do Livro Digital --- */
+    .book-page {
+      background-color: #ffffff;
+      color: #1e293b;
+      padding: 2rem;
+      border: 1px solid #cbd5e1;
+      min-height: 70vh;
+    }
+
+    .book-page h1,
+    .book-page h2,
+    .book-page h3 {
+      color: #b45309;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .book-page p {
+      margin-bottom: 1rem;
+      line-height: 1.75;
+    }
+
+    .book-page ul {
+      list-style-type: disc;
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    /* --- Listas e Itens Interativos --- */
+    .list-item:hover {
+      background-color: #fef3c7;
+      /* amber-100 */
+    }
+
+    .list-item.active {
+      background-color: #fef3c7;
+      /* amber-100 */
+      color: #92400e;
+      /* amber-800 */
+      font-weight: 600;
+    }
+
+    .ability-tag {
+      cursor: help;
+      border-bottom: 2px dotted #f59e0b;
+    }
+
+    #tooltip {
+      position: absolute;
+      display: none;
+      background-color: #1e293b;
+      /* Fundo escuro por padrão para alto contraste */
+      color: #f1f5f9;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      max-width: 300px;
+      z-index: 100;
+      pointer-events: none;
+    }
+
+    /* --- Animações --- */
+    .content-section {
+      display: none;
+    }
+
+    .content-section.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ==========================================================================
+           REGRAS DE MODO ESCURO (SOBRESREVEM AS REGRAS ACIMA)
+           ========================================================================== */
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #0f172a;
+        /* slate-900 */
+        color: #cbd5e1;
+        /* slate-300 */
+      }
+
+      /* --- Tipografia (Dark) --- */
+      .text-primary,
+      h1,
+      h2,
+      h3,
+      h4,
+      strong,
+      .font-semibold {
+        color: #f1f5f9;
+      }
+
+      /* slate-100 */
+      .text-secondary,
+      p,
+      td,
+      li,
+      dt,
+      dd {
+        color: #cbd5e1;
+      }
+
+      /* slate-300 */
+      .text-accent {
+        color: #f59e0b;
+      }
+
+      /* amber-500 */
+      .text-error {
+        color: #f87171;
+      }
+
+      /* --- Componentes de Navegação (Dark) --- */
+      .nav-btn {
+        background-color: #1e293b;
+        /* slate-800 */
+        color: #cbd5e1;
+        /* slate-300 */
+      }
+
+      .nav-btn:hover {
+        background-color: #f59e0b;
+        /* amber-500 */
+        color: #1e293b;
+        /* slate-800 */
+      }
+
+      .nav-btn.active {
+        background-color: #f59e0b;
+        /* amber-500 */
+        color: #1e293b;
+        /* slate-800 */
+      }
+
+      /* --- Cards e Painéis (Dark) --- */
+      .info-card {
+        background-color: #1e293b;
+        /* slate-800 */
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+      }
+
+      .table-header {
+        background-color: #334155;
+        /* slate-700 */
+      }
+
+      .dynamic-panel {
+        background-color: #0f172a;
+        /* slate-900 */
+      }
+
+      .dice-span {
+        background-color: #334155;
+        /* slate-700 */
+        color: #f1f5f9;
+      }
+
+      /* --- Estilos do Livro Digital (Dark) --- */
+      .book-page {
+        background-color: #1e293b;
+        color: #cbd5e1;
+        border-color: #334155;
+      }
+
+      .book-page h1,
+      .book-page h2,
+      .book-page h3 {
+        color: #f59e0b;
+      }
+
+      /* --- Listas e Itens Interativos (Dark) --- */
+      .list-item:hover {
+        background-color: #475569;
+        /* slate-600 */
+      }
+
+      .list-item.active {
+        background-color: #92400e;
+        /* amber-800 */
+        color: #fef3c7;
+        /* amber-100 */
+      }
+
+      /* --- Imagem Placeholder (Dark) --- */
+      img.placeholder-img {
+        background-color: #334155;
+        /* slate-700 */
+      }
+
+      .border-b,
+      .border-l-2,
+      .border {
+        border-color: #334155;
+        /* slate-700 */
+      }
+    }
