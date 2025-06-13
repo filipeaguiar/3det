@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -114,9 +115,10 @@
                 container.appendChild(card);
             }
 
-            function createCharacteristicList(title, items) {
+            function createCharacteristicList(title, items, icon, color) {
                 if (!items || items.length === 0) return '';
-                return '<p style="font-size:14px;"><strong>' + title + ':</strong> ' + items.join(', ') + '</p>';
+                var colorStyle = color ? 'style="color:' + color + ';"' : '';
+                return '<p style="font-size:14px;"><i class="fa-solid ' + icon + ' fa-fw" ' + colorStyle + '></i> <strong>' + title + ':</strong> ' + items.join(', ') + '</p>';
             }
 
             createCard('Começo Forte', 'fa-wand-sparkles', '<p class="text-secondary">' + sessionData.comecoForte + '</p>');
@@ -129,31 +131,41 @@
             var gridDiv = document.createElement('div');
             gridDiv.className = 'grid-container';
             
-            var locaisHtml = '<h4>Locais Interessantes</h4>';
+            var locaisHtml = '<h4><i class="fa-solid fa-map-location-dot"></i> Locais Interessantes</h4>';
             for (var j = 0; j < sessionData.locaisInteressantes.length; j++) {
                 var local = sessionData.locaisInteressantes[j];
-                locaisHtml += '<div style="margin-bottom:10px;"><strong>' + local.nome + '</strong><ul>'; // CORRIGIDO: de 'name' para 'nome'
+                locaisHtml += '<div style="margin-bottom:10px;"><strong>' + local.nome + '</strong><ul>';
                 for(var c = 0; c < local.caracteristicas.length; c++) {
                     locaisHtml += '<li>' + local.caracteristicas[c] + '</li>';
                 }
                 locaisHtml += '</ul></div>';
             }
 
-            var npcsHtml = '<h4>NPCs Importantes</h4>';
+            var npcsHtml = '<h4><i class="fa-solid fa-users-line"></i> NPCs Importantes</h4>';
             for (var k = 0; k < sessionData.npcsImportantes.length; k++) {
                 var npcName = sessionData.npcsImportantes[k];
                 var npcDetails = arrayFind(npcData, function(n) { return n.name.indexOf(npcName) !== -1; });
                 if (npcDetails) {
                     var stats = npcDetails.stats;
-                    var statsText = 'P' + stats.Poder + ' H' + stats.Habilidade + ' R' + stats.Resistência + ' | PV ' + stats['Pontos de Vida'] + ' PM ' + stats['Pontos de Mana'] + ' PA ' + stats['Pontos de Ação'];
+                    // BLOCO DE STATS ATUALIZADO
+                    var statsHtml = '<div style="font-size:14px; margin-top:4px; line-height: 1.8;">' +
+                        '<span style="margin-right:12px;"><i class="fa-solid fa-hand-fist" title="Poder"></i> ' + stats.Poder + '</span>' +
+                        '<span style="margin-right:12px;"><i class="fa-solid fa-brain" title="Habilidade"></i> ' + stats.Habilidade + '</span>' +
+                        '<span style="margin-right:12px;"><i class="fa-solid fa-shield-halved" title="Resistência"></i> ' + stats.Resistência + '</span>' +
+                        '<br>' +
+                        '<span style="margin-right:12px;"><i class="fa-solid fa-heart-pulse" style="color:#b91c1c;" title="Pontos de Vida"></i> ' + stats['Pontos de Vida'] + '</span>' +
+                        '<span style="margin-right:12px;"><i class="fa-solid fa-wand-magic-sparkles" style="color:#1e40af;" title="Pontos de Mana"></i> ' + stats['Pontos de Mana'] + '</span>' +
+                        '<span style="margin-right:12px;"><i class="fa-solid fa-bolt" style="color:#f59e0b;" title="Pontos de Ação"></i> ' + stats['Pontos de Ação'] + '</span>' +
+                        '</div>';
+                    
                     npcsHtml += '<div style="margin-bottom: 12px;">' +
-                                    '<p><strong>' + npcDetails.name + '</strong></p>' +
+                                    '<p><strong><i class="fa-solid fa-id-badge"></i> ' + npcDetails.name + '</strong></p>' +
                                     '<div style="padding-left:15px; color:#475569;">' +
-                                    '<p style="font-size:14px;">' + statsText + '</p>' +
-                                    createCharacteristicList('Perícias', npcDetails.pericias) +
-                                    createCharacteristicList('Vantagens', npcDetails.vantagens) +
-                                    createCharacteristicList('Técnicas', npcDetails.tecnicas) +
-                                    createCharacteristicList('Desvantagens', npcDetails.desvantagens) +
+                                    statsHtml +
+                                    createCharacteristicList('Perícias', npcDetails.pericias, 'fa-graduation-cap') +
+                                    createCharacteristicList('Vantagens', npcDetails.vantagens, 'fa-thumbs-up', '#16a34a') +
+                                    createCharacteristicList('Técnicas', npcDetails.tecnicas, 'fa-wand-sparkles', '#3b82f6') +
+                                    createCharacteristicList('Desvantagens', npcDetails.desvantagens, 'fa-thumbs-down', '#b91c1c') +
                                     '</div></div>';
                 }
             }
@@ -163,7 +175,6 @@
             gridCard.appendChild(gridDiv);
             container.appendChild(gridCard);
             
-            // --- TRACKER DE ENCONTROS (LÓGICA CORRIGIDA) ---
             var monstersToRender = [];
             for (var l = 0; l < sessionData.encontrosDesafios.length; l++) {
                 var encounter = sessionData.encontrosDesafios[l];
@@ -192,9 +203,8 @@
                 var trackerHtml = '';
                 for (var n = 0; n < monstersToRender.length; n++) {
                     var monster = monstersToRender[n];
-                    var hpMarkers = '';
+                    var hpMarkers = '', mpMarkers = '';
                     for (var h = 0; h < monster.hp; h++) { hpMarkers += '<div class="hp-marker"><input type="checkbox" id="hp-' + n + '-' + h + '"><label for="hp-' + n + '-' + h + '"></label></div>'; }
-                    var mpMarkers = '';
                     for (var p = 0; p < monster.mp; p++) { mpMarkers += '<div class="mp-marker"><input type="checkbox" id="mp-' + n + '-' + p + '"><label for="mp-' + n + '-' + p + '"></label></div>'; }
                     
                     var totalInstances = 0;
@@ -203,11 +213,11 @@
                     }
 
                     trackerHtml += '<div style="margin-bottom:12px; border-bottom:1px solid #e2e8f0; padding-bottom:8px;">' +
-                        '<h4>' + monster.name + ' ' + (totalInstances > 1 ? monster.instance : '') + '</h4>' +
+                        '<h4><i class="fa-solid fa-skull"></i> ' + monster.name + ' ' + (totalInstances > 1 ? monster.instance : '') + '</h4>' +
                         '<div style="padding-left:15px; color:#475569;">' +
-                        '<p style="font-size:14px;"><strong>Stats:</strong> ' + monster.statsString + '</p>' +
-                        createCharacteristicList('Vantagens', monster.vantagens) +
-                        createCharacteristicList('Desvantagens', monster.desvantagens) +
+                        '<p style="font-size:14px;"><strong><i class="fa-solid fa-shield-halved"></i> Stats:</strong> ' + monster.statsString + '</p>' +
+                        createCharacteristicList('Vantagens', monster.vantagens, 'fa-thumbs-up', '#16a34a') +
+                        createCharacteristicList('Desvantagens', monster.desvantagens, 'fa-thumbs-down', '#b91c1c') +
                         '</div>' +
                         '<div style="font-size:0; margin-top:8px;"><strong style="font-size:16px;display:inline-block;width:40px; vertical-align:middle;">PV:</strong><div style="font-size:0;display:inline-block;vertical-align:middle;">' + hpMarkers + '</div></div>' +
                         '<div style="font-size:0;"><strong style="font-size:16px;display:inline-block;width:40px; vertical-align:middle;">PM:</strong><div style="font-size:0;display:inline-block;vertical-align:middle;">' + mpMarkers + '</div></div>' +
