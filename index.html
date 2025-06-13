@@ -375,8 +375,7 @@
       <p class="text-lg text-secondary uppercase tracking-widest mt-1">3DeT Victory</p>
     </header>
 
-    <nav id="navigation" class="flex flex-wrap justify-center gap-2 mb-8">
-      <button data-target="basico" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+    <nav id="navigation" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-8">      <button data-target="basico" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
         <i class="fa-solid fa-dice-d6 fa-fw"></i>
         <span class="hidden sm:inline">Testes</span>
       </button>
@@ -388,6 +387,10 @@
         <i class="fa-solid fa-person-running fa-fw"></i>
         <span class="hidden sm:inline">Manobras</span>
       </button>
+        <button data-target="regras" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
+    <i class="fa-solid fa-book fa-fw"></i>
+    <span class="hidden sm:inline">Regras</span>
+</button>
       <button data-target="personagens" class="nav-btn flex items-center gap-x-2 px-4 py-2 rounded-lg shadow-sm">
         <i class="fa-solid fa-users fa-fw"></i>
         <span class="hidden sm:inline">Personagens</span>
@@ -871,7 +874,28 @@
           </div>
         </div>
       </section>
+<section id="regras" class="content-section">
+    <div class="info-card p-4 sm:p-6 rounded-lg shadow">
+        
+        <div class="relative mb-6">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <i class="fa-solid fa-search text-slate-400"></i>
+            </span>
+            <input type="search" id="regras-search-input" placeholder="Buscar por nome em todas as categorias..." 
+                   class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400">
+        </div>
 
+        <div id="regras-nav" class="flex flex-wrap justify-center gap-2 mb-6 border-b-2 border-amber-500 pb-4">
+            </div>
+
+        <div id="regras-content">
+            </div>
+        
+        <div id="regras-search-results" class="hidden">
+            </div>
+
+    </div>
+</section>
       <section id="bestiario" class="content-section">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="md:col-span-1 info-card p-4 rounded-lg shadow max-h-[600px] overflow-y-auto">
@@ -1131,6 +1155,104 @@
       document.querySelector(`#player-list .list-item[data-id="${playerName}"]`).classList.add('active');
     }
 
+function loadRules(pericias, vantagens, desvantagens, tecnicas) {
+    const regrasNav = document.getElementById('regras-nav');
+    const regrasContent = document.getElementById('regras-content');
+    const searchInput = document.getElementById('regras-search-input');
+    const searchResultsContainer = document.getElementById('regras-search-results');
+
+    const ruleCategories = {
+        'Perícias': { data: pericias, icon: 'fa-graduation-cap', color: 'text-slate-500' },
+        'Vantagens': { data: vantagens, icon: 'fa-thumbs-up', color: 'text-green-600' },
+        'Desvantagens': { data: desvantagens, icon: 'fa-thumbs-down', color: 'text-red-600' },
+        'Técnicas': { data: tecnicas, icon: 'fa-wand-sparkles', color: 'text-blue-500' }
+    };
+
+    // 1. AGREGA TODAS AS REGRAS EM UMA ÚNICA LISTA PARA A BUSCA
+    const allRules = [];
+    for (const categoryName in ruleCategories) {
+        const category = ruleCategories[categoryName];
+        category.data.forEach(item => {
+            allRules.push({
+                ...item, // Copia as propriedades existentes (name, desc, cost)
+                categoryName: categoryName,
+                icon: category.icon,
+                color: category.color
+            });
+        });
+    }
+
+    // Função para gerar o HTML de uma lista de regras
+    const generateRuleListHtml = (items, useCategoryIcon = false) => {
+        if (!items || items.length === 0) {
+            return '<p class="text-secondary text-center mt-4">Nenhum resultado encontrado.</p>';
+        }
+        items.sort((a, b) => a.name.localeCompare(b.name));
+        return items.map(item => `
+            <div class="mb-4 pb-4 border-b border-slate-200 dark:border-slate-700 last:border-b-0">
+                <dt class="font-bold text-lg text-primary flex items-center gap-x-3">
+                    <i class="fa-solid ${item.icon} fa-fw ${item.color} text-xl"></i>
+                    <span>${item.name} ${item.cost ? `(${item.cost})` : ''}</span>
+                </dt>
+                <dd class="text-base text-secondary mt-1 pl-8 leading-relaxed">${item.desc}</dd>
+            </div>
+        `).join('');
+    };
+
+    // 2. LÓGICA DAS ABAS (semelhante à anterior)
+    regrasNav.innerHTML = '';
+    regrasContent.innerHTML = '';
+    for (const categoryName in ruleCategories) {
+        const category = ruleCategories[categoryName];
+        const button = document.createElement('button');
+        button.className = 'nav-btn px-4 py-2 rounded-lg text-sm flex items-center gap-x-2';
+        button.dataset.target = `regras-${categoryName.toLowerCase()}`;
+        button.innerHTML = `<i class="fa-solid ${category.icon} fa-fw ${category.color}"></i> <span>${categoryName}</span>`;
+        regrasNav.appendChild(button);
+
+        const contentDiv = document.createElement('div');
+        contentDiv.id = `regras-${categoryName.toLowerCase()}`;
+        contentDiv.className = 'rule-content hidden mt-6';
+        contentDiv.innerHTML = `<dl>${generateRuleListHtml(category.data)}</dl>`;
+        regrasContent.appendChild(contentDiv);
+    }
+    regrasNav.addEventListener('click', (e) => {
+        const button = e.target.closest('button');
+        if (button) {
+            regrasContent.querySelectorAll('.rule-content').forEach(div => div.classList.add('hidden'));
+            regrasNav.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+            const targetId = button.dataset.target;
+            const contentToShow = document.getElementById(targetId);
+            if(contentToShow) {
+                contentToShow.classList.remove('hidden');
+                contentToShow.style.animation = 'fadeIn 0.5s ease-in-out';
+            }
+            button.classList.add('active');
+        }
+    });
+    const firstButton = regrasNav.querySelector('button');
+    if (firstButton) { firstButton.click(); }
+
+    // 3. NOVA LÓGICA DA CAIXA DE BUSCA
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim().toLowerCase();
+
+        if (query) {
+            // Se há texto na busca, esconde as abas e mostra os resultados
+            regrasNav.classList.add('hidden');
+            regrasContent.classList.add('hidden');
+            searchResultsContainer.classList.remove('hidden');
+
+            const filteredRules = allRules.filter(rule => rule.name.toLowerCase().includes(query));
+            searchResultsContainer.innerHTML = generateRuleListHtml(filteredRules);
+        } else {
+            // Se a busca está vazia, volta para a visualização de abas
+            regrasNav.classList.remove('hidden');
+            regrasContent.classList.remove('hidden');
+            searchResultsContainer.classList.add('hidden');
+        }
+    });
+}
     function displayNpc(npcName) {
       const npcDetails = document.getElementById('npc-details');
       const npc = npcData.find(n => n.name === npcName);
@@ -1157,8 +1279,8 @@
       let desvantagensHtml = createListHtml(npc.desvantagens, desvantagensData);
 
       const iconMap = {
-        "Poder": "fa-hand-fist", "Habilidade": "fa-brain", "Resistência": "fa-shield-halved",
-        "Pontos de Vida": "fa-heart-pulse", "Pontos de Mana": "fa-wand-magic-sparkles", "Pontos de Ação": "fa-bolt"
+        "Poder": "fa-hand-fist", "Habilidade": "fa-brain", "Resistência": "fa-shield-halved", "Pontos de Ação": "fa-bolt",
+         "Pontos de Mana": "fa-wand-magic-sparkles", "Pontos de Vida": "fa-heart-pulse" 
       };
       const statsCardsHtml = Object.entries(npc.stats).map(([statName, statValue]) => {
         const iconClass = iconMap[statName] || 'fa-question-circle';
@@ -1294,8 +1416,34 @@
         const npcsContent = data.npcsImportantes.map(npcName => {
           const npcFullData = npcData.find(n => n.name.includes(npcName));
           if (npcFullData) {
-            const statsLineHtml = `<div class="flex items-center flex-wrap gap-x-3 gap-y-1 text-xs text-secondary my-1"><span class="flex items-center gap-x-1" title="Poder"><i class="fa-solid fa-hand-fist fa-fw text-slate-500"></i><span>${npcFullData.stats.Poder}</span></span><span class="flex items-center gap-x-1" title="Habilidade"><i class="fa-solid fa-brain fa-fw text-slate-500"></i><span>${npcFullData.stats.Habilidade}</span></span><span class="flex items-center gap-x-1" title="Resistência"><i class="fa-solid fa-shield-halved fa-fw text-slate-500"></i><span>${npcFullData.stats.Resistência}</span></span><span class="flex items-center gap-x-1" title="Pontos de Vida"><i class="fa-solid fa-heart-pulse fa-fw text-red-500"></i><span>${npcFullData.stats['Pontos de Vida']}</span></span><span class="flex items-center gap-x-1" title="Pontos de Mana"><i class="fa-solid fa-wand-magic-sparkles fa-fw text-blue-500"></i><span>${npcFullData.stats['Pontos de Mana']}</span></span><span class="flex items-center gap-x-1" title="Pontos de Ação"><i class="fa-solid fa-bolt fa-fw text-yellow-500"></i><span>${npcFullData.stats['Pontos de Ação']}</span></span></div>`;
-            const createCharacteristicList = (title, items, icon, colorClass) => {if (!items || items.length === 0) return ''; return `<p class="text-xs text-secondary my-1"><i class="fa-solid ${icon} fa-fw ${colorClass || 'text-slate-500'}"></i> <b>${title}:</b> ${items.join(', ')}</p>`;};
+const statsLineHtml = `
+    <div class="flex items-center flex-wrap gap-x-3 gap-y-1 text-xs text-secondary my-1">
+        <span class="flex items-center gap-x-1" title="Poder">
+            <i class="fa-solid fa-hand-fist fa-fw text-slate-500"></i>
+            <span>${npcFullData.stats.Poder}</span>
+        </span>
+        <span class="flex items-center gap-x-1" title="Habilidade">
+            <i class="fa-solid fa-brain fa-fw text-slate-500"></i>
+            <span>${npcFullData.stats.Habilidade}</span>
+        </span>
+        <span class="flex items-center gap-x-1" title="Resistência">
+            <i class="fa-solid fa-shield-halved fa-fw text-slate-500"></i>
+            <span>${npcFullData.stats.Resistência}</span>
+        </span>
+        <span class="flex items-center gap-x-1" title="Pontos de Ação">
+            <i class="fa-solid fa-bolt fa-fw text-yellow-500"></i>
+            <span>${npcFullData.stats['Pontos de Ação']}</span>
+        </span>
+        <span class="flex items-center gap-x-1" title="Pontos de Mana">
+            <i class="fa-solid fa-wand-magic-sparkles fa-fw text-blue-500"></i>
+            <span>${npcFullData.stats['Pontos de Mana']}</span>
+        </span>
+        <span class="flex items-center gap-x-1" title="Pontos de Vida">
+            <i class="fa-solid fa-heart-pulse fa-fw text-red-500"></i>
+            <span>${npcFullData.stats['Pontos de Vida']}</span>
+        </span>
+    </div>
+`;            const createCharacteristicList = (title, items, icon, colorClass) => {if (!items || items.length === 0) return ''; return `<p class="text-xs text-secondary my-1"><i class="fa-solid ${icon} fa-fw ${colorClass || 'text-slate-500'}"></i> <b>${title}:</b> ${items.join(', ')}</p>`;};
             const periciasLine = createCharacteristicList("Perícias", npcFullData.pericias, "fa-graduation-cap");
             const vantagensLine = createCharacteristicList("Vantagens", npcFullData.vantagens, "fa-thumbs-up", "text-green-600");
             const tecnicasLine = createCharacteristicList("Técnicas", npcFullData.tecnicas, "fa-wand-sparkles", "text-blue-500");
@@ -1475,7 +1623,7 @@
         populatePlayerList();
         populateBestiaryList();
         populateNpcList();
-
+        loadRules(pericias, vantagens, desvantagens, tecnicas);
         loadSession();
 
         const urlParams = new URLSearchParams(window.location.search);
