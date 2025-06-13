@@ -5,7 +5,7 @@ const CACHE_NAME = '3det-escudo-mestre-v1.1';
 
 // Lista de arquivos essenciais da aplicação para serem cacheados na instalação.
 const STATIC_ASSETS = [
-  '/',
+  '/3det/',
   'index.html',
   'style.css',
   'script.js',
