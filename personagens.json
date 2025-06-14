@@ -1,32 +1,34 @@
 [
     {
-        "name": "João",
-        "archetype": "Humano",
-        "concept": "O Guerreiro da Sombra",
-        "stats": {
-            "Poder": 3,
-            "Habilidade": 3,
-            "Resistência": 2,
-            "Pontos de Ação": 3,
-            "Pontos de Mana": 15,
-            "Pontos de Vida": 10
-        },
-        "pontos": "10pt",
-        "pericias": [
-            "Mística"
-        ],
-        "vantagens": [
-            "Mais Além",
-            "Magia",
-            "Brutal (Mana)"
-        ],
-        "tecnicas": [],
-        "desvantagens": [
-            "Código (Heróis)",
-            "Código (Honestidade)"
-        ],
-        "image": "joao.jpg"
+    "name": "João",
+    "archetype": "Humano",
+    "concept": "Guerreiro da Sombra",
+    "stats": {
+        "Poder": 3,
+        "Habilidade": 3,
+        "Resistência": 2,
+        "Pontos de Vida": 10,
+        "Pontos de Mana": 15,
+        "Pontos de Ação": 3
     },
+    "pontos": "11pt",
+    "pericias": [
+        "Luta"
+    ],
+    "vantagens": [
+        "Mais Além",
+        "Brutal (Mana)",
+        "Ataque Especial (Potente ×2)"
+    ],
+    "tecnicas": [
+        "Queimar o Cosmo"
+    ],
+    "desvantagens": [
+        "Código (Heróis)",
+        "Código (Honestidade)"
+    ],
+    "image": "joao.jpg"
+},
     {
         "name": "Arco-Íris",
         "archetype": "Humano",
