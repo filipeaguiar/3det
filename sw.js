@@ -1,95 +1,91 @@
-
 // Define o nome e a versão do cache.
-// Mude a versão sempre que atualizar os arquivos para forçar o cache a se atualizar.
-const CACHE_NAME = '3det-escudo-mestre-v1.1';
+const CACHE_NAME = '3det-escudo-mestre-v1.3-gh'; 
+const BASE_PATH = '/3det/';
 
-// Lista de arquivos essenciais da aplicação para serem cacheados na instalação.
-const STATIC_ASSETS = [
-  '/3det/',
-  'index.html',
-  'style.css',
-  'script.js',
-  'manifest.json',
-  'icons/apple-touch-icon.png',
-  // Adicione aqui os caminhos para as imagens que você SEMPRE quer disponíveis offline.
-  // Ex: 'img/joao.jpg', 'img/arco-iris.jpg', etc.
+// Arquivos da "casca" da aplicação. São cacheados na instalação.
+const APP_SHELL_ASSETS = [
+    BASE_PATH,
+    BASE_PATH + 'index.html',
+    BASE_PATH + 'style.css',
+    BASE_PATH + 'script.js',
+    BASE_PATH + 'manifest.json',
+    BASE_PATH + 'icons/apple-touch-icon.png'
 ];
 
-// --- FASE DE INSTALAÇÃO: Cacheia os arquivos estáticos ---
+// --- FASE DE INSTALAÇÃO: Cacheia a casca da aplicação ---
 self.addEventListener('install', function(event) {
-  console.log('[Service Worker] Instalando...');
-
-  // O service worker espera até que o cache seja completamente populado.
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      console.log('[Service Worker] Cacheando arquivos estáticos...');
-      return cache.addAll(STATIC_ASSETS);
-    })
-  );
-
-  self.skipWaiting();
+    console.log('[Service Worker] Instalando nova versão...');
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(function(cache) {
+            console.log('[Service Worker] Cacheando a casca da aplicação...');
+            return cache.addAll(APP_SHELL_ASSETS);
+        })
+    );
+    self.skipWaiting();
 });
 
 // --- FASE DE ATIVAÇÃO: Limpa caches antigos ---
 self.addEventListener('activate', function(event) {
-  console.log('[Service Worker] Ativando...');
-
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.map(function(cacheName) {
-          // Se o nome do cache for diferente da versão atual, ele é deletado.
-          if (cacheName !== CACHE_NAME) {
-            console.log('[Service Worker] Deletando cache antigo:', cacheName);
-            return caches.delete(cacheName);
-          }
+    console.log('[Service Worker] Ativando nova versão...');
+    event.waitUntil(
+        caches.keys().then(function(cacheNames) {
+            return Promise.all(
+                cacheNames.map(function(cacheName) {
+                    if (cacheName !== CACHE_NAME) {
+                        console.log('[Service Worker] Deletando cache antigo:', cacheName);
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
         })
-      );
-    })
-  );
-
-  return self.clients.claim();
+    );
+    return self.clients.claim();
 });
 
-// --- FASE DE FETCH: Intercepta as requisições e serve do cache ---
+// --- FASE DE FETCH: Intercepta as requisições ---
 self.addEventListener('fetch', function(event) {
-  const requestUrl = new URL(event.request.url);
+    const requestUrl = new URL(event.request.url);
 
-  // Estratégia para imagens: Cache First, then Network
-  // Ideal para conteúdo que não muda com frequência.
-  if (requestUrl.pathname.startsWith('/img/')) {
+    // Ignora requisições de outros domínios
+    if (requestUrl.origin !== location.origin) {
+        return;
+    }
+
+    // Estratégia: Stale-While-Revalidate para dados (JSON, MD)
+    // Responde imediatamente com o cache, mas atualiza em segundo plano.
+    if (requestUrl.pathname.endsWith('.json') || requestUrl.pathname.endsWith('.md')) {
+        event.respondWith(
+            caches.open(CACHE_NAME).then(function(cache) {
+                return cache.match(event.request).then(function(cachedResponse) {
+                    const fetchPromise = fetch(event.request).then(function(networkResponse) {
+                        cache.put(event.request, networkResponse.clone());
+                        return networkResponse;
+                    });
+                    
+                    // Retorna a resposta do cache imediatamente (se existir),
+                    // enquanto a requisição de rede acontece em segundo plano.
+                    return cachedResponse || fetchPromise;
+                });
+            })
+        );
+        return;
+    }
+
+    // Estratégia: Cache First para o resto (App Shell, Imagens)
+    // Responde com o cache. Se não encontrar, busca na rede e adiciona ao cache.
     event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return cache.match(event.request).then(function(cachedResponse) {
-          // Se a imagem estiver no cache, retorna a versão cacheada.
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-
-          // Se não, busca na rede, retorna e adiciona ao cache para a próxima vez.
-          return fetch(event.request).then(function(networkResponse) {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
-        });
-      })
+        caches.match(event.request).then(function(cachedResponse) {
+            if (cachedResponse) {
+                return cachedResponse;
+            }
+            return fetch(event.request).then(function(networkResponse) {
+                return caches.open(CACHE_NAME).then(function(cache) {
+                    // Cacheia novas imagens e outros recursos conforme são solicitados
+                    cache.put(event.request, networkResponse.clone());
+                    return networkResponse;
+                });
+            });
+        })
     );
-    return;
-  }
-
-  // Estratégia para arquivos da aplicação e JSONs: Network First, then Cache
-  // Garante que o usuário sempre veja a versão mais recente dos dados, se online.
-  event.respondWith(
-    fetch(event.request).then(function(networkResponse) {
-      // Se a requisição à rede foi bem sucedida, clona e guarda no cache.
-      return caches.open(CACHE_NAME).then(function(cache) {
-        cache.put(event.request, networkResponse.clone());
-        return networkResponse;
-      });
-    }).catch(function() {
-      // Se a rede falhar, tenta pegar a versão que está no cache.
-      return caches.match(event.request);
-    })
-  );
 });
 
