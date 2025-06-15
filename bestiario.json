@@ -9,7 +9,7 @@
       "vantagens": ["Aceleração", "Confusão"],
       "tecnicas": [],
       "desvantagens": ["Monstruoso"],
-      "image": "fragmento_caotico.png"
+      "image": "fragmento_caotico.jpg"
     },
     {
       "name": "Guardião Entrópico",
@@ -21,7 +21,7 @@
       "vantagens": ["Ataque Especial (Área)", "Paralisia", "Aura (-1pt)"],
       "tecnicas": [],
       "desvantagens": ["Restrição (Não pode sair de sua sala)"],
-      "image": "guardiao_entropico.png"
+      "image": "guardiao_entropico.jpg"
     },
     {
       "name": "Eco-Sombra Rastejante",
@@ -33,7 +33,7 @@
       "vantagens": ["Ataque Especial (Espiritual)", "Invisível"],
       "tecnicas": [],
       "desvantagens": ["Fraqueza (Luz Forte)"],
-      "image": "sombra.png"
+      "image": "sombra.jpg"
     },
 {
   "name": "Cactolem, o Guardião Entrópico",
