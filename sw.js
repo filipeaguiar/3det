@@ -1,9 +1,5 @@
 // Define o nome e a versão do cache.
-<<<<<<< Updated upstream
-const CACHE_NAME = '3det-escudo-mestre-v1.4-gh'; 
-=======
 const CACHE_NAME = '3det-escudo-mestre-v1.5-gh';
->>>>>>> Stashed changes
 const BASE_PATH = '/3det/';
 
 // Arquivos da "casca" da aplicação. São cacheados na instalação.
