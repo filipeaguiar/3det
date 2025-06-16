@@ -1,62 +1,94 @@
 [
     {
-    "name": "João",
-    "archetype": "Humano",
-    "concept": "Guerreiro da Sombra",
-    "stats": {
-        "Poder": 3,
-        "Habilidade": 3,
-        "Resistência": 2,
-        "Pontos de Vida": 10,
-        "Pontos de Mana": 15,
-        "Pontos de Ação": 3
+        "name": "João",
+        "archetype": "Humano",
+        "concept": "Guerreiro da Sombra",
+        "stats": {
+            "Poder": 3,
+            "Habilidade": 3,
+            "Resistência": 2,
+            "Pontos de Vida": 10,
+            "Pontos de Mana": 15,
+            "Pontos de Ação": 3
+        },
+        "pontos": "12pt",
+        "pericias": [
+            "Luta"
+        ],
+        "vantagens": [
+            "Mais Além",
+            "Brutal (Mana)",
+            "Ataque Especial (Potente ×2)",
+            "Invisível (1pt)"
+        ],
+        "tecnicas": [
+            "Queimar o Cosmo"
+        ],
+        "desvantagens": [
+            "Código (Heróis)",
+            "Código (Honestidade)"
+        ],
+        "image": "joao.jpg"
     },
-    "pontos": "11pt",
-    "pericias": [
-        "Luta"
-    ],
-    "vantagens": [
-        "Mais Além",
-        "Brutal (Mana)",
-        "Ataque Especial (Potente ×2)"
-    ],
-    "tecnicas": [
-        "Queimar o Cosmo"
-    ],
-    "desvantagens": [
-        "Código (Heróis)",
-        "Código (Honestidade)"
-    ],
-    "image": "joao.jpg"
-},
     {
-    "name": "Arco-Íris",
-    "archetype": "Humano",
-    "concept": "O Fogo da Alegria",
-    "stats": {
-        "Poder": 3,
-        "Habilidade": 3,
-        "Resistência": 2,
-        "Pontos de Vida": 10,
-        "Pontos de Mana": 15,
-        "Pontos de Ação": 3
+        "name": "Arco-Íris",
+        "archetype": "Humano",
+        "concept": "O Fogo da Alegria",
+        "stats": {
+            "Poder": 3,
+            "Habilidade": 3,
+            "Resistência": 2,
+            "Pontos de Vida": 10,
+            "Pontos de Mana": 15,
+            "Pontos de Ação": 3
+        },
+        "pontos": "12pt",
+        "pericias": [
+            "Luta"
+        ],
+        "vantagens": [
+            "Mais Além",
+            "Alcance (1pt)",
+            "Ataque Especial (Área, Potente, Perigoso)",
+            "Forte"
+        ],
+        "tecnicas": [],
+        "desvantagens": [
+            "Código (Heróis)",
+            "Código (Honestidade)"
+        ],
+        "image": "arco-iris.jpg"
     },
-    "pontos": "11pt",
-    "pericias": [
-        "Luta"
-    ],
-    "vantagens": [
-        "Mais Além",
-        "Alcance (1pt)",
-        "Ataque Especial (Área, Potente, Perigoso)"
-    ],
-    "tecnicas": [],
-    "desvantagens": [
-        "Código (Heróis)",
-        "Código (Honestidade)"
-    ],
-    "image": "arco-iris.jpg"
-}
-
-
+    {
+        "name": "Natasha",
+        "archetype": "Humano",
+        "concept": "Atiradora Furtiva",
+        "stats": {
+            "Poder": 1,
+            "Habilidade": 4,
+            "Resistência": 3,
+            "Pontos de Vida": 15,
+            "Pontos de Mana": 20,
+            "Pontos de Ação": 1
+        },
+        "pontos": "14pt",
+        "pericias": [
+            "Saber",
+            "Luta"
+        ],
+        "vantagens": [
+            "Mais Além",
+            "Voo",
+            "Invisível (1pt)",
+            "Estender",
+            "Alcance (1pt)",
+            "Ataque Especial (Preciso)"
+        ],
+        "tecnicas": [],
+        "desvantagens": [
+            "Utensílio (-1pt)",
+            "Código (Código dos Heróis)"
+        ],
+        "image": "natasha.jpg"
+    }
 ]

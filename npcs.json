@@ -1,26 +1,32 @@
 [
-    {
-      "name": "Elara Ventus",
-      "archetype": "Elfa dos Céus",
-      "concept": "Uma estudiosa e guia especializada em fenômenos planares, que se sente mais em casa flutuando entre mapas do que enfrentando monstros.",
-      "stats": { "Poder": 0, "Habilidade": 4, "Resistência": 1, "Pontos de Ação": 1, "Pontos de Mana": 20, "Pontos de Vida": 5 },
-      "pontos": "5pt",
-      "pericias": ["Mística", "Saber"],
-      "vantagens": ["Mentor", "Patrono (BUSCA)", "Voo"],
-      "tecnicas": ["Barreira Mística"],
-      "desvantagens": ["Código dos Heróis"],
-      "image": "elara.jpg"
+   {
+    "name": "Chispa",
+    "archetype": "Construto",
+    "concept": "Mecha de 2,5m robusto e protetor, pilotado pelo gatinho genial e genioso Chispa. Desempenha a função de tanque, protegendo seus aliados com sua resistência e provocando inimigos.",
+    "stats": {
+        "Poder": 3,
+        "Habilidade": 3,
+        "Resistência": 4,
+        "Pontos de Ação": 3,
+        "Pontos de Mana": 15,
+        "Pontos de Vida": 20
     },
-    {
-      "name": "Chispa",
-      "archetype": "Kemono (Gato-Ciborgue)",
-      "concept": "Um gato falante geniozinho que aprimorou seu corpo com peças robóticas para acompanhar suas invenções, mas que ainda se distrai com um bom novelo de lã.",
-      "stats": { "Poder": 1, "Habilidade": 3, "Resistência": 2, "Pontos de Ação": 1, "Pontos de Mana": 15, "Pontos de Vida": 10 },
-      "pontos": "6pt",
-      "pericias": ["Máquinas"],
-      "vantagens": ["Gênio", "Ajudante (Drones de Reparo)", "Aceleração"],
-      "tecnicas": ["Consertar"],
-      "desvantagens": ["Bateria", "Distração (Coisas Brilhantes)"],
-      "image": "chispa.jpg"
-    }
-  ]
+    "pontos": "12pt",
+    "pericias": [
+        "Máquinas"
+    ],
+    "vantagens": [
+        "Imune (Abiótico, Doenças, Resiliente, Sem Mente)",
+        "Defesa Especial (Provocação)",
+        "Kit: Tanque"
+    ],
+    "tecnicas": [],
+    "desvantagens": [
+        "Sem Vida",
+        "Bateria",
+        "Diferente",
+        "Ponto Fraco"
+    ],
+    "image": "chispa.jpg"
+}
+]

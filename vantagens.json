@@ -293,5 +293,365 @@
         "name": "Voo",
         "cost": "1pt",
         "desc": "Você pode voar! Ao usar um movimento para ficar Longe ou mais distante pelo ar, apenas personagens que também possam voar poderão usar movimentos para alcançá-lo. Além disso, você ignora certas restrições causadas por terrenos difíceis. Em combate, levantar voo quando você está no chão usa um movimento e gasta 2PM. Você não precisa gastar mais PM para manter-se no ar, mas gasta se quiser levantar voo novamente após pousar."
-    }
+    },
+  {
+    "name": "Kit: Abastado",
+    "desc": "Empresários e herdeiros que usam sua riqueza para financiar aventuras, seja para aumentar a fortuna ou para causas nobres. Concedem os poderes Meritocracia, Poder Aquisitivo e Tempo é Dinheiro!",
+    "cost": "1 ponto",
+    "requirements": "Influência ou Manha; Riqueza"
+  },
+  {
+    "name": "Kit: Agente Secreto",
+    "desc": "Espiões com treinamento e equipamentos de ponta, especializados em missões de infiltração, sabotagem e coleta de informações. Concedem os poderes Identidade Secreta, Olho Clínico e Plano de Ação.",
+    "cost": "1 ponto",
+    "requirements": "Manha ou Percepção; Patrono"
+  },
+  {
+    "name": "Kit: Alquimista",
+    "desc": "Um tipo especial de conjurador que usa diagramas e fórmulas para transmutar os elementos, seguindo a lei da troca equivalente. Concedem os poderes Diagrama, Diagrama Pessoal e Troca Equivalente.",
+    "cost": "1 ponto",
+    "requirements": "Mística, Saber"
+  },
+  {
+    "name": "Kit: Artista Marcial",
+    "desc": "Mestres de estilos de luta milenares que buscam a perfeição do combate através da disciplina e do treinamento. Concedem os poderes Kata, Montagem de Treino e Lutarei para Conseguir!",
+    "cost": "1 ponto",
+    "requirements": "Luta"
+  },
+  {
+    "name": "Kit: Ás Advogado",
+    "desc": "Campeões da justiça nos tribunais, que usam a lei e a retórica como armas para proteger os inocentes e punir os culpados. Concedem os poderes Coleta de Provas, Embargo e Objeção!",
+    "cost": "1 ponto",
+    "requirements": "Influência, Defesa Especial (Reflexão)"
+  },
+  {
+    "name": "Kit: Atirador de Elite",
+    "desc": "Especialistas em combate a longa distância que eliminam alvos de forma limpa e rápida, preferindo atuar de locais escondidos. Concedem os poderes Mira Perfeita, Posição Vantajosa e Um Tiro, Duas Mortes.",
+    "cost": "1 ponto",
+    "requirements": "Manha; Alcance 2"
+  },
+  {
+    "name": "Kit: Bárbaro",
+    "desc": "Guerreiros rústicos e indomáveis que extraem força da sua ligação com a natureza e de uma fúria primeva em combate. Concedem os poderes Espírito Livre, Frenesi de Combate e Resistência Superior.",
+    "cost": "1 ponto",
+    "requirements": "Sobrevivência; Vigoroso"
+  },
+  {
+    "name": "Kit: Caça-Prêmios",
+    "desc": "Aventureiros profissionais que vivem de contratos para rastrear e capturar criminosos ou monstros. Concedem os poderes Ataque Subjugante, Contrato e Mural de Recompensas.",
+    "cost": "1 ponto",
+    "requirements": "Percepção, Manha ou Sobrevivência"
+  },
+  {
+    "name": "Kit: CARD Gamer",
+    "desc": "Jogadores habilidosos que manifestam o poder de cartas mágicas no mundo real, conjurando efeitos e criaturas. Concedem os poderes Caiu na Armadilha!, Carta na Manga e Escolha uma Carta.",
+    "cost": "1 ponto",
+    "requirements": "Magia, Mística, Utensílio"
+  },
+  {
+    "name": "Kit: Cavaleiro",
+    "desc": "Guerreiros guiados por um rígido código de honra, que atuam como bastiões de virtude e proteção para os fracos. Concedem os poderes Armadura Completa, Força da Honra e Inspirar Aliado.",
+    "cost": "1 ponto",
+    "requirements": "Resoluto ou Vigoroso; Código (qualquer)"
+  },
+  {
+    "name": "Kit: Celebridade",
+    "desc": "Artistas, heróis ou influenciadores que conquistam a admiração do público e usam sua fama e torcida a seu favor. Concedem os poderes Grande Fama, Ovação e Rugido das Massas.",
+    "cost": "1 ponto",
+    "requirements": "Famoso, Torcida"
+  },
+  {
+    "name": "Kit: Cientista",
+    "desc": "Mentes brilhantes que exploram os limites do conhecimento, usando a ciência para desvendar os mistérios da magia e tecnologia. Concedem os poderes Eureka!, Método Científico e Pesquisa.",
+    "cost": "1 ponto",
+    "requirements": "Saber"
+  },
+  {
+    "name": "Kit: Clérigo",
+    "desc": "Campeões de entidades divinas distantes, que recebem poderes mágicos em troca de devoção e serviço. Concedem os poderes Devoto Fervoroso, Dom Divino e Poder Concedido.",
+    "cost": "1 ponto",
+    "requirements": "Devoto"
+  },
+  {
+    "name": "Kit: Cosmonauta da ORDEM",
+    "desc": "Membros da frota espacial ORDEM, que exploram o universo e protegem a Terra de ameaças alienígenas. Concedem os poderes Primeiro Contato, Inimigo Meu e Sensores Avançados.",
+    "cost": "1 ponto",
+    "requirements": "Patrono, Inimigo (aliens)"
+  },
+  {
+    "name": "Kit: Curandeiro",
+    "desc": "Especialistas em restaurar a saúde dos feridos, seja através de tecnologia médica, magia divina ou poderes inatos. Concedem os poderes Paramédico, Cura Crítica e Explosão de Cura.",
+    "cost": "1 ponto",
+    "requirements": "Medicina; Cura"
+  },
+  {
+    "name": "Kit: Detetive",
+    "desc": "Investigadores que resolvem crimes e mistérios, reunindo evidências e coletando informações para encontrar a verdade. Concedem os poderes Elementar!, Obter Informação e Caso Encerrado.",
+    "cost": "1 ponto",
+    "requirements": "Manha, Percepção"
+  },
+  {
+    "name": "Kit: DPS",
+    "desc": "Combatentes focados em causar a maior quantidade de dano possível, seja de perto ou à distância. Concedem os poderes Estilo de Combate, Ataque Gratuito e Último Recurso.",
+    "cost": "1 ponto",
+    "requirements": "Poder 3, Ataque Especial (qualquer)"
+  },
+  {
+    "name": "Kit: Druida",
+    "desc": "Defensores da natureza que podem se transformar em feras e comandar animais e plantas para proteger o equilíbrio ecológico. Concedem os poderes Forma Selvagem, Irmãos Selvagens e Dádiva da Natureza.",
+    "cost": "1 ponto",
+    "requirements": "Animais; Ajudante, Transformação; Código Dahllan"
+  },
+  {
+    "name": "Kit: Elementalista",
+    "desc": "Magos especializados em um único elemento da natureza, que o manipulam com precisão para diversos fins. Concedem os poderes Ambiente Elemental, Elemento Primordial e Moldar Essência.",
+    "cost": "1 ponto",
+    "requirements": "Magia, Ambiente, Fraqueza"
+  },
+  {
+    "name": "Kit: Engenheiro Mecha",
+    "desc": "Inventores e pilotos geniais que projetam, constroem e operam robôs gigantes e maquinarias avançadas. Concedem os poderes A Ferramenta Certa, Engenheiro de Campo e Martelinho de Ouro.",
+    "cost": "1 ponto",
+    "requirements": "Máquinas; Utensílio (ferramentas)"
+  },
+  {
+    "name": "Kit: Entidade Exilada",
+    "desc": "Seres de outros mundos ou dimensões, presos na Terra e tentando se adaptar enquanto buscam um caminho de volta para casa. Concedem os poderes Não Conheci o Outro Mundo por Querer!, Sorte Extraplanar e Energia Youkai.",
+    "cost": "1 ponto",
+    "requirements": "Nenhuma"
+  },
+  {
+    "name": "Kit: Estudante",
+    "desc": "Jovens em formação nas academias da Era das Arcas, aprendendo a lidar com magia, tecnologia e ameaças cósmicas. Concedem os poderes Hora do Intervalo, Prova Real e Quem não Cola...",
+    "cost": "1 ponto",
+    "requirements": "Qualquer perícia; Mentor"
+  },
+  {
+    "name": "Kit: Exército da Luz",
+    "desc": "Soldados de elite que são a última linha de defesa da Terra contra kaijus, alienígenas e outras ameaças de grande escala. Concedem os poderes Artilharia Total, Armadura Radiante e Ombro a Ombro.",
+    "cost": "1 ponto",
+    "requirements": "Patrono"
+  },
+  {
+    "name": "Kit: Experimento",
+    "desc": "Seres criados em laboratório, com corpos modificados por ciência ou magia, que podem ser tanto maravilhas quanto tragédias. Concedem os poderes Adaptação, Bioenergia e Mutação.",
+    "cost": "1 ponto",
+    "requirements": "Imune; +Mana ou +Vida"
+  },
+  {
+    "name": "Kit: Gatuno Galante",
+    "desc": "Mestres da infiltração e do charme, que usam astúcia e elegância para desvendar segredos e desafiar os poderosos. Concedem os poderes Ardiloso, Reconhecimento de Terreno e Um Passo à Frente.",
+    "cost": "1 ponto",
+    "requirements": "Manha; Ágil, Carismático ou Gênio"
+  },
+  {
+    "name": "Kit: Gigante da Luz",
+    "desc": "Guerreiros estelares que se fundem a um hospedeiro para se transformarem em heróis colossais e proteger o universo de monstros gigantes. Concedem os poderes Poder Interior, Transformação Gigante e Transformação Menor.",
+    "cost": "1 ponto",
+    "requirements": "Transformação; Código do Combate e Heróis"
+  },
+  {
+    "name": "Kit: Guerreira Mágica",
+    "desc": "Heroínas que usam trajes mágicos e poderes arcanos para lutar pelo amor e pela justiça, inspirando esperança contra as trevas. Concedem os poderes Auxílio Mágico, Punirei Você! e Transformação Radiante.",
+    "cost": "1 ponto",
+    "requirements": "Mística; Magia"
+  },
+  {
+    "name": "Kit: Guerreiro",
+    "desc": "Combatentes que resolvem problemas através da força bruta e da maestria em combate, para quem lutar é um objetivo em si. Concedem os poderes Lutar é Tudo!, Manobra Especial e Sem Parar.",
+    "cost": "1 ponto",
+    "requirements": "Luta; Ataque Especial ou Defesa Especial"
+  },
+  {
+    "name": "Kit: Herói Sentai",
+    "desc": "Membros de um superesquadrão colorido que atuam em equipe para defender o planeta, provando que a união faz a força. Concedem os poderes Hora de Sincronizar, Soltar Faísca e Finalização.",
+    "cost": "1 ponto",
+    "requirements": "Elo Mental, Golpe Final, Patrono"
+  },
+  {
+    "name": "Kit: Idol",
+    "desc": "Estrelas dos palcos que cativam multidões com seu talento e carisma, usando sua performance para inspirar aliados em batalha. Concedem os poderes Seu Sorriso..., ...É Tão Resplandecente! e Me Dê a Mão!",
+    "cost": "1 ponto",
+    "requirements": "Arte; Carismática, Famosa"
+  },
+  {
+    "name": "Kit: Ilusionista",
+    "desc": "Mestres do engano que usam mágica, truques ou poderes mentais para manipular a percepção de seus alvos e controlar o campo de batalha. Concedem os poderes Gambito Ilusório, Glamour e Ilusão Autônoma.",
+    "cost": "1 ponto",
+    "requirements": "Arte, Mística ou Telepata; Ilusão"
+  },
+  {
+    "name": "Kit: Impostor",
+    "desc": "Especialistas em disfarce que podem assumir a aparência e até os talentos de outras pessoas para se infiltrarem e enganarem. Concedem os poderes Disfarce Perfeito, Engenheiro Social e Jogo da Imitação.",
+    "cost": "1 ponto",
+    "requirements": "Influência; Imitar"
+  },
+  {
+    "name": "Kit: Intendente",
+    "desc": "Servos altamente treinados em academias de elite, cujas habilidades em combate e suporte superam as de muitos heróis. Concedem os poderes Excelência, Housekeeping e Sempre a Postos.",
+    "cost": "1 ponto",
+    "requirements": "Arte ou Sobrevivência; Improviso"
+  },
+  {
+    "name": "Kit: Ladino",
+    "desc": "Aventureiros astutos e versáteis que usam truques e ataques surpresa para superar desafios, operando na fronteira da moralidade. Concedem os poderes Ataque Furtivo, Malandragem e Trapaça.",
+    "cost": "1 ponto",
+    "requirements": "Manha; Ágil ou Gênio"
+  },
+  {
+    "name": "Kit: Maginauta",
+    "desc": "Hackers do mundo mágico que viajam pelo magiespaço para manipular e anular feitiços de formas impossíveis para magos comuns. Concedem os poderes Imersão, Interferência e Sobrecarga.",
+    "cost": "1 ponto",
+    "requirements": "Magia, Mística"
+  },
+  {
+    "name": "Kit: Mago",
+    "desc": "Estudiosos da magia arcana que a tratam como uma ciência, usando grimórios e fórmulas para conjurar feitiços precisos. Concedem os poderes Aptidão Mágica, Bateria de Mana e Preparar Magias.",
+    "cost": "1 ponto",
+    "requirements": "Mística; Magia"
+  },
+  {
+    "name": "Kit: Menestreamer",
+    "desc": "Os bardos da era moderna, que transmitem as aventuras de seu grupo para seguidores online, inspirando aliados com sua narração. Concedem os poderes Inspirar, É Meu Amigo! e Audiência Generosa.",
+    "cost": "1 ponto",
+    "requirements": "Arte, Influência ou Carismático; Famoso"
+  },
+  {
+    "name": "Kit: Mercenário",
+    "desc": "Profissionais da guerra que seguem um código de honra estrito: uma vez que um contrato é aceito, ele será cumprido a qualquer custo. Concedem os poderes Nem Morto, Melhor no que Faz e Trato Feito.",
+    "cost": "1 ponto",
+    "requirements": "Devoto, Patrono, Código"
+  },
+  {
+    "name": "Kit: Mestre-Cuca",
+    "desc": "Chefs de cozinha de elite que usam suas habilidades culinárias para criar pratos com efeitos milagrosos em aventuras. Concedem os poderes Talento Culinário, Prato Milagroso e Despensa Cheia.",
+    "cost": "1 ponto",
+    "requirements": "Arte ou Sobrevivência"
+  },
+  {
+    "name": "Kit: Monge",
+    "desc": "Praticantes de artes marciais que buscam a paz interior, mas são combatentes excepcionais que treinam corpo e mente até a perfeição. Concedem os poderes Agilidade Superior, Alma de Aço e Controle dos Chakras.",
+    "cost": "1 ponto",
+    "requirements": "Ágil; Resoluto ou Vigoroso; 1ª Lei de Asimov"
+  },
+  {
+    "name": "Kit: Motoqueiro Mascarado",
+    "desc": "Heróis solitários, muitas vezes transformados contra a vontade, que cavalgam suas motos especiais para lutar pela justiça. Concedem os poderes Henshin, Moto de Batalha e Até o Fim.",
+    "cost": "1 ponto",
+    "requirements": "Luta; Ajudante (Montaria)"
+  },
+  {
+    "name": "Kit: Necromante",
+    "desc": "Mestres da energia negativa que comandam mortos-vivos e podem curar criaturas Sem Vida. Concedem os poderes Criar Morto-Vivo, Energia Negativa e Fortificar Morto-Vivo.",
+    "cost": "1 ponto",
+    "requirements": "Mística; Magia"
+  },
+  {
+    "name": "Kit: Negociador",
+    "desc": "Especialistas em resolver conflitos através do diálogo e da empatia, convencendo inimigos e superando obstáculos com palavras. Concedem os poderes Argumentação, Empatia e Palavras de Conforto.",
+    "cost": "1 ponto",
+    "requirements": "Influência, Carismático"
+  },
+  {
+    "name": "Kit: Ninja",
+    "desc": "Guerreiros furtivos treinados em artes secretas, que agem nas sombras como espiões e combatentes eficientes. Concedem os poderes Mestre Ninja, Ninpo de Combate e Ougi.",
+    "cost": "1 ponto",
+    "requirements": "Manha; Mentor"
+  },
+  {
+    "name": "Kit: Operativo",
+    "desc": "Supersoldados de organizações militares privadas, que usam táticas avançadas e equipamento de ponta em missões secretas. Concedem os poderes Combate Tático, Armas Secretas e Equipamento de Espião.",
+    "cost": "1 ponto",
+    "requirements": "Luta, Sobrevivência; Patrono"
+  },
+  {
+    "name": "Kit: Paladino",
+    "desc": "Guerreiros santos devotados a uma causa ou entidade, que extraem poder de sua fé e coragem para proteger os inocentes. Concedem os poderes Bravura Final, Me Dê Sua Força! e Sétimo Sentido.",
+    "cost": "1 ponto",
+    "requirements": "Devoto; Código dos Heróis e Honestidade"
+  },
+  {
+    "name": "Kit: Patrulheiro",
+    "desc": "Exploradores rústicos especializados em sobreviver nos ermos, rastreando presas e usando o ambiente a seu favor. Concedem os poderes Natureza Provedora, À Prova de Tudo e Rastreador Perfeito.",
+    "cost": "1 ponto",
+    "requirements": "Sobrevivência"
+  },
+  {
+    "name": "Kit: Pescador Parrudo",
+    "desc": "Gigantes gentis de força e carisma impressionantes, que superam desafios com sua constituição robusta e otimismo contagiante. Concedem os poderes Quem Sou? Onde Estou?, Parrudez e Pescado do Dia.",
+    "cost": "1 ponto",
+    "requirements": "Poder 3; Sobrevivência; Vigoroso"
+  },
+  {
+    "name": "Kit: Piloto Mecha",
+    "desc": "Pilotos de elite que controlam robôs gigantes e superarmaduras para enfrentar as maiores ameaças à humanidade. Concedem os poderes Ajudante Robô, Ás Indomável e Kiodai Mecha.",
+    "cost": "1 ponto",
+    "requirements": "Máquinas; Ajudante"
+  },
+  {
+    "name": "Kit: Policial do Espaço",
+    "desc": "Agentes de uma força galáctica que protegem mundos de monstros e vilões, usando trajes e veículos de alta tecnologia. Concedem os poderes Jouchaku!, Assistente e Kiodai Mecha.",
+    "cost": "1 ponto",
+    "requirements": "Luta; Ajudante, Patrono; Código dos Heróis"
+  },
+  {
+    "name": "Kit: Psiônico",
+    "desc": "Indivíduos com poderes mentais como telepatia e telecinese, que correm o risco de sobrecarregar corpo e mente ao usar suas habilidades. Concedem os poderes Dom Telepático, Intuição Psíquica e Sobrecarga Psíquica.",
+    "cost": "1 ponto",
+    "requirements": "Obstinado, Sentido (Intuição), Telepata"
+  },
+  {
+    "name": "Kit: Repórter Extremo",
+    "desc": "Jornalistas intrépidos que se aventuram em busca da verdade, usando sua curiosidade e contatos para desvendar qualquer mistério. Concedem os poderes Faro para Notícia, Fontes Confiáveis e Furo de Reportagem.",
+    "cost": "1 ponto",
+    "requirements": "Percepção; Sentido (Intuição)"
+  },
+  {
+    "name": "Kit: Samurai",
+    "desc": "Guerreiros nobres que servem a um mestre ou a um código de honra, combinando maestria com a katana e etiqueta refinada. Concedem os poderes Guerreiro Poeta, Artefato Ancestral e Guerreiro Honrado.",
+    "cost": "1 ponto",
+    "requirements": "Patrono ou Código"
+  },
+  {
+    "name": "Kit: Servo da Centelha",
+    "desc": "Artistas marciais obcecados em despertar uma energia interior ardente, buscando oponentes cada vez mais fortes para atingir a perfeição. Concedem os poderes Bater Onde Dói, Combate Violento e Faísca da Centelha.",
+    "cost": "1 ponto",
+    "requirements": "Luta; Devoto"
+  },
+  {
+    "name": "Kit: Shinigami",
+    "desc": "Guerreiros espirituais que atuam como deuses da morte, protegendo o equilíbrio entre o mundo dos vivos e dos mortos. Concedem os poderes Eu Voltarei!, Guia dos Mortos e Inimigo Espiritual.",
+    "cost": "1 ponto",
+    "requirements": "Imortal, Inimigo (espíritos)"
+  },
+  {
+    "name": "Kit: Superatleta",
+    "desc": "Esportistas extraordinários que personificam a excelência física, usando suas habilidades atléticas para superar qualquer desafio. Concedem os poderes Aquecimento, Espírito Olímpico e Medalha de Ouro.",
+    "cost": "1 ponto",
+    "requirements": "Esportes"
+  },
+  {
+    "name": "Kit: Super-Herói",
+    "desc": "Indivíduos com superpoderes que escolheram usar seus dons para proteger o planeta e seus povos. Concedem os poderes Sobrehumano, Façanha Épica e Herói de Ação.",
+    "cost": "1 ponto",
+    "requirements": "Ágil, Carismático, Forte, Gênio, Resoluto ou Vigoroso; Código dos Heróis"
+  },
+  {
+    "name": "Kit: Tanque",
+    "desc": "Defensores especializados em atrair os ataques inimigos para si, atuando como escudos vivos para proteger seus companheiros. Concedem os poderes Hoje Não!, Defesa Gratuita e Último Bastião.",
+    "cost": "1 ponto",
+    "requirements": "Resistência 3, Defesa Especial (Provocação)"
+  },
+  {
+    "name": "Kit: Treinador de Monstros",
+    "desc": "Aventureiros com grande afinidade por criaturas exóticas, que as capturam, treinam e usam como parceiros leais em batalhas. Concedem os poderes Amigo dos Monstros, Eu Escolho Você! e Temos que Pegar!",
+    "cost": "1-3 pontos",
+    "requirements": "Animais; Ajudante (qualquer)"
+  },
+  {
+    "name": "Kit: Vigilante Sombrio",
+    "desc": "Anti-heróis que usam o medo e a escuridão como armas, operando nas sombras para fazer justiça com seus próprios métodos. Concedem os poderes Forma Sombria, Terror da Noite e Sumir nas Sombras.",
+    "cost": "1 ponto",
+    "requirements": "Invisível, Sentido (infravisão)"
+  }
 ]
