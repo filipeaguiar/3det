@@ -1,3 +1,15 @@
+const SUPABASE_URL = 'https://epnbxbamyrpbgapkkjsf.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwbmJ4YmFteXJwYmdhcGtranNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA4NzAyNjksImV4cCI6MjA2NjQ0NjI2OX0.6R0yesNLI9GJlFGOFV-Ekx6Xkwboc0mWnWiYBv9WDNI';
+
+let supabase;
+try {
+  supabase = self.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+} catch (e) {
+  console.error("Erro ao inicializar o cliente Supabase:", e);
+  alert("Erro ao conectar com o Supabase. Verifique o console para mais detalhes.");
+}
+
+
 // --- Estado Global ---
 let periciasData = {};
 let vantagensData = {};
@@ -10,42 +22,136 @@ let npcData = [];
 let sessionData = {};
 let campaignData = [];
 
+
 // --- FUNÇÕES DE BUSCA DE DADOS (DATA FETCHING) ---
-async function fetchData(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Erro HTTP ${response.status} ao carregar: ${url}`);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error(error);
-    return null;
+
+// Função genérica para buscar as regras
+async function fetchRules(tableName) {
+  const { data, error } = await supabase.from(tableName).select('*');
+  if (error) {
+    console.error(`Erro ao buscar ${tableName}:`, error);
+    return [];
   }
+  return data;
 }
 
+// Função para buscar personagens, npcs ou monstros e seus dados relacionados
+async function fetchCharacterData(tableName, campaignId) {
+  // Nota: O Supabase v1 usa `foreignTable` e o v2 usa a sintaxe `foreignTable(*)`.
+  // Esta sintaxe é para a versão mais recente da biblioteca supabase-js.
+  const { data, error } = await supabase
+    .from(tableName)
+    .select(`
+            *,
+            pericias:personagens_pericias(pericias(*)),
+            vantagens:personagens_vantagens(vantagens(*)),
+            desvantagens:personagens_desvantagens(desvantagens(*)),
+            tecnicas:personagens_tecnicas(tecnicas(*))
+        `)
+    .eq('campaign_id', campaignId);
+
+  if (error) {
+    console.error(`Erro ao buscar ${tableName} para a campanha ${campaignId}:`, error);
+    return [];
+  }
+
+  // Processa os dados para extrair os objetos aninhados
+  return data.map(char => {
+    return {
+      ...char,
+      pericias: char.pericias.map(p => p.pericias).filter(Boolean),
+      vantagens: char.vantagens.map(v => v.vantagens).filter(Boolean),
+      desvantagens: char.desvantagens.map(d => d.desvantagens).filter(Boolean),
+      tecnicas: char.tecnicas.map(t => t.tecnicas).filter(Boolean),
+      stats: {
+        "Poder": char.Poder,
+        "Habilidade": char.Habilidade,
+        "Resistência": char.Resistencia,
+        "Pontos de Ação": char.Pontos_Acao,
+        "Pontos de Mana": char.Pontos_Mana,
+        "Pontos de Vida": char.Pontos_Vida
+      }
+    };
+  });
+}
+
+
+// Função para buscar os dados de uma sessão específica
+async function fetchSessionDetails(sessionId) {
+  const { data: session, error: sessionError } = await supabase
+    .from('sessions')
+    .select('*')
+    .eq('id', sessionId)
+    .single();
+
+  if (sessionError) {
+    console.error(`Erro ao buscar a sessão ${sessionId}:`, sessionError);
+    return null;
+  }
+
+  const [
+    { data: ganchos },
+    { data: objetivos },
+    { data: segredos },
+    { data: tesouros },
+    { data: encontros },
+    { data: locais }
+  ] = await Promise.all([
+    supabase.from('session_ganchos_personagens').select('*').eq('session_id', sessionId),
+    supabase.from('session_objetivos').select('*').eq('session_id', sessionId),
+    supabase.from('session_segredos_rumores').select('*').eq('session_id', sessionId),
+    supabase.from('session_tesouros_recompensas').select('*').eq('session_id', sessionId),
+    supabase.from('session_encontros_desafios').select('*').eq('session_id', sessionId),
+    supabase.from('session_locais_interessantes').select('*, caracteristicas:session_locais_caracteristicas(description)').eq('session_id', sessionId),
+  ]);
+
+  return {
+    comecoForte: session.comeco_forte,
+    ganchoProximaAventura: session.gancho_proxima_aventura,
+    ganchosPersonagens: ganchos || [],
+    objetivosSessao: {
+      principal: objetivos?.find(o => o.type === 'principal')?.description || 'Nenhum',
+      secundarios: objetivos?.filter(o => o.type === 'secundario').map(o => o.description) || []
+    },
+    segredosRumores: segredos?.map(s => s.description) || [],
+    tesourosRecompensas: tesouros || [],
+    locaisInteressantes: locais?.map(l => ({
+      nome: l.name,
+      caracteristicas: l.caracteristicas.map(c => c.description)
+    })) || [],
+    encontrosDesafios: encontros || []
+  };
+}
+
+
 async function fetchAllData() {
-  console.log("A buscar todos os dados dos arquivos JSON...");
+  console.log("Iniciando busca de todos os dados do Supabase...");
+
+  if (SUPABASE_URL === 'SUA_URL_SUPABASE' || SUPABASE_ANON_KEY === 'SUA_CHAVE_ANON') {
+    throw new Error("Credenciais do Supabase não foram definidas no script.js");
+  }
+
+  const CAMPAIGN_ID_TO_LOAD = 1;
+  const SESSION_ID_TO_LOAD = 1;
+
   const [
     periciasRes,
     vantagensRes,
     desvantagensRes,
     tecnicasRes,
     personagensRes,
-    bestiarioRes,
     npcsRes,
-    sessaoRes,
-    campanhaIndexRes
+    bestiarioRes,
+    sessionRes
   ] = await Promise.all([
-    fetchData('pericias.json'),
-    fetchData('vantagens.json'),
-    fetchData('desvantagens.json'),
-    fetchData('tecnicas.json'),
-    fetchData('personagens.json'),
-    fetchData('bestiario.json'),
-    fetchData('npcs.json'),
-    fetchData('sessao.json'),
-    fetchData('Campanha/index.json')
+    fetchRules('pericias'),
+    fetchRules('vantagens'),
+    fetchRules('desvantagens'),
+    fetchRules('tecnicas'),
+    fetchCharacterData('personagens', CAMPAIGN_ID_TO_LOAD),
+    fetchCharacterData('npcs', CAMPAIGN_ID_TO_LOAD),
+    fetchCharacterData('monstros', CAMPAIGN_ID_TO_LOAD),
+    fetchSessionDetails(SESSION_ID_TO_LOAD)
   ]);
 
   const arrayToObject = (arr) => arr.reduce((acc, item) => { acc[item.name] = item; return acc; }, {});
@@ -57,25 +163,17 @@ async function fetchAllData() {
   }
   if (desvantagensRes) desvantagensData = arrayToObject(desvantagensRes);
   if (tecnicasRes) tecnicasData = arrayToObject(tecnicasRes);
+
   if (personagensRes) playerData = personagensRes;
   if (bestiarioRes) bestiaryData = bestiarioRes;
   if (npcsRes) npcData = npcsRes;
-  if (sessaoRes) sessionData = sessaoRes;
+  if (sessionRes) sessionData = sessionRes;
 
-  if (campanhaIndexRes) {
-    const markdownFiles = await Promise.all(
-      campanhaIndexRes.map(fileName => fetch(`Campanha/${fileName}`).then(res => res.text()))
-    );
-    campaignData = markdownFiles;
-  }
-
-
-  loadRules(periciasRes || [], vantagensRes || [], desvantagensRes || [], tecnicasRes || [], kitsData);
+  loadRules(periciasRes, vantagensRes, desvantagensRes, tecnicasRes, kitsData);
   populatePlayerList();
   populateNpcList();
   populateBestiaryList();
   displaySessionData();
-  initializeCampaignView();
 }
 
 
@@ -90,82 +188,44 @@ function showSection(targetId) {
   if (buttonToActivate) buttonToActivate.classList.add('active');
 }
 
-function createAbilitySpan(abilityName, masterData) {
-  const fullAbility = masterData[abilityName];
-  if (fullAbility) {
-    const desc = (fullAbility.description || fullAbility.desc || 'Sem descrição.').replace(/"/g, '&quot;');
-    return `<span class="ability-tag" data-tooltip="${desc}">${fullAbility.name}</span>`;
-  }
-  return `<span class="ability-tag" data-tooltip="Descrição não encontrada.">${abilityName}</span>`;
+function createAbilitySpan(abilityName, abilityDesc) {
+  const desc = (abilityDesc || 'Sem descrição.').replace(/"/g, '&quot;');
+  return `<span class="ability-tag" data-tooltip="${desc}">${abilityName}</span>`;
 }
 
+function displayCharacter(characterId, characterType) {
+  let character;
+  let detailsContainer;
+  let listId;
 
-function displayPlayer(playerName) {
-  const playerDetails = document.getElementById('player-details');
-  const player = playerData.find(p => p.name === playerName);
-  if (!player) {
-    playerDetails.innerHTML = `<p class="text-center text-error">Personagem não encontrado.</p>`;
+  if (characterType === 'player') {
+    character = playerData.find(p => p.id === characterId);
+    detailsContainer = document.getElementById('player-details');
+    listId = '#player-list';
+  } else if (characterType === 'npc') {
+    character = npcData.find(n => n.id === characterId);
+    detailsContainer = document.getElementById('npc-details');
+    listId = '#npc-list';
+  } else { // bestiary
+    character = bestiaryData.find(b => b.id === characterId);
+    detailsContainer = document.getElementById('bestiary-details');
+    listId = '#bestiary-list';
+  }
+
+  if (!character) {
+    detailsContainer.innerHTML = `<p class="text-center text-error">Personagem não encontrado.</p>`;
     return;
   }
 
-  const createListHtml = (itemNames, masterData) => {
-    if (!itemNames || itemNames.length === 0) return "Nenhuma";
-    return itemNames.map(itemName => createAbilitySpan(itemName, masterData)).join(', ');
+  const createListHtml = (items) => {
+    if (!items || items.length === 0) return "Nenhuma";
+    return items.map(item => createAbilitySpan(item.name, item.description || item.desc)).join(', ');
   };
 
-  let periciasHtml = createListHtml(player.pericias, periciasData);
-  let vantagensHtml = createListHtml(player.vantagens, vantagensData);
-  let tecnicasHtml = createListHtml(player.tecnicas, tecnicasData);
-  let desvantagensHtml = createListHtml(player.desvantagens, desvantagensData);
-
-  const iconMap = { "Poder": "fa-hand-fist", "Habilidade": "fa-brain", "Resistência": "fa-shield-halved", "Pontos de Vida": "fa-heart-pulse", "Pontos de Mana": "fa-wand-magic-sparkles", "Pontos de Ação": "fa-bolt" };
-  const stats = player.stats;
-  const statsCardsHtml = Object.entries(stats).map(([statName, statValue]) => {
-    const iconClass = iconMap[statName] || 'fa-question-circle';
-    return `<div class="info-card p-3 rounded-lg flex items-center gap-x-3 shadow-sm"><i class="fa-solid ${iconClass} fa-fw fa-2x text-accent"></i><div><span class="block text-sm text-secondary">${statName}</span><span class="block text-xl font-bold text-primary">${statValue || 0}</span></div></div>`;
-  }).join('');
-
-  playerDetails.innerHTML = `<div class="flex flex-col sm:flex-row gap-6 items-start"><div class="flex-shrink-0 w-full sm:w-48"><img src="${player.image || ''}" alt="Retrato de ${player.name}" class="placeholder-img w-full h-auto object-cover rounded-lg shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=${player.name.charAt(0)}';"></div><div class="flex-grow"><h3 class="text-2xl font-bold text-accent">${player.name}</h3><p class="text-md text-secondary italic mb-2">${player.concept}</p><p class="text-sm text-secondary mb-4">${player.archetype} • ${player.pontos}</p><div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-list-ol fa-fw text-slate-500"></i><span>Atributos</span></h4><div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mt-2">${statsCardsHtml}</div></div><div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-graduation-cap fa-fw text-slate-500"></i><span>Perícias</span></h4><p>${periciasHtml}</p></div><div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-thumbs-up fa-fw text-green-600"></i><span>Vantagens</span></h4><p>${vantagensHtml}</p></div>${tecnicasHtml !== "Nenhuma" ? `<div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-wand-sparkles fa-fw text-blue-500"></i><span>Técnicas</span></h4><p>${tecnicasHtml}</p></div>` : ''}<div><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-thumbs-down fa-fw text-red-600"></i><span>Desvantagens</span></h4><p>${desvantagensHtml}</p></div></div></div>`;
-  document.querySelectorAll('#player-list .list-item').forEach(item => item.classList.remove('active'));
-  document.querySelector(`#player-list .list-item[data-id="${player.name}"]`).classList.add('active');
-}
-
-function displayNpc(npcName) {
-  const detailsContainer = document.getElementById('npc-details');
-  const npc = npcData.find(n => n.name === npcName);
-  if (!npc) {
-    detailsContainer.innerHTML = `<p class="text-center text-error">NPC não encontrado.</p>`;
-    return;
-  }
-  // Reutiliza a lógica de displayPlayer para consistência
-  displayCharacter(npc, detailsContainer, periciasData, vantagensData, tecnicasData, desvantagensData);
-  document.querySelectorAll('#npc-list .list-item').forEach(item => item.classList.remove('active'));
-  document.querySelector(`#npc-list .list-item[data-id="${npc.name}"]`).classList.add('active');
-}
-
-function displayEnemy(enemyName) {
-  const detailsContainer = document.getElementById('bestiary-details');
-  const enemy = bestiaryData.find(e => e.name === enemyName);
-  if (!enemy) {
-    detailsContainer.innerHTML = `<p class="text-center text-error">Inimigo não encontrado.</p>`;
-    return;
-  }
-  // Reutiliza a lógica de displayPlayer para consistência
-  displayCharacter(enemy, detailsContainer, periciasData, vantagensData, tecnicasData, desvantagensData);
-  document.querySelectorAll('#bestiary-list .list-item').forEach(item => item.classList.remove('active'));
-  document.querySelector(`#bestiary-list .list-item[data-id="${enemy.name}"]`).classList.add('active');
-}
-
-function displayCharacter(character, container, pericias, vantagens, tecnicas, desvantagens) {
-  const createListHtml = (itemNames, masterData) => {
-    if (!itemNames || itemNames.length === 0) return "Nenhuma";
-    return itemNames.map(itemName => createAbilitySpan(itemName, masterData)).join(', ');
-  };
-
-  let periciasHtml = createListHtml(character.pericias, pericias);
-  let vantagensHtml = createListHtml(character.vantagens, vantagens);
-  let tecnicasHtml = createListHtml(character.tecnicas, tecnicas);
-  let desvantagensHtml = createListHtml(character.desvantagens, desvantagens);
+  let periciasHtml = createListHtml(character.pericias);
+  let vantagensHtml = createListHtml(character.vantagens);
+  let tecnicasHtml = createListHtml(character.tecnicas);
+  let desvantagensHtml = createListHtml(character.desvantagens);
 
   const iconMap = { "Poder": "fa-hand-fist", "Habilidade": "fa-brain", "Resistência": "fa-shield-halved", "Pontos de Vida": "fa-heart-pulse", "Pontos de Mana": "fa-wand-magic-sparkles", "Pontos de Ação": "fa-bolt" };
   const stats = character.stats;
@@ -174,48 +234,38 @@ function displayCharacter(character, container, pericias, vantagens, tecnicas, d
     return `<div class="info-card p-3 rounded-lg flex items-center gap-x-3 shadow-sm"><i class="fa-solid ${iconClass} fa-fw fa-2x text-accent"></i><div><span class="block text-sm text-secondary">${statName}</span><span class="block text-xl font-bold text-primary">${statValue || 0}</span></div></div>`;
   }).join('');
 
-  container.innerHTML = `<div class="flex flex-col sm:flex-row gap-6 items-start"><div class="flex-shrink-0 w-full sm:w-48"><img src="${character.image || ''}" alt="Retrato de ${character.name}" class="placeholder-img w-full h-auto object-cover rounded-lg shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=${character.name.charAt(0)}';"></div><div class="flex-grow"><h3 class="text-2xl font-bold text-accent">${character.name}</h3><p class="text-md text-secondary italic mb-2">${character.concept}</p><p class="text-sm text-secondary mb-4">${character.archetype} • ${character.pontos}</p><div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-list-ol fa-fw text-slate-500"></i><span>Atributos</span></h4><div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mt-2">${statsCardsHtml}</div></div><div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-graduation-cap fa-fw text-slate-500"></i><span>Perícias</span></h4><p>${periciasHtml}</p></div><div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-thumbs-up fa-fw text-green-600"></i><span>Vantagens</span></h4><p>${vantagensHtml}</p></div>${tecnicasHtml !== "Nenhuma" ? `<div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-wand-sparkles fa-fw text-blue-500"></i><span>Técnicas</span></h4><p>${tecnicasHtml}</p></div>` : ''}<div><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-thumbs-down fa-fw text-red-600"></i><span>Desvantagens</span></h4><p>${desvantagensHtml}</p></div></div></div>`;
+  detailsContainer.innerHTML = `<div class="flex flex-col sm:flex-row gap-6 items-start"><div class="flex-shrink-0 w-full sm:w-48"><img src="${character.image || ''}" alt="Retrato de ${character.name}" class="placeholder-img w-full h-auto object-cover rounded-lg shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=${character.name.charAt(0)}';"></div><div class="flex-grow"><h3 class="text-2xl font-bold text-accent">${character.name}</h3><p class="text-md text-secondary italic mb-2">${character.concept}</p><p class="text-sm text-secondary mb-4">${character.archetype} • ${character.pontos} pontos</p><div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-list-ol fa-fw text-slate-500"></i><span>Atributos</span></h4><div class="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-3 mt-2">${statsCardsHtml}</div></div><div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-graduation-cap fa-fw text-slate-500"></i><span>Perícias</span></h4><p>${periciasHtml}</p></div><div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-thumbs-up fa-fw text-green-600"></i><span>Vantagens</span></h4><p>${vantagensHtml}</p></div>${tecnicasHtml !== "Nenhuma" ? `<div class="mb-4"><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-wand-sparkles fa-fw text-blue-500"></i><span>Técnicas</span></h4><p>${tecnicasHtml}</p></div>` : ''}<div><h4 class="font-bold mb-1 flex items-center gap-x-2"><i class="fa-solid fa-thumbs-down fa-fw text-red-600"></i><span>Desvantagens</span></h4><p>${desvantagensHtml}</p></div></div></div>`;
+
+  document.querySelectorAll(`${listId} .list-item`).forEach(item => item.classList.remove('active'));
+  const activeListItem = document.querySelector(`${listId} .list-item[data-id="${character.id}"]`);
+  if (activeListItem) activeListItem.classList.add('active');
 }
 
+
+function populateList(listId, data, icon, onClickHandler) {
+  const list = document.getElementById(listId);
+  if (!list) return;
+  list.innerHTML = '';
+  data.sort((a, b) => a.name.localeCompare(b.name)).forEach(item => {
+    const li = document.createElement('li');
+    li.dataset.id = item.id;
+    li.className = 'list-item p-2 rounded-md cursor-pointer flex items-center gap-x-2';
+    li.innerHTML = `<i class="fa-solid ${icon} fa-fw text-slate-500"></i><span>${item.name}</span>`;
+    li.onclick = () => onClickHandler(item.id);
+    list.appendChild(li);
+  });
+}
 
 function populatePlayerList() {
-  const playerList = document.getElementById('player-list');
-  if (!playerList) return;
-  playerList.innerHTML = '';
-  playerData.forEach(player => {
-    const li = document.createElement('li');
-    li.dataset.id = player.name;
-    li.className = 'list-item p-2 rounded-md cursor-pointer flex items-center gap-x-2';
-    li.innerHTML = `<i class="fa-solid fa-user fa-fw text-slate-500"></i><span>${player.name}</span>`;
-    li.onclick = () => displayPlayer(player.name);
-    playerList.appendChild(li);
-  });
+  populateList('player-list', playerData, 'fa-user', (id) => displayCharacter(id, 'player'));
 }
+
 function populateNpcList() {
-  const npcList = document.getElementById('npc-list');
-  if (!npcList) return;
-  npcList.innerHTML = '';
-  npcData.sort((a, b) => a.name.localeCompare(b.name)).forEach(npc => {
-    const li = document.createElement('li');
-    li.dataset.id = npc.name;
-    li.className = 'list-item p-2 rounded-md cursor-pointer flex items-center gap-x-2';
-    li.innerHTML = `<i class="fa-solid fa-id-badge fa-fw text-slate-500"></i><span>${npc.name}</span>`;
-    li.onclick = () => displayNpc(npc.name);
-    npcList.appendChild(li);
-  });
+  populateList('npc-list', npcData, 'fa-id-badge', (id) => displayCharacter(id, 'npc'));
 }
+
 function populateBestiaryList() {
-  const bestiaryList = document.getElementById('bestiary-list');
-  if (!bestiaryList) return;
-  bestiaryList.innerHTML = '';
-  bestiaryData.sort((a, b) => a.name.localeCompare(b.name)).forEach(enemy => {
-    const li = document.createElement('li');
-    li.dataset.id = enemy.name;
-    li.className = 'list-item p-2 rounded-md cursor-pointer flex items-center gap-x-2';
-    li.innerHTML = `<i class="fa-solid fa-skull fa-fw text-slate-500"></i><span>${enemy.name}</span>`;
-    li.onclick = () => displayEnemy(enemy.name);
-    bestiaryList.appendChild(li);
-  });
+  populateList('bestiary-list', bestiaryData, 'fa-skull', (id) => displayCharacter(id, 'bestiary'));
 }
 
 function loadRules(pericias, vantagens, desvantagens, tecnicas, kits) {
@@ -319,11 +369,11 @@ function loadRules(pericias, vantagens, desvantagens, tecnicas, kits) {
 function displaySessionData() {
   const container = document.getElementById('session-content');
   if (!container || !sessionData || Object.keys(sessionData).length === 0) {
-    if (container) container.innerHTML = '<p class="text-secondary text-center">Dados da sessão não encontrados.</p>';
+    if (container) container.innerHTML = '<p class="text-secondary text-center">Dados da sessão não encontrados. Verifique o ID da sessão e se ela existe no Supabase.</p>';
     return;
   }
 
-  container.innerHTML = ''; // Limpa o conteúdo anterior
+  container.innerHTML = '';
 
   const createCard = (title, icon, content) => {
     if (!content || (Array.isArray(content) && content.length === 0)) return '';
@@ -345,13 +395,13 @@ function displaySessionData() {
   leftCol.className = 'space-y-6';
 
   leftCol.appendChild(createCard('Começo Forte', 'fa-rocket', `<p class="text-secondary">${sessionData.comecoForte}</p>`));
-  leftCol.appendChild(createCard('Ganchos dos Personagens', 'fa-user-pen', listFromArray(sessionData.ganchosPersonagens)));
+  leftCol.appendChild(createCard('Ganchos dos Personagens', 'fa-user-pen', listFromArray(sessionData.ganchosPersonagens, 'description')));
   leftCol.appendChild(createCard('Objetivos da Sessão', 'fa-bullseye', `
         <h3 class="font-bold text-primary">Principal</h3><p class="text-secondary mb-2">${sessionData.objetivosSessao.principal}</p>
         <h3 class="font-bold text-primary mt-4">Secundários</h3>${listFromArray(sessionData.objetivosSessao.secundarios)}
     `));
   leftCol.appendChild(createCard('Segredos e Rumores', 'fa-user-secret', listFromArray(sessionData.segredosRumores)));
-  leftCol.appendChild(createCard('Tesouros e Recompensas', 'fa-gem', listFromArray(sessionData.tesourosRecompensas, 'descricaoMecanica')));
+  leftCol.appendChild(createCard('Tesouros e Recompensas', 'fa-gem', listFromArray(sessionData.tesourosRecompensas, 'description_mecanica')));
 
   const rightCol = document.createElement('div');
   rightCol.className = 'space-y-6';
@@ -365,60 +415,29 @@ function displaySessionData() {
 
   const encontrosHtml = sessionData.encontrosDesafios.map(desafio => `
         <div class="mb-4">
-            <h3 class="font-bold text-primary">${desafio.titulo}</h3>
-            <p class="text-secondary">${desafio.descricao}</p>
+            <h3 class="font-bold text-primary">${desafio.title}</h3>
+            <p class="text-secondary">${desafio.description}</p>
             <p class="text-sm text-accent mt-1"><strong>Mecânica:</strong> ${desafio.mecanica}</p>
         </div>`).join('');
   rightCol.appendChild(createCard('Encontros e Desafios', 'fa-dragon', encontrosHtml));
   rightCol.appendChild(createCard('Gancho para Próxima Aventura', 'fa-arrow-right', `<p class="text-secondary">${sessionData.ganchoProximaAventura}</p>`));
-
 
   grid.appendChild(leftCol);
   grid.appendChild(rightCol);
   container.appendChild(grid);
 }
 
-function initializeCampaignView() {
-  const bookContent = document.getElementById('book-content');
-  const prevPageBtn = document.getElementById('prev-page-btn');
-  const nextPageBtn = document.getElementById('next-page-btn');
-  const pageIndicator = document.getElementById('page-indicator');
-
-  if (!bookContent) return;
-
-  let currentPage = 0;
-
-  function renderPage(pageNumber) {
-    if (pageNumber < 0 || pageNumber >= campaignData.length) return;
-
-    // Usa a biblioteca 'marked' para converter Markdown para HTML
-    bookContent.innerHTML = marked.parse(campaignData[pageNumber]);
-    currentPage = pageNumber;
-
-    pageIndicator.textContent = `Página ${currentPage + 1} de ${campaignData.length}`;
-    prevPageBtn.disabled = currentPage === 0;
-    nextPageBtn.disabled = currentPage === campaignData.length - 1;
-  }
-
-  prevPageBtn.addEventListener('click', () => renderPage(currentPage - 1));
-  nextPageBtn.addEventListener('click', () => renderPage(currentPage + 1));
-
-  // Renderiza a primeira página inicialmente
-  if (campaignData.length > 0) {
-    renderPage(0);
-  } else {
-    bookContent.innerHTML = '<p class="text-secondary">Nenhum capítulo da campanha encontrado.</p>';
-    pageIndicator.textContent = 'Página 0 de 0';
-    prevPageBtn.disabled = true;
-    nextPageBtn.disabled = true;
-  }
-}
 
 // --- INICIALIZAÇÃO DA APLICAÇÃO ---
 document.addEventListener('DOMContentLoaded', async () => {
-  await fetchAllData();
+  try {
+    await fetchAllData();
+  } catch (e) {
+    console.error("Falha ao inicializar a aplicação:", e);
+    const content = document.getElementById('content');
+    if (content) content.innerHTML = `<div class="p-8 text-center text-red-500"><strong>Erro Crítico:</strong> Não foi possível carregar os dados. Verifique as credenciais do Supabase e a conexão com a internet. Detalhes no console.</div>`;
+  }
 
-  // Define a aba inicial para 'Testes' ('basico')
   showSection('basico');
 
   document.getElementById('navigation').addEventListener('click', (e) => {
@@ -428,21 +447,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  document.getElementById('content').addEventListener('mousemove', (e) => {
+  const tooltip = document.getElementById('tooltip');
+  document.getElementById('content').addEventListener('mouseover', (e) => {
     const target = e.target.closest('.ability-tag');
-    const tooltip = document.getElementById('tooltip');
     if (target && tooltip) {
       tooltip.style.display = 'block';
       tooltip.innerHTML = target.dataset.tooltip;
-      // Posiciona o tooltip perto do cursor
+    }
+  });
+  document.getElementById('content').addEventListener('mousemove', (e) => {
+    if (tooltip.style.display === 'block') {
       tooltip.style.left = `${e.pageX + 15}px`;
       tooltip.style.top = `${e.pageY + 15}px`;
     }
   });
-
   document.getElementById('content').addEventListener('mouseout', (e) => {
     const target = e.target.closest('.ability-tag');
-    const tooltip = document.getElementById('tooltip');
     if (target && tooltip) {
       tooltip.style.display = 'none';
     }
