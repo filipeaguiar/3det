@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         logoutButton.addEventListener('click', async () => {
             await supabaseClient.auth.signOut();
-            window.location.href = '/login.html';
+            window.location.href = '/3det/login.html';
         });
 
         // Ocultar o menu se clicar fora dele
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('[data-target="sessao"]').style.display = 'none';
 
         userProfileButton.innerHTML = `
-            <a href="/login.html" class="w-10 h-10 bg-slate-600 text-white rounded-full flex items-center justify-center">
+            <a href="/3det/login.html" class="w-10 h-10 bg-slate-600 text-white rounded-full flex items-center justify-center">
                 <i class="fa-solid fa-right-to-bracket"></i>
             </a>
         `;
