@@ -39,15 +39,21 @@ async function fetchRules(tableName) {
 async function fetchCharacterData(tableName, campaignId) {
   // Nota: O Supabase v1 usa `foreignTable` e o v2 usa a sintaxe `foreignTable(*)`.
   // Esta sintaxe é para a versão mais recente da biblioteca supabase-js.
+
+  // Dynamically construct the select string based on the tableName
+  // For 'personagens', tableName is 'personagens'. For 'npcs', it's 'npcs'. For 'monstros', it's 'monstros'.
+  // The join tables are named like 'personagens_pericias', 'npcs_pericias', 'monstros_pericias'.
+  const selectString = `
+            *,
+            pericias:${tableName}_pericias(pericias(*)),
+            vantagens:${tableName}_vantagens(vantagens(*)),
+            desvantagens:${tableName}_desvantagens(desvantagens(*)),
+            tecnicas:${tableName}_tecnicas(tecnicas(*))
+        `;
+
   const { data, error } = await supabase
     .from(tableName)
-    .select(`
-            *,
-            pericias:personagens_pericias(pericias(*)),
-            vantagens:personagens_vantagens(vantagens(*)),
-            desvantagens:personagens_desvantagens(desvantagens(*)),
-            tecnicas:personagens_tecnicas(tecnicas(*))
-        `)
+    .select(selectString)
     .eq('campaign_id', campaignId);
 
   if (error) {
@@ -134,6 +140,8 @@ async function fetchAllData() {
   const CAMPAIGN_ID_TO_LOAD = 1;
   const SESSION_ID_TO_LOAD = 1;
 
+  console.log(`Fetching data for Campaign ID: ${CAMPAIGN_ID_TO_LOAD} and Session ID: ${SESSION_ID_TO_LOAD}`);
+
   const [
     periciasRes,
     vantagensRes,
@@ -154,6 +162,17 @@ async function fetchAllData() {
     fetchSessionDetails(SESSION_ID_TO_LOAD)
   ]);
 
+  console.log("Supabase responses:", {
+    periciasRes,
+    vantagensRes,
+    desvantagensRes,
+    tecnicasRes,
+    personagensRes,
+    npcsRes,
+    bestiarioRes,
+    sessionRes
+  });
+
   const arrayToObject = (arr) => arr.reduce((acc, item) => { acc[item.name] = item; return acc; }, {});
 
   if (periciasRes) periciasData = arrayToObject(periciasRes);
@@ -168,6 +187,18 @@ async function fetchAllData() {
   if (bestiarioRes) bestiaryData = bestiarioRes;
   if (npcsRes) npcData = npcsRes;
   if (sessionRes) sessionData = sessionRes;
+
+  console.log("Processed data:", {
+    periciasData,
+    vantagensData,
+    desvantagensData,
+    tecnicasData,
+    kitsData,
+    playerData,
+    bestiaryData,
+    npcData,
+    sessionData
+  });
 
   loadRules(periciasRes, vantagensRes, desvantagensRes, tecnicasRes, kitsData);
   populatePlayerList();
@@ -211,9 +242,14 @@ function displayCharacter(characterId, characterType) {
     detailsContainer = document.getElementById('bestiary-details');
     listId = '#bestiary-list';
   }
-
   if (!character) {
-    detailsContainer.innerHTML = `<p class="text-center text-error">Personagem não encontrado.</p>`;
+    // detailsContainer might be null if the HTML ID is missing
+    if (detailsContainer) {
+        detailsContainer.innerHTML = `<p class="text-center text-error">Personagem não encontrado.</p>`;
+    } else {
+        // Log an error if the container itself is missing, which is a separate issue.
+        console.error(`Details container not found for character type '${characterType}'. Cannot display 'Personagem não encontrado.'`);
+    }
     return;
   }
 
