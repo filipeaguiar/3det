@@ -1,13 +1,4 @@
-const SUPABASE_URL = 'https://epnbxbamyrpbgapkkjsf.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVwbmJ4YmFteXJwYmdhcGtranNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA4NzAyNjksImV4cCI6MjA2NjQ0NjI2OX0.6R0yesNLI9GJlFGOFV-Ekx6Xkwboc0mWnWiYBv9WDNI';
-
-let supabase;
-try {
-  supabase = self.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-} catch (e) {
-  console.error("Erro ao inicializar o cliente Supabase:", e);
-  alert("Erro ao conectar com o Supabase. Verifique o console para mais detalhes.");
-}
+// The Supabase client is initialized in supabase-client.js
 
 
 // --- Estado Global ---
@@ -27,7 +18,7 @@ let campaignData = [];
 
 // Função genérica para buscar as regras
 async function fetchRules(tableName) {
-  const { data, error } = await supabase.from(tableName).select('*');
+  const { data, error } = await supabaseClient.from(tableName).select('*');
   if (error) {
     console.error(`Erro ao buscar ${tableName}:`, error);
     return [];
@@ -39,15 +30,17 @@ async function fetchRules(tableName) {
 async function fetchCharacterData(tableName, campaignId) {
   // Nota: O Supabase v1 usa `foreignTable` e o v2 usa a sintaxe `foreignTable(*)`.
   // Esta sintaxe é para a versão mais recente da biblioteca supabase-js.
-  const { data, error } = await supabase
-    .from(tableName)
-    .select(`
+  const selectString = `
             *,
-            pericias:personagens_pericias(pericias(*)),
-            vantagens:personagens_vantagens(vantagens(*)),
-            desvantagens:personagens_desvantagens(desvantagens(*)),
-            tecnicas:personagens_tecnicas(tecnicas(*))
-        `)
+            pericias:${tableName}_pericias(pericias(*)),
+            vantagens:${tableName}_vantagens(vantagens(*)),
+            desvantagens:${tableName}_desvantagens(desvantagens(*)),
+            tecnicas:${tableName}_tecnicas(tecnicas(*))
+        `;
+
+  const { data, error } = await supabaseClient
+    .from(tableName)
+    .select(selectString)
     .eq('campaign_id', campaignId);
 
   if (error) {
@@ -78,7 +71,7 @@ async function fetchCharacterData(tableName, campaignId) {
 
 // Função para buscar os dados de uma sessão específica
 async function fetchSessionDetails(sessionId) {
-  const { data: session, error: sessionError } = await supabase
+  const { data: session, error: sessionError } = await supabaseClient
     .from('sessions')
     .select('*')
     .eq('id', sessionId)
@@ -97,12 +90,12 @@ async function fetchSessionDetails(sessionId) {
     { data: encontros },
     { data: locais }
   ] = await Promise.all([
-    supabase.from('session_ganchos_personagens').select('*').eq('session_id', sessionId),
-    supabase.from('session_objetivos').select('*').eq('session_id', sessionId),
-    supabase.from('session_segredos_rumores').select('*').eq('session_id', sessionId),
-    supabase.from('session_tesouros_recompensas').select('*').eq('session_id', sessionId),
-    supabase.from('session_encontros_desafios').select('*').eq('session_id', sessionId),
-    supabase.from('session_locais_interessantes').select('*, caracteristicas:session_locais_caracteristicas(description)').eq('session_id', sessionId),
+    supabaseClient.from('session_ganchos_personagens').select('*').eq('session_id', sessionId),
+    supabaseClient.from('session_objetivos').select('*').eq('session_id', sessionId),
+    supabaseClient.from('session_segredos_rumores').select('*').eq('session_id', sessionId),
+    supabaseClient.from('session_tesouros_recompensas').select('*').eq('session_id', sessionId),
+    supabaseClient.from('session_encontros_desafios').select('*').eq('session_id', sessionId),
+    supabaseClient.from('session_locais_interessantes').select('*, caracteristicas:session_locais_caracteristicas(description)').eq('session_id', sessionId),
   ]);
 
   return {
@@ -127,9 +120,7 @@ async function fetchSessionDetails(sessionId) {
 async function fetchAllData() {
   console.log("Iniciando busca de todos os dados do Supabase...");
 
-  if (SUPABASE_URL === 'SUA_URL_SUPABASE' || SUPABASE_ANON_KEY === 'SUA_CHAVE_ANON') {
-    throw new Error("Credenciais do Supabase não foram definidas no script.js");
-  }
+  
 
   const CAMPAIGN_ID_TO_LOAD = 1;
   const SESSION_ID_TO_LOAD = 1;
@@ -257,15 +248,15 @@ function populateList(listId, data, icon, onClickHandler) {
 }
 
 function populatePlayerList() {
-  populateList('player-list', playerData, 'fa-user', (id) => displayCharacter(id, 'player'));
+  populateList('player-list', playerData, 'fa-user', 'personagens');
 }
 
 function populateNpcList() {
-  populateList('npc-list', npcData, 'fa-id-badge', (id) => displayCharacter(id, 'npc'));
+  populateList('npc-list', npcData, 'fa-id-badge', 'npcs');
 }
 
 function populateBestiaryList() {
-  populateList('bestiary-list', bestiaryData, 'fa-skull', (id) => displayCharacter(id, 'bestiary'));
+  populateList('bestiary-list', bestiaryData, 'fa-skull', 'monstros');
 }
 
 function loadRules(pericias, vantagens, desvantagens, tecnicas, kits) {
@@ -430,6 +421,62 @@ function displaySessionData() {
 
 // --- INICIALIZAÇÃO DA APLICAÇÃO ---
 document.addEventListener('DOMContentLoaded', async () => {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    const user = session?.user;
+    const container = document.querySelector('.container');
+    const userProfileButton = document.createElement('div');
+    userProfileButton.id = 'user-profile-button';
+    userProfileButton.className = 'absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8';
+    container.appendChild(userProfileButton);
+
+    if (user) {
+        // Usuário está logado
+        document.querySelector('[data-target="mestrando"]').style.display = 'flex';
+        document.querySelector('[data-target="sessao"]').style.display = 'flex';
+
+        userProfileButton.innerHTML = `
+            <button id="user-menu-button" class="w-10 h-10 bg-amber-500 text-white rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-user"></i>
+            </button>
+            <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-md shadow-lg py-1 z-50">
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Configurações</a>
+                <button id="logout-button" class="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Sair</button>
+            </div>
+        `;
+
+        const userMenuButton = document.getElementById('user-menu-button');
+        const userMenu = document.getElementById('user-menu');
+        const logoutButton = document.getElementById('logout-button');
+
+        userMenuButton.addEventListener('click', () => {
+            userMenu.classList.toggle('hidden');
+        });
+
+        logoutButton.addEventListener('click', async () => {
+            await supabaseClient.auth.signOut();
+            window.location.href = '/login.html';
+        });
+
+        // Ocultar o menu se clicar fora dele
+        window.addEventListener('click', (e) => {
+            if (!userProfileButton.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+    } else {
+        // Usuário não está logado
+        document.querySelector('[data-target="mestrando"]').style.display = 'none';
+        document.querySelector('[data-target="sessao"]').style.display = 'none';
+
+        userProfileButton.innerHTML = `
+            <a href="/login.html" class="w-10 h-10 bg-slate-600 text-white rounded-full flex items-center justify-center">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+        `;
+    }
+
+
   try {
     await fetchAllData();
   } catch (e) {
