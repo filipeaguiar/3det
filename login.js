@@ -15,6 +15,6 @@ loginForm.addEventListener('submit', async (e) => {
         errorMessage.textContent = 'Email ou senha inválidos.';
         console.error('Erro no login:', error);
     } else {
-        window.location.href = '/';
+        window.location.href = 'index.html';
     }
 });
