@@ -233,7 +233,7 @@ function displayCharacter(characterId, characterType) {
 }
 
 
-function populateList(listId, data, icon, onClickHandler) {
+function populateList(listId, data, icon, characterType, onClickHandler) { // Added characterType, moved onClickHandler
   const list = document.getElementById(listId);
   if (!list) return;
   list.innerHTML = '';
@@ -242,21 +242,26 @@ function populateList(listId, data, icon, onClickHandler) {
     li.dataset.id = item.id;
     li.className = 'list-item p-2 rounded-md cursor-pointer flex items-center gap-x-2';
     li.innerHTML = `<i class="fa-solid ${icon} fa-fw text-slate-500"></i><span>${item.name}</span>`;
-    li.onclick = () => onClickHandler(item.id);
+    // Ensure onClickHandler is a function before calling it
+    if (typeof onClickHandler === 'function') {
+      li.onclick = () => onClickHandler(item.id, characterType); // Pass characterType here
+    } else {
+      console.error('Error: onClickHandler is not a function. Check populateList calls.');
+    }
     list.appendChild(li);
   });
 }
 
 function populatePlayerList() {
-  populateList('player-list', playerData, 'fa-user', 'personagens');
+  populateList('player-list', playerData, 'fa-user', 'player', displayCharacter);
 }
 
 function populateNpcList() {
-  populateList('npc-list', npcData, 'fa-id-badge', 'npcs');
+  populateList('npc-list', npcData, 'fa-id-badge', 'npc', displayCharacter);
 }
 
 function populateBestiaryList() {
-  populateList('bestiary-list', bestiaryData, 'fa-skull', 'monstros');
+  populateList('bestiary-list', bestiaryData, 'fa-skull', 'bestiary', displayCharacter);
 }
 
 function loadRules(pericias, vantagens, desvantagens, tecnicas, kits) {
